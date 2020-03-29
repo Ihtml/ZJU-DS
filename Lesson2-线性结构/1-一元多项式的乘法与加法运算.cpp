@@ -29,18 +29,43 @@ int main() {
     a = it->second;
     mpa[b] += a;
   }
-  for (auto it = mpb.begin(); it != mpb.end(); it++) {
-    if (it != mpb.begin()) {
-      cout << " ";
+  int flaga = 0, flagb = 0;
+  for (auto it = mpa.begin(); it != mpa.end(); it++)
+  {
+    if (it->second != 0)
+    {
+      flaga = 1;break;
     }
-    cout << it->second << " " << it->first;
+  }
+  for (auto it = mpb.begin(); it != mpb.end(); it++)
+  {
+    if (it->second != 0)
+    {
+      flagb = 1;break;
+    }
+  }
+  if (flagb == 0)
+  {
+    printf("%d %d", 0, 0);
+  }else{
+    for (auto it = mpb.begin(); it != mpb.end() && it->second != 0; it++) {
+      if (it != mpb.begin()) {
+        cout << " ";
+      }
+      cout << it->second << " " << it->first;
+    }
   }
   cout << endl;
-  for (auto it = mpa.begin(); it != mpa.end(); it++) {
-    if (it != mpb.begin()) {
-      cout << " ";
+  if (flaga == 0)
+  {
+    printf("%d %d", 0, 0);
+  }else{
+    for (auto it = mpa.begin(); it != mpa.end() && it->second != 0; it++) {
+      if (it != mpa.begin()) {
+        cout << " ";
+      }
+      cout << it->second << " " << it->first;
     }
-    cout << it->second << " " << it->first;
   }
   return 0;
 }
