@@ -75,10 +75,27 @@ int BinarySearch(StaticTable* Tbl, ElementType K) {
 
 ## 2、二叉树
 
+二叉树是一个**有穷的结点集合**，这个集合可以为空，若不为空，则它是由根结点和称为其左子树TL和右子树TR的，**两个不相交的二叉树组成**。
+
 每个节点都有两个指针，一个指向左边，一个指向右边，每个节点最多有两个儿子(度为2)。
 
+**完美二叉树**(Perfect Binary Tree)又叫**满二叉树**(Full Binary Tree)：每一层的节点数，都是上一层节点数的两倍。
+
+**完全二叉树** (Complete Binary Tree)：有n个结点的二叉树，对树中结点按 从上至下、从左到右顺序进行编号， 编号为i(1 ≤ i ≤ n)结点与满二叉树 中编号为 i 结点在二叉树中位置相同。（完全二叉树可以少掉最后几个叶节点。）
+
+
+
+二叉树的几个**重要性质：**
+
+- 一个二叉树第 i 层的最大结点数为:**2 i-1，i >= 1**。
+- 深度为k的二叉树有最大结点总数为: **2 k-1，k >=1**。
+- 对任何非空二叉树 T，若**n0**表示叶结点的个数、**n2**是度为2的非叶结点个数，那么两者满足关系**n0 = n2 +1**。
+
+
+
+二叉树的**链式储存结构**：
+
 ```c
-// 二叉树的链表结构
 typedef struct TNode *Position;
 typedef Position BinTree; // 二叉树类型
 struct TNode{ // 树节点定义
@@ -87,3 +104,50 @@ struct TNode{ // 树节点定义
     BinTree Right; // 指向右树
 };
 ```
+
+
+
+**二叉树的遍历**（递归实现）：
+
+- 先序遍历 先访问根节点，再对左边递归，再对右边递归
+
+  ```c
+  void PreOrderTraversal(BinTree BT) {
+    if (BT) {
+      printf("%d", BT->Data);
+      PreOrderTraversal(BT->Left);
+      PreOrderTraversal(BT->Right);
+    }
+  }
+  ```
+
+  
+
+- 中序遍历 先递归访问左子树，再访问根节点，再遍历右子树
+
+  ```c
+  void InOrderTraversal(BinTree BT) {
+    if (BT) {
+      PreOrderTraversal(BT->Left);
+      printf("%d", BT->Data);
+      PreOrderTraversal(BT->Right);
+    }
+  }
+  ```
+
+  
+
+- 后序遍历 先递归遍历左边，再遍历右边，最后根节点
+
+  ```c
+  void PostOrderTraversal(BinTree BT) {
+    if (BT) {
+      PreOrderTraversal(BT->Left);
+      PreOrderTraversal(BT->Right);
+      printf("%d", BT->Data);
+    }
+  }
+  ```
+
+  
+
