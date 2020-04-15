@@ -107,7 +107,14 @@ struct TNode{ // 树节点定义
 
 
 
-**二叉树的遍历**（递归实现）：
+**二叉树的遍历**：
+
+核心问题：**二维结构的线性化**
+ 从一个结点访问其左、右儿子结点时，访问左儿子后，右儿子结点怎么办?
+
+需要**一个存储结构保存暂时不访问的结点**。（存储结构:堆栈、队列）
+
+1. 递归实现
 
 - 先序遍历 先访问根节点，再对左边递归，再对右边递归
 
@@ -150,4 +157,106 @@ struct TNode{ // 树节点定义
   ```
 
   
+
+2. **非递归遍历**（使用**堆栈**）：
+
+- 先序
+
+  ```c
+  void PreOrderTraversal(BinTree BT) {
+    BinTree T = BT;
+    Stack S = CreatStack(MaxSize);
+    while (T || !IsEmpty(S)) {
+      while (T) {
+        printf("%5d", T->Data);
+        Push(S, T);
+        T = T->Left;
+      }
+      if (!IsEmpty(S)) {
+        T = Pop(S);
+        T = T->Right;
+      }
+    }
+  }
+  ```
+
+  
+
+- 中序
+
+  ```c
+  void InorderTraversal(BinTree BT) {
+    BinTree T = BT;
+    Stack S = CreatStack(MaxSize);
+    while (T || !IsEmpty(S)) {
+      while (T) {
+        Push(S, T);
+        T = T->Left;
+      }
+      if (!IsEmpty(S)) {
+        T = Pop(S);
+        printf("%5d", T->Data);
+        T = T->Right;
+      }
+    }
+  }
+  ```
+
+  
+
+- 后序
+
+  ```c
+  void PostOrderTraversal(BinTree BT) {
+    BinTree T = BT, P = NULL; // P为上一个访问的节点
+    Stack S = CreatStack(MaxSize);
+    while (T || !IsEmpty(S)) {
+      Push(S, T);
+      T = T->Left;
+    }
+    if (!IsEmpty(S)) {
+      T = Pop(S);
+      if (T->Right == NULL || T->Right == P) {
+        // 右节点不存在或右节点已访问，弹出节点
+        printf("%5d", T->Data);
+        P = T; // P指向当前被访问的节点
+        T = NULL;
+      } else {
+        Push(T); // 如果有右节点，该节点再次入栈
+        T = T->Right; // 继续遍历右树
+      }
+    }
+  }
+  ```
+
+  
+
+3. 层序遍历（使用队列）
+
+   **队列实现**:遍历从根结点开始，首先将根结点入队，然后开始执行循环:结点出队、访问该结点、其左右儿子入队。
+
+   1. 从队列中取出一个元素;
+   2. 访问该元素所指结点;
+   3. 若该元素所指结点的左、右孩子结点非空，则将其左右节点的指针顺序入队。
+
+   ```c
+   void LevelOrderTraversal(BinTree BT) {
+     Queue Q;
+     BinTree T;
+     if (!BT)
+       return;
+     Q = CreatQueue(MaxSize);
+     AddQ(Q, BT);
+     while (!IsEmptyQ(Q)) {
+       T = DeleteQ(Q);
+       printf("%5d", T->Data);
+       if (T->Left) {
+         AddQ(Q, T->Left);
+       }
+       if (T->Right) {
+         AddQ(Q, T->Right);
+       }
+     }
+   }
+   ```
 

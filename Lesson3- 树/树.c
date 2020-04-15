@@ -34,3 +34,93 @@ void PostOrderTraversal(BinTree BT) {
     printf("%d", BT->Data);
   }
 }
+
+// 二叉树遍历的非递归遍历（使用堆栈）：
+#define MaxSize 10000
+typedef struct SNode* Stack;
+struct SNode {
+  ElementType Data[MaxSize];
+  int Top;
+};
+
+// 先序
+void PreOrderTraversal(BinTree BT) {
+  BinTree T = BT;
+  Stack S = CreatStack(MaxSize);
+  while (T || !IsEmpty(S)) {
+    while (T) {
+      printf("%5d", T->Data);
+      Push(S, T);
+      T = T->Left;
+    }
+    if (!IsEmpty(S)) {
+      T = Pop(S);
+      T = T->Right;
+    }
+  }
+}
+
+// 中序
+void InorderTraversal(BinTree BT) {
+  BinTree T = BT;
+  Stack S = CreatStack(MaxSize);
+  while (T || !IsEmpty(S)) {
+    while (T) {
+      Push(S, T);
+      T = T->Left;
+    }
+    if (!IsEmpty(S)) {
+      T = Pop(S);
+      printf("%5d", T->Data);
+      T = T->Right;
+    }
+  }
+}
+
+// 后序
+void PostOrderTraversal(BinTree BT) {
+  BinTree T = BT, P = NULL;  // P为上一个访问的节点
+  Stack S = CreatStack(MaxSize);
+  while (T || !IsEmpty(S)) {
+    Push(S, T);
+    T = T->Left;
+  }
+  if (!IsEmpty(S)) {
+    T = Pop(S);
+    if (T->Right == NULL || T->Right == P) {
+      // 右节点不存在或右节点已访问，弹出节点
+      printf("%5d", T->Data);
+      P = T;  // P指向当前被访问的节点
+      T = NULL;
+    } else {
+      Push(T);       // 如果有右节点，该节点再次入栈
+      T = T->Right;  // 继续遍历右树
+    }
+  }
+}
+
+// 层次遍历（队列）
+struct QNode {
+  int rear;
+  int front;
+  ElementType Data[MaxSize];
+};
+typedef struct QNode* Queue;
+void LevelOrderTraversal(BinTree BT) {
+  Queue Q;
+  BinTree T;
+  if (!BT)
+    return;
+  Q = CreatQueue(MaxSize);
+  AddQ(Q, BT);
+  while (!IsEmptyQ(Q)) {
+    T = DeleteQ(Q);
+    printf("%5d", T->Data);
+    if (T->Left) {
+      AddQ(Q, T->Left);
+    }
+    if (T->Right) {
+      AddQ(Q, T->Right);
+    }
+  }
+}
