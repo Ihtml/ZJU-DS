@@ -124,3 +124,78 @@ void LevelOrderTraversal(BinTree BT) {
     }
   }
 }
+
+// 二叉搜索树的查找 查找效率决定于输的高度
+Position Find(ElementType X, BinTree BST) {
+  while (BST) {
+    if (X > BST->Data) {
+      BST = BST->Right;
+    } else if (X < BST->Data) {
+      BST = BST->Left;
+    } else {
+      return BST;
+    }
+    return NULL;
+  }
+}
+// 查找最小元素
+Position FindMin(BinTree BST) {
+  if (!BST) {
+    return NULL;
+  } else if (!BST->Left) {
+    return BST;
+  } else {
+    return FindMin(BST->Left);
+  }
+}
+// 查找最大元素
+Position FindMax(BinTree BST) {
+  if (BST) {
+    while (BST->Right) {
+      BST = BST->Right;
+    }
+  }
+  return BST;
+}
+//  二插搜索树的插入
+BinTree Insert(ElementType X, BinTree BST) {
+  if (!BST) { // 原树为空，生成并返回一个节点的二叉树
+    BST = malloc(sizeof(struct TNode));
+    BST->Right = NULL;
+    BST->Left = NULL;
+  } else { // 找要插入的位置
+    if (X < BST->Data) {  // 递归插入左子树
+      BST = Insert(X, BST->Left);
+    } else if (X > BST->Data) { // 递归插入右子树
+      BST = Insert(X, BST->Right);
+    }
+    // 如果 X已经存在，不需要再插入
+  }
+  return BST;
+}
+// 二叉树的删除
+BinTree Delete(ElementType X, BinTree BST) {
+  if (!BST) {
+    printf("要删除的元素未找到");
+  } else if (BST->Data < X) {
+    BST->Right = Delete(X, BST->Left);
+  } else if (BST->Data > X) {
+    BST->Left = Delete(X, BST->Right);
+  } else {
+    Position Tmp;
+    if (BST->Left && BST->Right) { // 被删除的元素有两个节点
+      Tmp = FindMin(BST->Right); // 在右子树中找到最小元素填充删除节点
+      BST->Data = Tmp->Data;
+      BST->Right = Delete(Tmp->Data, BST->Right); // 在删除节点的右子树中删除最小元素
+    } else { // 被删除元素有一个或没有节点
+      Tmp = BST;
+      if (!BST->Left) { // 有右节点或无子节点
+        BST = BST->Right;
+      } else if (!BST->Right) { // 有左节点
+        BST = BST->Left;
+      }
+      free(Tmp);
+    }
+  }
+  return BST;
+}
