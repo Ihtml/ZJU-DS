@@ -343,13 +343,14 @@ Position FindMax(BinTree BST) {
 BinTree Insert(ElementType X, BinTree BST) {
   if (!BST) { // 原树为空，生成并返回一个节点的二叉树
     BST = malloc(sizeof(struct TNode));
+    BST->Data = X;
     BST->Right = NULL;
     BST->Left = NULL;
   } else { // 找要插入的位置
     if (X < BST->Data) {  // 递归插入左子树
-      BST = Insert(X, BST->Left);
+      BST->Left = Insert(X, BST->Left);
     } else if (X > BST->Data) { // 递归插入右子树
-      BST = Insert(X, BST->Right);
+      BST->Right = Insert(X, BST->Right);
     }
     // 如果 X已经存在，不需要再插入
   }
@@ -372,9 +373,9 @@ BinTree Delete(ElementType X, BinTree BST) {
   if (!BST) {
     printf("要删除的元素未找到");
   } else if (BST->Data < X) {
-    BST->Right = Delete(X, BST->Left);
+    BST->Right = Delete(X, BST->Right);
   } else if (BST->Data > X) {
-    BST->Left = Delete(X, BST->Right);
+    BST->Left = Delete(X, BST->Left);
   } else {
     Position Tmp;
     if (BST->Left && BST->Right) { // 被删除的元素有两个节点
