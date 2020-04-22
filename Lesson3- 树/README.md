@@ -396,3 +396,16 @@ BinTree Delete(ElementType X, BinTree BST) {
 }
 ```
 
+
+
+## 4、平衡二叉树
+
+搜索树结点不同插入次序，将导致不同的**深度**和平**均查找长度ASL**
+
+**平衡因子**(Balance Factor，简称BF): **BF(T) = hL-hR**， 其中hL和hR分别为T的左、右子树的高度。
+
+**平衡二叉树**(Balanced Binary Tree)(**AVL树**) 空树，或者**任一结点左、右子树高度差的绝对值不超过1**，即**|BF(T) |≤ 1**
+
+**给定节点数为n的AVL数的最大高度为O(log2n)**
+
+
