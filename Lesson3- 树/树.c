@@ -125,7 +125,7 @@ void LevelOrderTraversal(BinTree BT) {
   }
 }
 
-// 二叉搜索树的查找 查找效率决定于输的高度
+// 二叉搜索树的查找 查找效率决定于树的高度
 Position Find(ElementType X, BinTree BST) {
   while (BST) {
     if (X > BST->Data) {
@@ -135,8 +135,8 @@ Position Find(ElementType X, BinTree BST) {
     } else {
       return BST;
     }
-    return NULL;
   }
+  return NULL;
 }
 // 查找最小元素
 Position FindMin(BinTree BST) {
