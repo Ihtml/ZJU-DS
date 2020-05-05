@@ -93,7 +93,7 @@ void PostOrderTraversal(BinTree BT) {
       P = T;  // P指向当前被访问的节点
       T = NULL;
     } else {
-      Push(T);       // 如果有右节点，该节点再次入栈
+      Push(S, T);       // 如果有右节点，该节点再次入栈
       T = T->Right;  // 继续遍历右树
     }
   }
