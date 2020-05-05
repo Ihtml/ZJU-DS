@@ -174,7 +174,7 @@ BinTree Insert(ElementType X, BinTree BST) {
   }
   return BST;
 }
-// 二叉树的删除
+// 二叉搜索树的删除
 BinTree Delete(ElementType X, BinTree BST) {
   if (!BST) {
     printf("要删除的元素未找到");
