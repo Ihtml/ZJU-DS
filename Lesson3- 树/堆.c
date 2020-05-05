@@ -33,7 +33,7 @@ void Insert(MaxHeap H, ElementType item) {
     printf("最大堆已满");
     return;
   }
-  int i = H->Size + 1;  // i指向插入后堆中的最后一个元素的位置
+  int i = ++H->Size;  // i指向插入后堆中的最后一个元素的位置
   for (; H->Elements[i / 2] < item; i /= 2) {
     H->Elements[i] = H->Elements[i / 2];  // 向下过滤节点
   }
