@@ -29,8 +29,8 @@
 
    分单向链表和双向链表：每个单向链表的节点，只包含下一个节点的地址；而双向链表的每个节点还包含**上个节点的地址**；
    *抽象*的链表：
-   - 有块地方寸数据
-   - 有块地方寸指针——下个节点的地址
+   - 有块地方存数据
+   - 有块地方存指针——下个节点的地址
 
 
 优点：
@@ -40,6 +40,25 @@
 缺点：
 
 - 存取时需要遍历，效率低（时间复杂度为O(n)）；
+
+单链表的逆转：
+```c
+Ptr Reverse(Ptr head, int K){
+   int ctn = 1;
+   Ptr new = head->next;
+   Ptr old = new->next;
+   while(ctn < K){
+      Ptr tmp = old->next;
+      old->next = new;
+      new = old;
+      old = tmp;
+      ctn++;
+   }
+   head->next->next = old;
+   // head->next = new;
+   return new;
+}
+```
 
 3. 适用的场合：
 
