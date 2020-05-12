@@ -28,12 +28,12 @@ MGraph CreateGraph(int VertexNum) {  // 创建没有边，只有VertexNum个顶�
   return Graph;
 }
 
-typedef struct ENode* PtrToGNode;
+typedef struct ENode* PtrToENode;
 struct ENode {
   Vertex V1, V2;      // 有向边<V1, V2>
   WeightType Weight;  // 权重
 };
-typedef PtrToGNode Edge;
+typedef PtrToENode Edge;
 
 void InsertEdge(MGraph Graph, Edge E) {
   // 插入边<V1, V2>
@@ -62,4 +62,23 @@ MGraph BuildGraph() {
     scanf(" %c", &(Graph->Data[V]));
   }
   return Graph;
+}
+
+// 简化版
+#define MAXN 100
+int G[MAXN][MAXN], Nv, Ne;
+void BuildGraph() {
+  int i, j, v1, v2, w;
+  scanf("%d", &Nv);
+  /* CreateGraph */
+  for (i = 0; i < Nv; i++)
+    for (j = 0; j < Nv; j++)
+      G[i][j] = 0; /* 或INFINITY */
+  scanf("%d", &Ne);
+  for (i = 0; i < Ne; i++) {
+    scanf("%d %d %d", &v1, &v2, &w);
+    /* InsertEdge */
+    G[v1][v2] = w;
+    G[v2][v1] = w;
+  }
 }
