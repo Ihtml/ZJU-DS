@@ -37,7 +37,7 @@ LGraph CreateGraph(int VertexNum) {
   LGraph Graph;
   Graph = (LGraph)malloc(sizeof(struct GNode));
   Graph->Nv = VertexNum;
-  Graph->Nv = 0;
+  Graph->Ne = 0;
   for (int i = 0; i < VertexNum; i++) {
     Graph->G[i].FirstEdge = NULL;
   }
