@@ -68,6 +68,7 @@
   若有**N**个顶点、**E**条边，时间复杂度是 :
 
   	-  用邻接表存储图，有**O(N+E)**
+
    -  用邻接矩阵存储图，有**O(N^2)**
 
 - 广度优先搜索**(Breadth First Search, BFS)**
@@ -118,4 +119,30 @@
   - (有向)有权图
 
 - **多源**最短路径问题:求任意两顶点间的最短路径
+
+
+
+#### 无权图的单源最短路径算法
+
+按照非递减的顺序找出到各个顶点的最短路
+
+```c
+void Unweighted (Vertex S){
+  Enqueue(S, Q);
+  dist[S] = 0;
+  while(!IsEmpty(Q)){
+    V = Dequeue(Q);
+    for( V的每个邻接点W){
+      if(dist[W] == -1){
+        dist[W] = dist[V]+1; // S到W的最短距离
+        path[W] = V;  //  记录S到W的路上经过的某顶点
+        Enqueue(W, Q);
+      }
+    }
+  }
+}
+T = O(2V + E)
+```
+
+
 
