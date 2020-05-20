@@ -14,4 +14,21 @@
 
 - 没有一种排序是任何情况下 都表现最好的；
 
+  ## 冒泡排序
+  ```c
+  void Bubble_Sort(ElementType A[], int N){
+      for(int p = N-1; p >=0; p--){
+          flag = 0;
+          for(i=0; i<p; i++){
+              if(A[i]>A[i+1]){
+                  Swap(A[i], A[i+1]);
+                  flag = 1;
+              }
+          }
+      }
+      if(flag==0) break;
+  }
+  ```
+  最好情况：顺序 T=O(N)
+  最坏情况：逆序 T=O(N^2)
   
