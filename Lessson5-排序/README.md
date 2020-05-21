@@ -14,21 +14,45 @@
 
 - 没有一种排序是任何情况下 都表现最好的；
 
-  ## 冒泡排序
-  ```c
-  void Bubble_Sort(ElementType A[], int N){
-      for(int p = N-1; p >=0; p--){
-          flag = 0;
-          for(i=0; i<p; i++){
-              if(A[i]>A[i+1]){
-                  Swap(A[i], A[i+1]);
-                  flag = 1;
-              }
-          }
-      }
-      if(flag==0) break;
-  }
-  ```
-  最好情况：顺序 T=O(N)
-  最坏情况：逆序 T=O(N^2)
   
+  
+## 冒泡排序
+
+```c
+void Bubble_Sort(ElementType A[], int N) {
+  for (int p = N - 1; p >= 0; p--) {
+    flag = 0;
+    for (i = 0; i < p; i++) {
+      if (A[i] > A[i + 1]) {
+        Swap(A[i], A[i + 1]);
+        flag = 1;
+      }
+    }
+  }
+  if (flag == 0)
+    break;
+}
+```
+最好情况：顺序 T=O(N)
+最坏情况：逆序 T=O(N^2)
+
+
+
+## 插入排序
+
+想象打扑克牌摸排
+
+```c
+void Insertion_Sort(ElementType A[], int N){
+  for	(P=1; P<N; P++){
+    Tmp = A[p]; // 取下一位
+    for(int i =P; i>0 && Tmp <A[i-1]; i--){
+      A[i] = A[i-1]; // 移除空位
+    }
+    A[i] = Tmp; // 落位
+  }
+}
+```
+
+最好情况：顺序 T=O(N)
+最坏情况：逆序 T=O(N^2)
