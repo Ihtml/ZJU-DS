@@ -80,10 +80,11 @@ Dk间隔有序的序列，在执行Dk-1间隔排序后，仍然是Dk间隔有序
 
 ```c
 void Shell_Sort(ElementType A[], int N){
-  for(int D = N/2; D>0; D/=2){
-    for(int P = D; P<N; P++){
-      int tmp = A[p];
-      for(int i = P; i > D && A[i-D] > tmp; i-=D){
+  int D, P, tmp, i;
+  for( D = N/2; D>0; D/=2){
+    for( P = D; P<N; P++){
+       tmp = A[p];
+      for(i = P; i > D && A[i-D] > tmp; i-=D){
         A[i] = A[i-D]
       }
       A[i] = tmp;
@@ -119,4 +120,79 @@ void Shell_Sort(ElementType A[], int N){
   }
 }
 ```
+
+
+
+## 选择排序
+
+```c
+void Selection_Sort (ElementType A[], int N){
+	for(int i = 0; i < N; i++){
+		int MinPostion = ScanForMin(A, i, N-1);
+		// 从A[i]到A[N-1]中找最小元，并将其位置赋给MinPosition
+		Swap(A[i], A[MinPostion])
+		// 将未排序部分最小元换到有序部分的最后位置
+	}
+}
+```
+
+时间复杂度，T=$\theta$(N^2);
+
+
+
+## 堆排序
+
+- 算法1
+
+```c
+void Heap_Sort(ElementType A[], int N){
+	BuildHeap(A); // O(N)  把数组A转换成最小堆
+	for(int i = 0; i < N; i++){
+		TemA[i] = DeleteMin(A); // O(logN)
+	}
+  for(int i = 0; i<N; i++){
+    A[i] = TmpA[i];
+  }
+}
+```
+
+时间复杂度T(N) = O(N logN)
+
+需要额外O(N)空间，并且复制元素需要时间
+
+- 算法2
+
+```c
+void Swap(ElementType *a; ElementType *b){
+  ElementType t = *a; *a = *b; *b = t;
+}
+void PercDown(ElementType A[], int p, int N){
+  int Parent, Child;
+  ElementType X;
+  X = A[p];
+  for(Parent=p; (Parent*2+1)<N; Parent=Child){
+    Child = Parent*2 +1;
+    if( (Child!= N-1) && (A[Child] < A[Child+1]))
+      Child++;
+    if(X >= A[Child]) break;
+    else A[Parent] = A[Child];
+  }
+  A[Parent] = X;
+}
+void Heap_Sort (ElementType A[], int N){
+	for(int i = N/2; i>=0; i--){
+    PercDown(A, i, N) // 向下过滤，建最大堆
+  }
+  for(int i = N-1; i>0; i--){
+    Swap(&A[0], &A[i]); // DeleteMax, A[0]是最大的元素
+    PercDown(A, 0, i); // 剩下元素继续调整成最大堆， 0为根节点，i为当前最大堆元素个数
+  }
+}
+```
+
+定理：堆排序处理N个不同元素的随机排列的平均比较次数是：2NlogN - O(N log logN)
+
+虽然堆排序给出最佳平均时间复 杂度，但实际效果不如用 **Sedgewick**增量序列的希尔排序。
+
+
 
