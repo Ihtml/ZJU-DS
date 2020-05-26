@@ -203,6 +203,7 @@ void Heap_Sort (ElementType A[], int N){
 ```c
 // L=左边起始位置 R=右边起始位置 RightEnd=右边终点位置
 void Merge(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd){
+  int LeftEnd, NumElements, Tmp;
   LeftEnd = R -1; // 左边终点位置，前提左右两边挨着
   Tmp = L; // 存放结果的数组的初始位置
   NumElements = RightEnd - L + 1;
@@ -218,6 +219,29 @@ void Merge(ElementType A[], ElementType TmpA[], int L, int R, int RightEnd){
     for(int i = 0; i < NumElements; i++, RightEnd--)
       A[RightEnd] = TmpA[RightEnd]
   }
+}
+```
+
+递归实现(稳定)：T(N) = O(N logN)
+
+```c
+void Msort(Element A[], ElementType TmpA[], int L, int RightEnd){
+  int Center;
+  if(L < RightEnd){
+    Center = (L+RightEnd)/2;
+    Msort(A, TmpA, L, Center);
+    Msort(A, TmpA, Center+1, RightEnd);
+    Merge(A, TmpA, L, Center+1, RightEnd);
+  }
+}
+void MergeSort(ElementType A[], int N){
+  ElementType *TmpA;
+  TmpA = (ElementType *)malloc(N*sizeof(ElementType));
+  if(TmpA != NULL){
+    Msort(A, TmpA, 0, N-1);
+    free(TmpA);
+  }
+  else printf("空间不足");
 }
 ```
 
