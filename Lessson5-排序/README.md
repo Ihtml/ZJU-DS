@@ -277,3 +277,22 @@ void Merge_Sort(ElementType A[], int N){
 }
 ```
 
+
+
+## 快速排序
+
+快速排序思想是：分而治之；最好情况下(每次正好中分) T(N) = O(NlogN)
+
+伪码描述：
+
+```c
+void Quicksort(ElementType A[], int N){
+	if(N < 2) return;
+	pivot = 从A[]中选一个主元
+	将S = {A[] \ pivot} 分成2个独立子集
+    A1 = {a∈S | a <= pivot} 和
+    A2 = {a∈S | a >= pivot}
+	A[] = Quicksort(A1, N1) ∪ {pivot} ∪ Quicksort(A2, N2)
+}
+```
+
