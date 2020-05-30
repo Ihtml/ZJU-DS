@@ -309,3 +309,37 @@ void Quicksort(ElementType A[], int N){
 解决方案：
 
 当递归的数据规模充分小(定义一个Cutoff的阀值)，停止递归，直接调用简单排序（如插入排序）；
+
+```c
+// 快速排序，直接调用库排序
+#include <stdio.h>
+// 简单整数排序
+int compare(const void* a, const void* b) {
+  // 比较两整数，非降序排序
+  return (*(int*)a - *(int*)b);
+}
+// 调用接口
+qsort(A, N, sizeof(int), compare);
+
+// 对结构体Node中的某键值排序
+struct Node {
+  int key1, key2;
+} A[MAXN];
+int compare2keys(const void* a, const void* b) {
+  // 比较两种键值，按key1非升序排列；如果key1相等，则按key2非降序排列
+  int k;
+  if (((const struct Node*)a)->key1 < ((const struct Node*)b)->key1) {
+    k = 1;
+  } else if (((const struct Node*)a)->key1 > ((const struct Node*)b)->key1) {
+    k = -1;
+  } else {  // 如果key1相等
+    if (((const struct Node*)a)->key2 < ((const struct Node*)b)->key2) {
+      k = -1;
+    } else {
+      k = 1;
+    }
+    return k;
+  }
+}
+```
+
