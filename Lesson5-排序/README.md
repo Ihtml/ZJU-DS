@@ -429,9 +429,17 @@ void Bucket_Sort(ElementType A[], int N) {
 	}
 ```
 
-时间复杂度 T(N,M) = O(M+N)
+当M很小时，时间复杂度是线性的 T(N,M) = O(M+N)；
 
+假设我们有 **N** **= 10** 个整数，每个整数的值在**0**到 **999**之间(于是有 **M** **= 1000** 个不同的值)。即M >> N，此时再用堆排序就不合适了；
 
+**基数排序**（英语：Radix sort）是一种非比较型[整数](https://zh.wikipedia.org/wiki/整数)[排序算法](https://zh.wikipedia.org/wiki/排序算法)，其原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。
 
+它是这样实现的：将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零。然后，从最低位开始，依次进行一次排序。这样从最低位排序一直到最高位排序完成以后，数列就变成一个有序序列。
 
+基数排序的方式可以采用次位优先LSD（Least significant digital）或主位优先MSD（Most significant digital），LSD的排序方式由键值的最右边开始，而MSD则相反，由键值的最左边开始。
+
+![示例](https://lh3.googleusercontent.com/proxy/vpabvcutHBa2olypWFYS-KAjeHKUXMGnO-R70mkrxMSWlBh0bpm69u3102oLyWfl3Zlx5WgCZOUwNC4Zjtsc1AbK629KKOli5Zn4Oph2PENHBw9zBKtXfysTJkM5fbBZQHivlsE)
+
+时间复杂度为：T=O(P(N+B)) P为数字位数，N为每位数有几个不同的数字；假设我们有 **N** **= 20** 个整数，每个整数的值在**0**到 **999**之间；则使用基数排序的事件复杂度为：T=O(3*(20+10))
 
