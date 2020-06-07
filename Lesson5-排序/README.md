@@ -441,7 +441,7 @@ void Bucket_Sort(ElementType A[], int N) {
 
 ![示例](https://lh3.googleusercontent.com/proxy/vpabvcutHBa2olypWFYS-KAjeHKUXMGnO-R70mkrxMSWlBh0bpm69u3102oLyWfl3Zlx5WgCZOUwNC4Zjtsc1AbK629KKOli5Zn4Oph2PENHBw9zBKtXfysTJkM5fbBZQHivlsE)
 
-时间复杂度为：T=O(P(N+B)) P为数字位数，N为每位数有几个不同的数字；假设我们有 **N** **= 20** 个整数，每个整数的值在**0**到 **999**之间；则使用基数排序的事件复杂度为：T=O(3*(20+10))
+时间复杂度为：**T=O(P(N+B))** P为数字位数，B为每位数有几个不同的数字(桶的个数)；假设我们有 **N** **= 20** 个整数，每个整数的值在**0**到 **999**之间；则使用基数排序的事件复杂度为：T=O(3*(20+10))
 
 
 
@@ -611,4 +611,19 @@ void MSDRadixSort( ElementType A[], int N ){ /* 统一接口 */
     MSD(A, 0, N-1, MaxDigit); 
 }
 ```
+
+
+
+## 排序算法的比较
+
+| 排序算法     | 平均时间复杂度         | 最坏时间复杂度 | 额外空间复杂度 | 稳定性 |
+| ------------ | ---------------------- | -------------- | -------------- | ------ |
+| 简单选择排序 | O(N^2)                 | O(N^2)         | O(1)           | 不稳定 |
+| 冒泡排序     | O(N^2)                 | O(N^2)         | O(1)           | 稳定   |
+| 直接插入排序 | O(N^2)                 | O(N^2)         | O(1)           | 稳定   |
+| 希尔排序     | O(N^d)(跟增量序列有关) | O(N^2)         | O(1)           | 不稳定 |
+| 堆排序       | O(NlogN)               | O(NlogN)       | O(1)           | 不稳定 |
+| 快速排序     | O(NlogN)               | O(N^2)         | O(logN)        | 不稳定 |
+| 归并排序     | O(NlogN)               | O(NlogN)       | O(N)           | 稳定   |
+| 基数排序     | O(P(N+B))              | O(P(N+B))      | O(N+B)         | 稳定   |
 
