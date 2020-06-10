@@ -59,3 +59,41 @@
 5. 平方取中法
 
    把key取平方，取中间几位作为地址；
+
+
+
+字符关键词的散列函数构造
+
+1. 一个简单的散列函数——ASCII码加和法
+
+   对字符型关键词key定义散列函数如下：h(key) = (Σkey[i]) mod TableSize
+
+   问题：冲突严重，比如：a3、 b2、c1;
+
+2. 简单的改进——前3个字符移位法
+
+   h(key)=(key[0]272 + key[1]27 + key[2])mod TableSize
+
+   问题：仍然有冲突：string、 street、 strong、structure等等，空间浪费：3000/263 ≈ 30%
+
+3. 好的散列函数——**移位法**
+
+   把字符串看做32进制的数字；
+
+   例如：h(“abcde”)=‘a’*32^4+’b’*32^3+’c’*32^2+’d’*32+’e’，
+
+   优点：涉及关键词所有n个字符，并且分布得很好；
+
+   构造函数
+
+   ```c
+   Index Hash(const char *Key, int TableSize){
+   	unsigned int h = 0; // 散列初始值设为0
+     while(*Key != '\0')
+       h = (h << 5) + *Key++; // 左移5位相等于乘32
+     return h%TableSize;
+   }
+   ```
+
+   
+
