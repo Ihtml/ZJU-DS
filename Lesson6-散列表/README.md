@@ -146,5 +146,36 @@ dj决定了不同的解决冲突方案：线性探测(di=i)、平方探测(二�
 
 
 
+#### 分离链接法
+
+将相应位置上冲突的所有关键词存储在同一个单链表中。
+
+```c
+typedef struct ListNode *Position, *List;
+struct ListNode {
+  ElementType Element;
+  Position Next;
+};
+typedef struct HashTbl* HashTable;
+struct HashTbl {
+  int TableSize;
+  List TheLists;
+};
+struct HashTbl {
+  int TableSize;
+  List TheLists;
+} * H;
+
+Position Find(ElementType Key, HashTable H) {
+  Position P;
+  int Pos;
+  Pos = Hash(Key, H->TableSize); /*初始散列位置*/
+  P = H->TheLists[Pos].Next;     /*获得链表头*/
+  while (P != NULL && strcmp(P->Element, Key))
+    P = P->Next;
+  return P;
+}
+```
+
 
 
