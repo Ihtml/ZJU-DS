@@ -179,3 +179,5 @@ Position Find(ElementType Key, HashTable H) {
 
 
 
+## 散列表的性能分析
+
