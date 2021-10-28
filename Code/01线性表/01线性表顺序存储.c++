@@ -116,3 +116,26 @@ Status ListDelete(SqList* L, int i, ElemType* e) {
     L->length--;
     return OK;
 }
+
+/* 初始条件：顺序线性表L已存在 */
+/* 操作结果：依次对L的每个数据元素输出 */
+Status ListTraverse(SqList L) {
+    int i;
+    for (i = 0; i < L.length; i++)
+        visit(L.data[i]);
+    printf("\n");
+    return OK;
+}
+
+/* 合并两个线性表 */
+void unionL(SqList* La, SqList Lb) {
+    int La_len, Lb_len, i;
+    ElemType e;
+    La_len = ListLength(*La);
+    Lb_len = ListLength(Lb);
+    for (i = 1; i <= Lb_len; i++) {
+        GetElem(Lb, i, &e);
+        if (!LocateElem(*La, e))
+            ListInsert(La, ++La_len, e);
+    }
+}
