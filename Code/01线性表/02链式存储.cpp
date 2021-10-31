@@ -58,3 +58,69 @@ Status ClearList(LinkList *L) {
     (*L)->next = NULL; /* 头结点指针域为空 */
     return OK;
 }
+
+/* 初始条件：顺序线性表L已存在。操作结果：返回L中数据元素个数 */
+int ListLength(LinkList L) {
+    int i = 0;
+    LinkList p = L->next; /* p指向第一个结点 */
+    while (p) {
+        i++;
+        p = p->next;
+    }
+    return i;
+}
+
+/* 初始条件：顺序线性表L已存在，1≤i≤ListLength(L) */
+/* 操作结果：用e返回L中第i个数据元素的值 */
+Status GetElem(LinkList L, int i, ElemType* e) {
+    int j;
+    LinkList p;  /* 声明一结点p */
+    p = L->next; /* 让p指向链表L的第一个结点 */
+    j = 1;       /*  j为计数器 */
+    while (p && j < i) /* p不为空或者计数器j还没有等于i时，循环继续 */
+    {
+        p = p->next; /* 让p指向下一个结点 */
+        ++j;
+    }
+    if (!p || j > i)
+        return ERROR; /*  第i个元素不存在 */
+    *e = p->data;     /*  取第i个元素的数据 */
+    return OK;
+}
+
+/* 初始条件：顺序线性表L已存在 */
+/* 操作结果：返回L中第1个与e满足关系的数据元素的位序。 */
+/* 若这样的数据元素不存在，则返回值为0 */
+int LocateElem(LinkList L, ElemType e) {
+    int i = 0;
+    LinkList p = L->next;
+    while (p) {
+        i++;
+        if (p->data == e) /* 找到这样的数据元素 */
+            return i;
+        p = p->next;
+    }
+
+    return 0;
+}
+
+/* 初始条件：顺序线性表L已存在,1≤i≤ListLength(L)， */
+/* 操作结果：在L中第i个位置之前插入新的数据元素e，L的长度加1 */
+Status ListInsert(LinkList *L, int i, ElemType e) {
+    int j;
+    LinkList p, s;
+    p = *L;
+    j = 1;
+    while (p && j < i) /* 寻找第i个结点 */
+    {
+        p = p->next;
+        ++j;
+    }
+    if (!p || j > i)
+        return ERROR;                   /* 第i个元素不存在 */
+    s = (LinkList)malloc(sizeof(Node)); /*  生成新结点(C语言标准函数) */
+    s->data = e;
+    s->next = p->next; /* 将p的后继结点赋值给s的后继  */
+    p->next = s;       /* 将s赋值给p的后继 */
+    return OK;
+}
