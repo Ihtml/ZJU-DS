@@ -116,11 +116,44 @@ Status ListInsert(LinkList *L, int i, ElemType e) {
         p = p->next;
         ++j;
     }
-    if (!p || j > i)
+    if (!p || j > i)                    /* !p  P不能是null */
         return ERROR;                   /* 第i个元素不存在 */
     s = (LinkList)malloc(sizeof(Node)); /*  生成新结点(C语言标准函数) */
     s->data = e;
     s->next = p->next; /* 将p的后继结点赋值给s的后继  */
     p->next = s;       /* 将s赋值给p的后继 */
+    return OK;
+}
+
+/* 初始条件：顺序线性表L已存在，1≤i≤ListLength(L) */
+/* 操作结果：删除L的第i个数据元素，并用e返回其值，L的长度减1 */
+Status ListDelete(LinkList* L, int i, ElemType* e) {
+    int j;
+    LinkList p, q;
+    p = *L;
+    j = 1;
+    while (p->next && j < i) /* 遍历寻找第i个元素 */
+    {
+        p = p->next;
+        ++j;
+    }
+    if (!(p->next) || j > i) /* p->next 是要被删除的元素 */
+        return ERROR; /* 第i个元素不存在 */
+    q = p->next;
+    p->next = q->next; /* 将q的后继赋值给p的后继 */
+    *e = q->data;      /* 将q结点中的数据给e */
+    free(q);           /* 让系统回收此结点，释放内存 */
+    return OK;
+}
+
+/* 初始条件：顺序线性表L已存在 */
+/* 操作结果：依次对L的每个数据元素输出 */
+Status ListTraverse(LinkList L) {
+    LinkList p = L->next;
+    while (p) {
+        visit(p->data);
+        p = p->next;
+    }
+    printf("\n");
     return OK;
 }
