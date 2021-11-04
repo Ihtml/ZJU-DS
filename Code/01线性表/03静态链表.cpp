@@ -30,7 +30,8 @@ typedef struct
     int cur; /* 游标(Cursor) ，为0时表示无指向 */
 } Component, StaticLinkList[MAXSIZE];
 
-/* 将一维数组space中各分量链成一个备用链表，space[0].cur为头指针，"0"表示空指针
+/* 将一维数组space中各分量链成一个备用链表，space[0].cur存放备用链表第一个结点的下标， 
+数组最后一个元素的cur存放第一个有数值的元素的下标，相当于单链表中头结点的作用，整个链表为空时，为0
  */
 Status InitList(StaticLinkList space) {
     int i;
