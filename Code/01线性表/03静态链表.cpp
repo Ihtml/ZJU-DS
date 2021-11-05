@@ -40,3 +40,31 @@ Status InitList(StaticLinkList space) {
     space[MAXSIZE - 1].cur = 0; /* 目前静态链表为空，最后一个元素的cur为0 */
     return OK;
 }
+
+/* 若备用空间链表非空，则返回分配的结点下标，否则返回0 */
+int Malloc_SSL(StaticLinkList space) {
+    int i = space[0].cur; /* 当前数组第一个元素的cur存的值 */
+                          /* 就是要返回的第一个备用空闲的下标 */
+    if (space[0].cur)
+        space[0].cur = space[i].cur; /* 由于要拿出一个分量来使用了， */
+                                     /* 所以我们就得把它的下一个 */
+                                     /* 分量用来做备用 */
+    return i;
+}
+
+/*  将下标为k的空闲结点回收到备用链表 */
+void Free_SSL(StaticLinkList space, int k) {
+    space[k].cur = space[0].cur; /* 把第一个元素的cur值赋给要删除的分量cur */
+    space[0].cur = k; /* 把要删除的分量下标赋值给第一个元素的cur */
+}
+
+/* 初始条件：静态链表L已存在。操作结果：返回L中数据元素个数 */
+int ListLength(StaticLinkList L) {
+    int j = 0;
+    int i = L[MAXSIZE - 1].cur; // 最后一个元素相当于头结点
+    while (i) {
+        i = L[i].cur;
+        j++;
+    }
+    return j;
+}
