@@ -9,7 +9,6 @@
 #define TRUE 1
 #define FALSE 0
 #define MAXSIZE 20 /* 存储空间初始分配量 */
-#define OVERFLOW 0
 
 typedef int Status;
 typedef int QElemType; /* QElemType类型根据实际情况而定，这里假设为int */
@@ -34,8 +33,10 @@ Status visit(QElemType c) {
 Status InitQueue(LinkQueue* Q) {
     Q->front = Q->rear = (QueuePtr)malloc(sizeof(QNode));
     if (!Q->front)
-        exit(OVERFLOW);  // exit 函数强制使函数停止函数，釆用整数实参，要使用
-                         // ，必须包含 <cstdlib> 头文件
+        exit(
+            OVERFLOW);  // exit 函数强制使函数停止函数，釆用整数实参，要使用
+                        // ，必须包含 <cstdlib> 头文件
+                        // OVERFLOW为math.h中的一个宏定义，其值为3。含义为运算过程中出现了上溢，即运算结果超出了运算变量所能存储的范围。
     Q->front->next = NULL;
     return OK;
 }
@@ -157,8 +158,8 @@ int main() {
     if (i == OK)
         printf("新的队头元素是：%d\n", d);
     ClearQueue(&q);
-    printf("清空队列后,q.front=%u q.rear=%u q.front->next=%u\n", q.front,
-           q.rear, q.front->next);
+    printf("清空队列后,q.front=%u q.rear=%u q.front->next=%u\n", q.front->data,
+           q.rear->data, q.front->next);
     DestroyQueue(&q);
     printf("销毁队列后,q.front=%u q.rear=%u\n", q.front, q.rear);
 
