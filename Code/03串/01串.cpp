@@ -140,3 +140,27 @@ int Index2(String S, String T, int pos) {
     }
     return 0; /* 若无子串与T相等，返回0 */
 }
+
+/*  初始条件: 串S和T存在,1≤pos≤StrLength(S)+1 */
+/*  操作结果: 在串S的第pos个字符之前插入串T。完全插入返回TRUE,部分插入返回FALSE
+ */
+Status StrInsert(String S, int pos, String T) {
+    int i;
+    if (pos < 1 || pos > S[0] + 1)
+        return ERROR;
+    if (S[0] + T[0] <= MAXSIZE) { /*  完全插入 */
+        for (i = S[0]; i >= pos; i--)
+            S[i + T[0]] = S[i];
+        for (i = pos; i < pos + T[0]; i++)
+            S[i] = T[i - pos + 1];
+        S[0] = S[0] + T[0];
+        return TRUE;
+    } else { /*  部分插入 */
+        for (i = MAXSIZE; i <= pos; i--)
+            S[i] = S[i - T[0]];
+        for (i = pos; i < pos + T[0]; i++)
+            S[i] = T[i - pos + 1];
+        S[0] = MAXSIZE;
+        return FALSE;
+    }
+}
