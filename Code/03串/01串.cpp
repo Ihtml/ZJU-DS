@@ -164,3 +164,15 @@ Status StrInsert(String S, int pos, String T) {
         return FALSE;
     }
 }
+
+/*  初始条件: 串S存在,1≤pos≤StrLength(S)-len+1 */
+/*  操作结果: 从串S中删除第pos个字符起长度为len的子串 */
+Status StrDelete(String S, int pos, int len) {
+    int i;
+    if (pos < 1 || pos > S[0] - len + 1 || len < 0)
+        return ERROR;
+    for (i = pos + len; i <= S[0]; i++)
+        S[i - len] = S[i];
+    S[0] -= len;
+    return OK;
+}
