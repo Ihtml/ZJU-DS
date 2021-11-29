@@ -110,8 +110,8 @@ int Index(String S, String T, int pos) {
             ++j;
         } else /* 指针后退重新开始匹配 */
         {
-            j = 1;         /* j退回到子串T的首位 */
             i = i - j + 2; /* i退回到上次匹配首位的下一位 */
+            j = 1;         /* j退回到子串T的首位 */
         }
     }
     if (j > T[0]) {
@@ -174,5 +174,23 @@ Status StrDelete(String S, int pos, int len) {
     for (i = pos + len; i <= S[0]; i++)
         S[i - len] = S[i];
     S[0] -= len;
+    return OK;
+}
+
+/*  初始条件: 串S,T和V存在,T是非空串（此函数与串的存储结构无关） */
+/*  操作结果: 用V替换主串S中出现的所有与T相等的不重叠的子串 */
+Status Replace(String S, String T, String V){
+    int i = 1;       /*  从串S的第一个字符起查找串T */
+    if (StrEmpty(T)) /*  T是空串 */
+        return ERROR;
+    do {
+        i = Index(S, T, i); /*  结果i为从上一个i之后找到的子串T的位置 */
+        if (i)              /*  串S中存在串T */
+        {
+            StrDelete(S, i, StrLength(T)); /*  删除该串T */
+            StrInsert(S, i, V);            /*  在原串T的位置插入串V */
+            i += StrLength(V); /*  在插入的串V后面继续查找串T */
+        }
+    } while (i);
     return OK;
 }
