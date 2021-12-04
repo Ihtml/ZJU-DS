@@ -120,3 +120,25 @@ int Index_KMP(String S, String T, int pos) {
     else
         return 0;
 }
+
+/* 求模式串T的next函数修正值并存入数组nextval */
+void get_nextval(String T, int* nextval) {
+    int i, j;
+    i = 1;
+    j = 0;
+    nextval[1] = 0;
+    while (i < T[0]) /* 此处T[0]表示串T的长度 */
+    {
+        if (j == 0 || T[i] == T[j]) /* T[i]表示后缀的单个字符，T[j]表示前缀的单个字符 */
+        {
+            ++i;
+            ++j;
+            if (T[i] != T[j])   /* 若当前字符与前缀字符不同 */
+                nextval[i] = j; /* 则当前的j为nextval在i位置的值 */
+            else
+                nextval[i] =            nextval[j]; /* 如果与前缀字符相同，则将前缀字符的 */
+                                /* nextval值赋值给nextval在i位置的值 */
+        } else
+            j = nextval[j]; /* 若字符不相同，则j值回溯 */
+    }
+}
