@@ -55,3 +55,38 @@ Status CreateBiTree(SqBiTree T) {
     }
     return OK;
 }
+
+#define ClearBiTree InitBiTree /* 在顺序存储结构中，两函数完全一样 */
+
+/* 初始条件: 二叉树T存在 */
+/* 操作结果: 若T为空二叉树,则返回TRUE,否则FALSE */
+Status BiTreeEmpty(SqBiTree T) {
+    if (T[0] == Nil) /* 根结点为空,则树空 */
+        return TRUE;
+    else
+        return FALSE;
+}
+
+/* 初始条件: 二叉树T存在。操作结果: 返回T的深度 */
+int BiTreeDepth(SqBiTree T) {
+    int i, j = -1;
+    for (i = MAX_TREE_SIZE - 1; i >= 0; i--) /* 找到最后一个结点 */
+        if (T[i] != Nil)
+            break;
+    i++;
+    do
+        j++;
+    while (i >= powl(2, j)); /* 计算2的j次幂。 */
+    return j;
+}
+
+/* 初始条件: 二叉树T存在 */
+/* 操作结果:  当T不空,用e返回T的根,返回OK;否则返回ERROR,e无定义 */
+Status Root(SqBiTree T, TElemType* e) {
+    if (BiTreeEmpty(T)) /* T空 */
+        return ERROR;
+    else {
+        *e = T[0];
+        return OK;
+    }
+}
