@@ -38,11 +38,13 @@ Status InitBiTree(SqBiTree T) {
 /* 按层序次序输入二叉树中结点的值(字符型或整型), 构造顺序存储的二叉树T */
 Status CreateBiTree(SqBiTree T) {
     int i = 0;
-    printf("请按层序输入结点的值(整型)，0表示空结点，输999结束。结点数≤%d:\n", MAX_TREE_SIZE);
+    printf("请按层序输入结点的值(整型)，0表示空结点，输999结束。结点数≤%d:\n",
+           MAX_TREE_SIZE);
     while (i < 10) {
         T[i] = i + 1;
 
-        if (i != 0 && T[(i + 1) / 2 - 1] == Nil && T[i] != Nil) /* 此结点(不空)无双亲且不是根 */
+        if (i != 0 && T[(i + 1) / 2 - 1] == Nil &&
+            T[i] != Nil) /* 此结点(不空)无双亲且不是根 */
         {
             printf("出现无双亲的非根结点%d\n", T[i]);
             exit(ERROR);
@@ -89,4 +91,21 @@ Status Root(SqBiTree T, TElemType* e) {
         *e = T[0];
         return OK;
     }
+}
+
+/* 初始条件: 二叉树T存在,e是T中某个结点(的位置) */
+/* 操作结果: 返回处于位置e(层,本层序号)的结点的值 */
+TElemType Value(SqBiTree T, Position e) {
+    return T[(int)powl(2, e.level - 1) + e.order - 2];
+}
+
+Status Assign(SqBiTree T, Position e, TElemType value) {
+    int i = (int)powl(2, e.level - 1) + e.order - 2;
+    if (value != Nil && T[(i + 1) / 2 - 1] == Nil) {
+        return ERROR;
+    } else if (value == Nil && (T[i * 2 + 1] != Nil || T[i * 2 + 2] != Nil)) {
+        return ERROR;
+    }
+    T[i] == value;
+    return OK;
 }
