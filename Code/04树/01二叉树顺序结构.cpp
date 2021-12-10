@@ -109,3 +109,39 @@ Status Assign(SqBiTree T, Position e, TElemType value) {
     T[i] == value;
     return OK;
 }
+
+/* 初始条件: 二叉树T存在,e是T中某个结点 */
+/* 操作结果: 若e是T的非根结点,则返回它的双亲,否则返回＂空＂ */
+TElemType Parent(SqBiTree T, TElemType e) {
+    int i;
+    if (T[0] == Nil) /* 空树 */
+        return Nil;
+    for (i = 1; i <= MAX_TREE_SIZE - 1; i++)
+        if (T[i] == e) /* 找到e */
+            return T[(i+1)/2 -1];
+    return Nil; /* 没找到e */
+}
+
+/* 初始条件: 二叉树T存在,e是T中某个结点 */
+/* 操作结果: 返回e的左孩子。若e无左孩子,则返回＂空＂ */
+TElemType LeftChild(SqBiTree T, TElemType e) {
+    int i;
+    if (T[0] == Nil) /* 空树 */
+        return Nil;
+    for (i = 0; i <= MAX_TREE_SIZE - 1; i++)
+        if (T[i] == e) /* 找到e */
+            return T[i*2+1];
+    return Nil; /* 没找到e */
+}
+
+/* 初始条件: 二叉树T存在,e是T中某个结点 */
+/* 操作结果: 返回e的右孩子。若e无右孩子,则返回＂空＂ */
+TElemType RightChild(SqBiTree T, TElemType e) {
+    int i;
+    if (T[0] == Nil) /* 空树 */
+        return Nil;
+    for (i = 0; i <= MAX_TREE_SIZE - 1; i++)
+        if (T[i] == e) /* 找到e */
+            return T[i*2+2];
+    return Nil; /* 没找到e */
+}
