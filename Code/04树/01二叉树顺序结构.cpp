@@ -145,3 +145,27 @@ TElemType RightChild(SqBiTree T, TElemType e) {
             return T[i*2+2];
     return Nil; /* 没找到e */
 }
+
+/* 初始条件: 二叉树T存在,e是T中某个结点 */
+/* 操作结果: 返回e的左兄弟。若e是T的左孩子或无左兄弟,则返回＂空＂ */
+TElemType LeftSibling(SqBiTree T, TElemType e) {
+    int i;
+    if (T[0] == Nil) /* 空树 */
+        return Nil;
+    for (i = 1; i <= MAX_TREE_SIZE - 1; i++)
+        if (T[i] == e && i % 2 == 0) /* 找到e且其序号为偶数(是右孩子) */
+            return T[i - 1];
+    return Nil; /* 没找到e */
+}
+
+/* 初始条件: 二叉树T存在,e是T中某个结点 */
+/* 操作结果: 返回e的右兄弟。若e是T的右孩子或无右兄弟,则返回＂空＂ */
+TElemType RightSibling(SqBiTree T, TElemType e) {
+    int i;
+    if (T[0] == Nil) /* 空树 */
+        return Nil;
+    for (i = 1; i <= MAX_TREE_SIZE - 1; i++)
+        if (T[i] == e && i%2 ) /* 找到e且其序号为奇数(是左孩子) */
+            return T[i + 1];
+    return Nil; /* 没找到e */
+}
