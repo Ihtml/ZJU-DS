@@ -169,3 +169,57 @@ TElemType RightSibling(SqBiTree T, TElemType e) {
             return T[i + 1];
     return Nil; /* 没找到e */
 }
+
+/* PreOrderTraverse()调用 */
+void PreTraverse(SqBiTree T, int e) {
+    visit(T[e]);
+    if (T[2 * e + 1] != Nil) /* 左子树不空 */
+        PreTraverse(T, 2 * e + 1);
+    if (T[2 * e + 2] != Nil) /* 右子树不空 */
+        PreTraverse(T, 2 * e + 2);
+}
+
+/* 初始条件: 二叉树存在 */
+/* 操作结果: 先序遍历T。 */
+Status PreOrderTraverse(SqBiTree T) {
+    if (!BiTreeEmpty(T)) /* 树不空 */
+        PreTraverse(T, 0);
+    printf("\n");
+    return OK;
+}
+
+/* InOrderTraverse()调用 */
+void InTraverse(SqBiTree T, int e) {
+    if (T[2 * e + 1] != Nil) /* 左子树不空 */
+        InTraverse(T, 2 * e + 1);
+    visit(T[e]);
+    if (T[2 * e + 2] != Nil) /* 右子树不空 */
+        InTraverse(T, 2 * e + 2);
+}
+
+/* 初始条件: 二叉树存在 */
+/* 操作结果: 中序遍历T。 */
+Status InOrderTraverse(SqBiTree T) {
+    if (!BiTreeEmpty(T)) /* 树不空 */
+        InTraverse(T, 0);
+    printf("\n");
+    return OK;
+}
+
+/* PostOrderTraverse()调用 */
+void PostTraverse(SqBiTree T, int e) {
+    if (T[2 * e + 1] != Nil) /* 左子树不空 */
+        PostTraverse(T, 2 * e + 1);
+    if (T[2 * e + 2] != Nil) /* 右子树不空 */
+        PostTraverse(T, 2 * e + 2);
+    visit(T[e]);
+}
+
+/* 初始条件: 二叉树T存在 */
+/* 操作结果: 后序遍历T。 */
+Status PostOrderTraverse(SqBiTree T) {
+    if (!BiTreeEmpty(T)) /* 树不空 */
+        PostTraverse(T, 0);
+    printf("\n");
+    return OK;
+}
