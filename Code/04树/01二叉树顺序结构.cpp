@@ -223,3 +223,32 @@ Status PostOrderTraverse(SqBiTree T) {
     printf("\n");
     return OK;
 }
+
+/* 层序遍历二叉树 */
+void LevelOrderTraverse(SqBiTree T) {
+    int i = MAX_TREE_SIZE - 1, j;
+    while (T[i] == Nil)
+        i--;                 /* 找到最后一个非空结点的序号 */
+    for (j = 0; j <= i; j++) /* 从根结点起,按层序遍历二叉树 */
+        if (T[j] != Nil)
+            visit(T[j]); /* 只遍历非空的结点 */
+    printf("\n");
+}
+
+/* 逐层、按本层序号输出二叉树 */
+void Print(SqBiTree T) {
+    int j, k;
+    Position p;
+    TElemType e;
+    for (j = 1; j <= BiTreeDepth(T); j++) {
+        printf("第%d层: ", j);
+        for (k = 1; k <= powl(2, j - 1); k++) {
+            p.level = j;
+            p.order = k;
+            e = Value(T, p);
+            if (e != Nil)
+                printf("%d:%d ", k, e);
+        }
+        printf("\n");
+    }
+}
