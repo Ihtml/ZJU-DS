@@ -15,7 +15,7 @@
 typedef int Status; /* Status是函数的类型,其值是函数结果状态代码，如OK等 */
 
 /* 用于构造二叉树********************************** */
-int index = 1;
+int idx = 1;
 typedef char String[24]; /*  0号单元存放串的长度 */
 String str;
 
@@ -69,7 +69,7 @@ void CreateBiTree(BiTree* T) {
     TElemType ch;
 
     /* scanf("%c",&ch); */
-    ch = str[index++];
+    ch = str[idx++];
 
     if (ch == '#')
         *T = NULL;
@@ -157,4 +157,35 @@ void PostOrderTraverse(BiTree T) {
     PostOrderTraverse(T->lchild); /* 先后序遍历左子树  */
     PostOrderTraverse(T->rchild); /* 再后序遍历右子树  */
     printf("%c", T->data); /* 显示结点数据，可以更改为其它对结点操作 */
+}
+
+int main() {
+    int i;
+    BiTree T;
+    TElemType e1;
+    InitBiTree(&T);
+
+    StrAssign(str, "ABDH#K###E##CFI###G#J##");
+
+    CreateBiTree(&T);
+
+    printf("构造空二叉树后,树空否？%d(1:是 0:否) 树的深度=%d\n", BiTreeEmpty(T),
+           BiTreeDepth(T));
+    e1 = Root(T);
+    printf("二叉树的根为: %c\n", e1);
+
+    printf("\n前序遍历二叉树:");
+    PreOrderTraverse(T);
+    printf("\n中序遍历二叉树:");
+    InOrderTraverse(T);
+    printf("\n后序遍历二叉树:");
+    PostOrderTraverse(T);
+    ClearBiTree(&T);
+    printf("\n清除二叉树后,树空否？%d(1:是 0:否) 树的深度=%d\n", BiTreeEmpty(T),
+           BiTreeDepth(T));
+    i = Root(T);
+    if (!i)
+        printf("树空，无根\n");
+
+    return 0;
 }
