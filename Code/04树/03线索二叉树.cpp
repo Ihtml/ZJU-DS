@@ -30,3 +30,26 @@ Status visit(TElemType e) {
     printf("%c ", e);
     return OK;
 }
+
+/* 按前序输入二叉线索树中结点的值,构造二叉线索树T */
+/* 0(整型)/空格(字符型)表示空结点 */
+Status CreateBiThrTree(BiThrTree* T) {
+    TElemType h;
+    scanf("%c", &h);
+
+    if (h == Nil)
+        *T = NULL;
+    else {
+        *T = (BiThrTree)malloc(sizeof(BiThrNode));
+        if (!*T)
+            exit(OVERFLOW);
+        (*T)->data = h;                 /* 生成根结点(前序) */
+        CreateBiThrTree(&(*T)->lchild); /* 递归构造左子树 */
+        if ((*T)->lchild)               /* 有左孩子 */
+            (*T)->LTag = Link;
+        CreateBiThrTree(&(*T)->rchild); /* 递归构造右子树 */
+        if ((*T)->rchild)               /* 有右孩子 */
+            (*T)->RTag = Link;
+    }
+    return OK;
+}
