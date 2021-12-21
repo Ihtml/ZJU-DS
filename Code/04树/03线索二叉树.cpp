@@ -94,3 +94,21 @@ Status InOrderThreading(BiThrTree* Thrt, BiThrTree T) {
     }
     return OK;
 }
+
+/* 中序遍历二叉线索树T(头结点)的非递归算法 */
+Status InOrderTraverse_Thr(BiThrTree T) {
+    BiThrTree p;
+    p = T->lchild;   /* p指向根结点 */
+    while (p != T) { /* 空树或遍历结束时,p==T */
+        while (p->LTag == Link)
+            p = p->lchild;
+        if (!visit(p->data)) /* 访问其左子树为空的结点 */
+            return ERROR;
+        while (p->RTag == Thread && p->rchild != T) {
+            p = p->rchild;
+            visit(p->data); /* 访问后继结点 */
+        }
+        p = p->rchild;
+    }
+    return OK;
+}
