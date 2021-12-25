@@ -38,3 +38,10 @@ void CreateMGraph(MGraph* G) {
         G->arc[j][i] = w; /* 因为是无向图，矩阵对称 */
     }
 }
+
+int main(void){
+    MGraph G;
+    CreateMGraph(&G);
+
+    return 0;
+}
