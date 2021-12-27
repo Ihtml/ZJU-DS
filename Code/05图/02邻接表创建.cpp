@@ -32,3 +32,34 @@ typedef struct {
     int numNodes, numEdges; /* 图中当前顶点数和边数 */
 } GraphAdjList;
 
+/* 建立图的邻接表结构 */
+void CreateALGraph(GraphAdjList* G) {
+    int i, j, k;
+    EdgeNode* e;
+    printf("输入顶点数和边数:\n");
+    scanf("%d,%d", &G->numNodes, &G->numEdges); /* 输入顶点数和边数 */
+    for (i = 0; i < G->numNodes; i++) /* 读入顶点信息,建立顶点表 */
+    {
+        scanf(&G->adjList[i].data);     /* 输入顶点信息 */
+        G->adjList[i].firstedge = NULL; /* 将边表置为空表 */
+    }
+
+    for (k = 0; k < G->numEdges; k++) /* 建立边表 */
+    {
+        printf("输入边(vi,vj)上的顶点序号:\n");
+        scanf("%d,%d", &i, &j); /* 输入边(vi,vj)上的顶点序号 */
+        e = (EdgeNode*)malloc(
+            sizeof(EdgeNode)); /* 向内存申请空间,生成边表结点 */
+        e->adjvex = j;         /* 邻接序号为j */
+        e->next =
+            G->adjList[i].firstedge; /* 将e的指针指向当前顶点上指向的结点 */
+        G->adjList[i].firstedge = e; /* 将当前顶点的指针指向e */
+
+        e = (EdgeNode*)malloc(
+            sizeof(EdgeNode)); /* 向内存申请空间,生成边表结点 */
+        e->adjvex = i;         /* 邻接序号为i */
+        e->next =
+            G->adjList[j].firstedge; /* 将e的指针指向当前顶点上指向的结点 */
+        G->adjList[j].firstedge = e; /* 将当前顶点的指针指向e */
+    }
+}
