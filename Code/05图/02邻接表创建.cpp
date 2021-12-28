@@ -63,3 +63,10 @@ void CreateALGraph(GraphAdjList* G) {
         G->adjList[j].firstedge = e; /* 将当前顶点的指针指向e */
     }
 }
+
+int main(void) {
+    GraphAdjList G;
+    CreateALGraph(&G);
+
+    return 0;
+}
