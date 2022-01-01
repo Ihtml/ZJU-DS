@@ -174,3 +174,13 @@ void BFSTraverse(MGraph G) {
         }
     }
 }
+
+int main(void) {
+    MGraph G;
+    CreateMGraph(&G);
+    printf("\n深度遍历：");
+    DFSTraverse(G);
+    printf("\n广度遍历：");
+    BFSTraverse(G);
+    return 0;
+}
