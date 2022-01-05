@@ -165,3 +165,18 @@ void CreateALGraph(MGraph G, GraphAdjList* GL) {
         }
     }
 }
+
+Boolean visited[MAXSIZE]; /* 访问标志的数组 */
+
+/* 邻接表的深度优先递归算法 */
+void DFS(GraphAdjList GL, int i) {
+    EdgeNode* p;
+    visited[i] = TRUE;
+    printf("%c ", GL->adjList[i].data); /* 打印顶点,也可以其它操作 */
+    p = GL->adjList[i].firstedge;
+    while (p) {
+        if (!visited[p->adjvex])
+            DFS(GL, p->adjvex); /* 对访问的邻接顶点递归调用 */
+        p = p->next;
+    }
+}
