@@ -220,3 +220,16 @@ void BFSTraverse(GraphAdjList GL) {
         }
     }
 }
+
+int main(void) {
+    MGraph G;
+    GraphAdjList GL;
+    CreateMGraph(&G);
+    CreateALGraph(G, &GL);
+
+    printf("\n深度遍历:");
+    DFSTraverse(GL);
+    printf("\n广度遍历:");
+    BFSTraverse(GL);
+    return 0;
+}
