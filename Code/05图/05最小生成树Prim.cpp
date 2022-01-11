@@ -101,3 +101,10 @@ void MiniSpanTree_Prim(MGraph G) {
         }
     }
 }
+
+int main(void) {
+    MGraph G;
+    CreateMGraph(&G);
+    MiniSpanTree_Prim(G);
+    return 0;
+}
