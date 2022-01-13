@@ -66,3 +66,33 @@ void CreateMGraph(MGraph* G) {
         }
     }
 }
+
+/* 交换权值 以及头和尾 */
+void Swapn(Edge* edges, int i, int j) {
+    int temp;
+    temp = edges[i].begin;
+    edges[i].begin = edges[j].begin;
+    edges[j].begin = temp;
+    temp = edges[i].end;
+    edges[i].end = edges[j].end;
+    edges[j].end = temp;
+    temp = edges[i].weight;
+    edges[i].weight = edges[j].weight;
+    edges[j].weight = temp;
+}
+
+/* 对权值进行排序 */
+void sort(Edge edges[], MGraph* G) {
+    int i, j;
+    for (i = 0; i < G->numEdges; i++) {
+        for (j = i + 1; j < G->numEdges; j++) {
+            if (edges[i].weight > edges[j].weight) {
+                Swapn(edges, i, j);
+            }
+        }
+    }
+    printf("权排序之后的为:\n");
+    for (i = 0; i < G->numEdges; i++) {
+        printf("(%d, %d) %d\n", edges[i].begin, edges[i].end, edges[i].weight);
+    }
+}
