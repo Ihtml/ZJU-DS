@@ -143,3 +143,10 @@ void MiniSpanTree_Kruskal(MGraph G) {
         }
     }
 }
+
+int main(void) {
+    MGraph G;
+    CreateMGraph(&G);
+    MiniSpanTree_Kruskal(G);
+    return 0;
+}
