@@ -141,3 +141,15 @@ Status TopologicalSort(GraphAdjList GL) {
     else
         return OK;
 }
+
+int main(void) {
+    MGraph G;
+    GraphAdjList GL;
+    int result;
+    CreateMGraph(&G);
+    CreateALGraph(G, &GL);
+    result = TopologicalSort(GL);
+    printf("result:%d", result);
+
+    return 0;
+}
