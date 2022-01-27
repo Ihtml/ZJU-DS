@@ -46,3 +46,71 @@ typedef struct {
     int numVertexes, numEdges; /* 图中当前顶点数和边数 */
 } graphAdjList, *GraphAdjList;
 /* **************************** */
+
+void CreateMGraph(MGraph* G) /* 构建图 */
+{
+    int i, j;
+    /* printf("请输入边数和顶点数:"); */
+    G->numEdges = 13;
+    G->numVertexes = 10;
+
+    for (i = 0; i < G->numVertexes; i++) /* 初始化图 */
+    {
+        G->vexs[i] = i;
+    }
+
+    for (i = 0; i < G->numVertexes; i++) /* 初始化图 */
+    {
+        for (j = 0; j < G->numVertexes; j++) {
+            if (i == j)
+                G->arc[i][j] = 0;
+            else
+                G->arc[i][j] = INFINITY;
+        }
+    }
+
+    G->arc[0][1] = 3;
+    G->arc[0][2] = 4;
+    G->arc[1][3] = 5;
+    G->arc[1][4] = 6;
+    G->arc[2][3] = 8;
+    G->arc[2][5] = 7;
+    G->arc[3][4] = 3;
+    G->arc[4][6] = 9;
+    G->arc[4][7] = 4;
+    G->arc[5][7] = 6;
+    G->arc[6][9] = 2;
+    G->arc[7][8] = 5;
+    G->arc[8][9] = 3;
+}
+
+/* 利用邻接矩阵构建邻接表 */
+void CreateALGraph(MGraph G, GraphAdjList* GL) {
+    int i, j;
+    EdgeNode* e;
+
+    *GL = (GraphAdjList)malloc(sizeof(graphAdjList));
+
+    (*GL)->numVertexes = G.numVertexes;
+    (*GL)->numEdges = G.numEdges;
+    for (i = 0; i < G.numVertexes; i++) /* 读入顶点信息，建立顶点表 */
+    {
+        (*GL)->adjList[i].in = 0;
+        (*GL)->adjList[i].data = G.vexs[i];
+        (*GL)->adjList[i].firstedge = NULL; /* 将边表置为空表 */
+    }
+
+    for (i = 0; i < G.numVertexes; i++) /* 建立边表 */
+    {
+        for (j = 0; j < G.numVertexes; j++) {
+            if (G.arc[i][j] != 0 && G.arc[i][j] < INFINITY) {
+                e = (EdgeNode*)malloc(sizeof(EdgeNode));
+                e->adjvex = j; /* 邻接序号为j */
+                e->weight = G.arc[i][j];
+                e->next = (*GL)->adjList[i].firstedge; /* 将当前顶点上的指向的结点指针赋值给e */
+                (*GL)->adjList[i].firstedge = e; /* 将当前顶点的指针指向e  */
+                (*GL)->adjList[j].in++;
+            }
+        }
+    }
+}
