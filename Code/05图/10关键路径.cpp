@@ -114,3 +114,46 @@ void CreateALGraph(MGraph G, GraphAdjList* GL) {
         }
     }
 }
+
+/* 拓扑排序 */
+Status TopologicalSort(GraphAdjList GL) { /* 若GL无回路，则输出拓扑排序序列并返回1，若有回路返回0。*/
+    EdgeNode* e;
+    int i, k, gettop;
+    int top = 0;   /* 用于栈指针下标  */
+    int count = 0; /* 用于统计输出顶点的个数 */
+    int* stack;    /* 建栈将入度为0的顶点入栈  */
+    stack = (int*)malloc(GL->numVertexes * sizeof(int));
+    for (i = 0; i < GL->numVertexes; i++)
+        if (0 == GL->adjList[i].in) /* 将入度为0的顶点入栈 */
+            stack[++top] = i;
+
+    top2 = 0;
+    etv = (int*)malloc(GL->numVertexes * sizeof(int)); /* 事件最早发生时间数组 */
+    for (i = 0; i < GL->numVertexes; i++)
+        etv[i] = 0;                                       /* 初始化 */
+    stack2 = (int*)malloc(GL->numVertexes * sizeof(int)); /* 初始化拓扑序列栈 */
+
+    printf("TopologicalSort:\t");
+    while (top != 0) {
+        gettop = stack[top--];
+        printf("%d -> ", GL->adjList[gettop].data);
+        count++; /* 输出i号顶点，并计数 */
+
+        stack2[++top2] = gettop; /* 将弹出的顶点序号压入拓扑序列的栈 */
+
+        for (e = GL->adjList[gettop].firstedge; e; e = e->next) {
+            k = e->adjvex;
+            if (!(--GL->adjList[k].in)) /* 将i号顶点的邻接点的入度减1，如果减1后为0，则入栈*/
+                stack[++top] = k;
+
+            if ((etv[gettop] + e->weight) >
+                etv[k]) /* 求各顶点事件的最早发生时间etv值 */
+                etv[k] = etv[gettop] + e->weight;
+        }
+    }
+    printf("\n");
+    if (count < GL->numVertexes)
+        return ERROR;
+    else
+        return OK;
+}
