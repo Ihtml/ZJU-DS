@@ -203,3 +203,12 @@ void CriticalPath(GraphAdjList GL) {
         }
     }
 }
+
+int main(void) {
+    MGraph G;
+    GraphAdjList GL;
+    CreateMGraph(&G);
+    CreateALGraph(G, &GL);
+    CriticalPath(GL);
+    return 0;
+}
