@@ -9,8 +9,8 @@ struct HeapStruct {
   ElementType* Elements;  // 储存元素的数组
   int Size;               // 堆当前元素的个数
   int Capacity;           // 堆最大容量
-};
-
+} ;
+ 
 #define MaxData INT_MAX
 MaxHeap Create(int MaxSize) {
   MaxHeap H =
