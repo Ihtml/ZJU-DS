@@ -46,3 +46,24 @@ void Union2(int S[], int Root1, int Root2){
         S[Root2] = Root1;  // 小树合并到大树
     }
 }
+
+// 判断图的连通分量数,图用邻接矩阵表示 g[5][5]是用二维数组表示的邻接矩阵
+int ComponentCount(int g[5][5]){
+    int S[5];
+    for (int i = 0; i < 5; i++) S[i] = -1;
+    // 无向图，遍历上三角部分即可
+    for (int i = 0; i < 5; i++) {
+        for (int j = i+1; j < 5; j++) {
+            if (g[i][j] > 0) {
+                int iRoot = Find2(S, i);
+                int jRoot = Find2(S, j);
+                if (iRoot != jRoot)  
+                    Union2(S, iRoot, jRoot);
+            }
+        }
+    }
+    int count = 0;  // 统计有几个连通分量
+    for (int i = 0; i < 5; i++)
+        if(S[i]<0) count++;
+    return count;
+}
