@@ -54,7 +54,7 @@ int ComponentCount(int g[5][5]){
     // 无向图，遍历上三角部分即可
     for (int i = 0; i < 5; i++) {
         for (int j = i+1; j < 5; j++) {
-            if (g[i][j] > 0) {
+            if (g[i][j] > 0) {  // 结点i、j之间有边
                 int iRoot = Find2(S, i);
                 int jRoot = Find2(S, j);
                 if (iRoot != jRoot)  
@@ -66,4 +66,25 @@ int ComponentCount(int g[5][5]){
     for (int i = 0; i < 5; i++)
         if(S[i]<0) count++;
     return count;
+}
+
+// 并查集判断是否有环
+int hasAcyclic(int g[5][5]){
+    int S[5];
+    for (int i = 0; i < 5; i++)
+        S[i] = -1;
+    // 无向图，遍历上三角部分即可
+    for (int i = 0; i < 5; i++) {
+        for (int j = i + 1; j < 5; j++) {
+            if (g[i][j] > 0) {  // 结点i、j之间有边
+                int iRoot = Find2(S, i);  // 找到i所属集合
+                int jRoot = Find2(S, j);  // 找到j所属集合
+                if (iRoot != jRoot)  // i j不在同一集合，Union
+                    Union2(S, iRoot, jRoot);
+                else  // i、j原本就在同一个集合，即原本就连通
+                    return 1; // 在连通子图中，但凡再多一条边，必有环
+            }
+        }
+    }
+    return 0;  // 图中没有环
 }
