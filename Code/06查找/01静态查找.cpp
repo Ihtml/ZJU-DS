@@ -94,3 +94,32 @@ int Fibonacci_Search(int* a, int n, int key) {
     }
     return 0;
 }
+
+int main(void) {
+    int a[MAXSIZE + 1], i, result;
+    int arr[MAXSIZE] = {0, 1, 16, 24, 35, 47, 59, 62, 73, 88, 99};
+
+    for (i = 0; i <= MAXSIZE; i++) {
+        a[i] = i;
+    }
+    result = Sequential_Search(a, MAXSIZE, MAXSIZE);
+    printf("Sequential_Search:%d \n", result);
+    result = Sequential_Search2(a, MAXSIZE, 1);
+    printf("Sequential_Search2:%d \n", result);
+
+    result = Binary_Search(arr, 10, 62);
+    printf("Binary_Search:%d \n", result);
+
+    result = Interpolation_Search(arr, 10, 62);
+    printf("Interpolation_Search:%d \n", result);
+
+    F[0] = 0;
+    F[1] = 1;
+    for (i = 2; i < 100; i++) {
+        F[i] = F[i - 1] + F[i - 2];
+    }
+    result = Fibonacci_Search(arr, 10, 62);
+    printf("Fibonacci_Search:%d \n", result);
+
+    return 0;
+}
