@@ -59,8 +59,7 @@ Status InsertBST(BiTree *T, int key){
 /* 从二叉排序树中删除结点p，并重接它的左或右子树。 */
 Status Delete(BiTree* p) {
     BiTree q, s;
-    if ((*p)->rchild ==
-        NULL) /* 右子树空则只需重接它的左子树（待删结点是叶子也走此分支) */
+    if ((*p)->rchild == NULL) /* 右子树空则只需重接它的左子树（待删结点是叶子也走此分支) */
     {
         q = *p;
         *p = (*p)->lchild;
@@ -88,4 +87,19 @@ Status Delete(BiTree* p) {
         free(s);
     }
     return TRUE;
+}
+
+/* 若二叉排序树T中存在关键字等于key的数据元素时，则删除该数据元素结点, */
+/* 并返回TRUE；否则返回FALSE。 */
+Status DeleteBST(BiTree* T, int key) {
+    if (!*T) /* 不存在关键字等于key的数据元素 */
+        return FALSE;
+    else {
+        if (key == (*T)->data) /* 找到关键字等于key的数据元素 */
+            return Delete(T);
+        else if (key < (*T)->data)
+            return DeleteBST(&(*T)->lchild, key);
+        else
+            return DeleteBST(&(*T)->rchild, key);
+    }
 }
