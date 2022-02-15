@@ -29,3 +29,13 @@ void R_Rotate(BiTree* P) {
     L->rchild = (*P);
     *P = L; /*  P指向新的根结点 */
 }
+
+/* 对以P为根的二叉排序树作左旋处理， */
+/* 处理之后P指向新的树根结点，即旋转处理之前的右子树的根结点0  */
+void L_Rotate(BiTree* P) {
+    BiTree R;
+    R = (*P)->rchild;         /*  R指向P的右子树根结点 */
+    (*P)->rchild = R->lchild; /* R的左子树挂接为P的右子树 */
+    R->lchild = (*P);
+    *P = R; /*  P指向新的根结点 */
+}
