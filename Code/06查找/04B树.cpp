@@ -33,3 +33,42 @@ typedef struct {
     int i;      /*  1..m，在结点中的关键字序号 */
     int tag;    /*  1:查找成功，O:查找失败 */
 } Result;       /*  B树的查找结果类型 */
+
+/*  在p->node[1..keynum].key中查找i,使得p->node[i].key≤K＜p->node[i+1].key */
+int Search(BTree p, int K) {
+    int i = 0, j;
+    for (j = 1; j <= p->keynum; j++)
+        if (p->node[j].key <= K)
+            i = j;
+    return i;
+}
+
+/*  在m阶B树T上查找关键字K，返回结果(pt,i,tag)。若查找成功，则特征值 */
+/*  tag=1，指针pt所指结点中第i个关键字等于K；否则特征值tag=0，等于K的  */
+/*  关键字应插入在指针Pt所指结点中第i和第i+1个关键字之间。 */
+Result SearchBTree(BTree T, int K) {
+    BTree p = T, q = NULL; /*  初始化，p指向待查结点，q指向p的双亲  */
+    Status found = FALSE;
+    int i = 0;
+    Result r;
+    while (p && !found) {
+        i = Search(p, K); /*  p->node[i].key≤K<p->node[i+1].key  */
+        if (i > 0 && p->node[i].key == K) /*  找到待查关键字 */
+            found = TRUE;
+        else {
+            q = p;
+            p = p->node[i].ptr;
+        }
+    }
+    r.i = i;
+    if (found) /*  查找成功  */
+    {
+        r.pt = p;
+        r.tag = 1;
+    } else /*   查找不成功，返回K的插入位置信息 */
+    {
+        r.pt = q;
+        r.tag = 0;
+    }
+    return r;
+}
