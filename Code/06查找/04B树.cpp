@@ -72,3 +72,14 @@ Result SearchBTree(BTree T, int K) {
     }
     return r;
 }
+
+/* 将r->key、r和ap分别插入到q->key[i+1]、q->recptr[i+1]和q->ptr[i+1]中 */
+void Insert(BTree* q, int i, int key, BTree ap) {
+    int j;
+    for (j = (*q)->keynum; j > i; j--) /*  空出(*q)->node[i+1]  */
+        (*q)->node[j + 1] = (*q)->node[j];
+    (*q)->node[i + 1].key = key;
+    (*q)->node[i + 1].ptr = ap;
+    (*q)->node[i + 1].recptr = key;
+    (*q)->keynum++;
+}
