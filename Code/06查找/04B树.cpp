@@ -83,3 +83,18 @@ void Insert(BTree* q, int i, int key, BTree ap) {
     (*q)->node[i + 1].recptr = key;
     (*q)->keynum++;
 }
+
+/* 将结点q分裂成两个结点，前一半保留，后一半移入新生结点ap */
+void split(BTree* q, BTree* ap) {
+    int i, s = (m + 1) / 2;
+    *ap = (BTree)malloc(sizeof(BTNode));    /*  生成新结点ap */
+    (*ap)->node[0].ptr = (*q)->node[s].ptr; /*  后一半移入ap */
+    for (i = s + 1; i <= m; i++) {
+        (*ap)->node[i - s] = (*q)->node[i];
+        if ((*ap)->node[i - s].ptr)
+            (*ap)->node[i - s].ptr->parent = *ap;
+    }
+    (*ap)->keynum = m - s;
+    (*ap)->parent = (*q)->parent;
+    (*q)->keynum = s - 1; /*  q的前一半保留，修改keynum */
+}
