@@ -98,3 +98,20 @@ void split(BTree* q, BTree* ap) {
     (*ap)->parent = (*q)->parent;
     (*q)->keynum = s - 1; /*  q的前一半保留，修改keynum */
 }
+
+/* 生成含信息(T,r,ap)的新的根结点&T，原T和ap为子树指针 */
+void NewRoot(BTree* T, int key, BTree ap) {
+    BTree p;
+    p = (BTree)malloc(sizeof(BTNode));
+    p->node[0].ptr = *T;
+    *T = p;
+    if ((*T)->node[0].ptr)
+        (*T)->node[0].ptr->parent = *T;
+    (*T)->parent = NULL;
+    (*T)->keynum = 1;
+    (*T)->node[1].key = key;
+    (*T)->node[1].recptr = key;
+    (*T)->node[1].ptr = ap;
+    if ((*T)->node[1].ptr)
+        (*T)->node[1].ptr->parent = *T;
+}
