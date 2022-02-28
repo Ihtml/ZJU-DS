@@ -35,3 +35,18 @@ Status InitHashTable(HashTable* H) {
         H->elem[i] = NULLKEY;
     return OK;
 }
+
+/* 散列函数 */
+int Hash(int key) {
+    return key % m; /* 除留余数法 */
+}
+
+/* 插入关键字进散列表 */
+void InsertHash(HashTable* H, int key) {
+    int addr = Hash(key);            /* 求散列地址 */
+    while (H->elem[addr] != NULLKEY) /* 如果不为空，则冲突 */
+    {
+        addr = (addr + 1) % m; /* 开放定址法的线性探测 */
+    }
+    H->elem[addr] = key; /* 直到有空位后插入关键字 */
+}
