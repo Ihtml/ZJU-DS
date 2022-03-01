@@ -50,3 +50,15 @@ void InsertHash(HashTable* H, int key) {
     }
     H->elem[addr] = key; /* 直到有空位后插入关键字 */
 }
+
+/* 散列表查找关键字 */
+Status SearchHash(HashTable H, int key, int* addr) {
+    *addr = Hash(key);           /* 求散列地址 */
+    while (H.elem[*addr] != key) /* 如果不为空，则冲突 */
+    {
+        *addr = (*addr + 1) % m; /* 开放定址法的线性探测 */
+        if (H.elem[*addr] == NULLKEY || *addr == Hash(key)) /* 如果循环回到原点 */
+            return UNSUCCESS;   /* 则说明关键字不存在 */
+    }
+    return SUCCESS;
+}
