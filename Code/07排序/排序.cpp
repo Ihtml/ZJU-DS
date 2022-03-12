@@ -178,3 +178,18 @@ void Merge(int SR[], int TR[], int i, int m, int n) {
             TR[k + l] = SR[j + l]; /* 将剩余的SR[j..n]复制到TR */
     }
 }
+
+/* 递归法 */
+/* 将SR[s..t]归并排序为TR1[s..t] */
+void MSort(int SR[], int TR1[], int s, int t) {
+    int m;
+    int TR2[MAXSIZE + 1];
+    if (s == t)
+        TR1[s] = SR[s];
+    else {
+        m = (s + t) / 2;      /* 将SR[s..t]平分为SR[s..m]和SR[m+1..t] */
+        MSort(SR, TR2, s, m); /* 递归地将SR[s..m]归并为有序的TR2[s..m] */
+        MSort(SR, TR2, m + 1, t); /* 递归地将SR[m+1..t]归并为有序的TR2[m+1..t] */
+        Merge(TR2, TR1, s, m, t); /* 将TR2[s..m]和TR2[m+1..t]归并到TR1[s..t] */
+    }
+}
