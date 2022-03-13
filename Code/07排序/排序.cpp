@@ -193,3 +193,24 @@ void MSort(int SR[], int TR1[], int s, int t) {
         Merge(TR2, TR1, s, m, t); /* 将TR2[s..m]和TR2[m+1..t]归并到TR1[s..t] */
     }
 }
+
+/* 对顺序表L作归并排序 */
+void MergeSort(SqList* L) {
+    MSort(L->r, L->r, 1, L->length);
+}
+
+/* 非递归法 */
+/* 将SR[]中相邻长度为s的子序列两两归并到TR[] */
+void MergePass(int SR[], int TR[], int s, int n) {
+    int i = 1;
+    int j;
+    while (i <= n - 2 * s + 1) { /* 两两归并 */
+        Merge(SR, TR, i, i + s - 1, i + 2 * s - 1);
+        i = i + 2 * s;
+    }
+    if (i < n - s + 1) /* 归并最后两个序列 */
+        Merge(SR, TR, i, i + s - 1, n);
+    else /* 若最后只剩下单个子序列 */
+        for (j = i; j <= n; j++)
+            TR[j] = SR[j];
+}
