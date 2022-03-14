@@ -214,3 +214,15 @@ void MergePass(int SR[], int TR[], int s, int n) {
         for (j = i; j <= n; j++)
             TR[j] = SR[j];
 }
+
+/* 对顺序表L作归并非递归排序 */
+void MergeSort2(SqList* L) {
+    int* TR = (int*)malloc(L->length * sizeof(int)); /* 申请额外空间 */
+    int k = 1;
+    while (k < L->length) {
+        MergePass(L->r, TR, k, L->length);
+        k = 2 * k; /* 子序列长度加倍 */
+        MergePass(TR, L->r, k, L->length);
+        k = 2 * k; /* 子序列长度加倍 */
+    }
+}
