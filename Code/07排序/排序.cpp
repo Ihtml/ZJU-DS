@@ -261,3 +261,32 @@ void QSort(SqList* L, int low, int high) {
 void QuickSort(SqList* L) {
     QSort(L, 1, L->length);
 }
+
+/* 改进后快速排序******************************** */
+
+/* 快速排序优化算法 */
+int Partition1(SqList* L, int low, int high) {
+    int pivotkey;
+
+    int m = low + (high - low) / 2; /* 计算数组中间的元素的下标 */
+    if (L->r[low] > L->r[high])
+        swap(L, low, high); /* 交换左端与右端数据，保证左端较小 */
+    if (L->r[m] > L->r[high])
+        swap(L, high, m); /* 交换中间与右端数据，保证中间较小 */
+    if (L->r[m] > L->r[low])
+        swap(L, m, low); /* 交换中间与左端数据，保证左端较小 */
+
+    pivotkey = L->r[low]; /* 用子表的第一个记录作枢轴记录 */
+    L->r[0] = pivotkey;   /* 将枢轴关键字备份到L->r[0] */
+    while (low < high)    /*  从表的两端交替地向中间扫描 */
+    {
+        while (low < high && L->r[high] >= pivotkey)
+            high--;
+        L->r[low] = L->r[high];
+        while (low < high && L->r[low] <= pivotkey)
+            low++;
+        L->r[high] = L->r[low];
+    }
+    L->r[low] = L->r[0];
+    return low; /* 返回枢轴所在位置 */
+}
