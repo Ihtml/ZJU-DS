@@ -290,3 +290,21 @@ int Partition1(SqList* L, int low, int high) {
     L->r[low] = L->r[0];
     return low; /* 返回枢轴所在位置 */
 }
+
+void QSort1(SqList* L, int low, int high) {
+    int pivot;
+    if ((high - low) > MAX_LENGTH_INSERT_SORT) {
+        while (low < high) {
+            pivot = Partition1(L, low, high); /*  将L->r[low..high]一分为二，算出枢轴值pivot */
+            QSort1(L, low, pivot - 1); /*  对低子表递归排序 */
+            QSort(L,pivot+1,high);		/*  对高子表递归排序 */
+            low = pivot + 1; /* 尾递归 */
+        }
+    } else
+        InsertSort(L);
+}
+
+/* 对顺序表L作快速排序 */
+void QuickSort1(SqList* L) {
+    QSort1(L, 1, L->length);
+}
