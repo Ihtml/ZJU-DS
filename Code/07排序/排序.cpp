@@ -308,3 +308,83 @@ void QSort1(SqList* L, int low, int high) {
 void QuickSort1(SqList* L) {
     QSort1(L, 1, L->length);
 }
+
+/* **************************************** */
+#define N 9
+int main() {
+    int i;
+
+    /* int d[N]={9,1,5,8,3,7,4,6,2}; */
+    int d[N] = {50, 10, 90, 30, 70, 40, 80, 60, 20};
+    /* int d[N]={9,8,7,6,5,4,3,2,1}; */
+
+    SqList l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10;
+
+    for (i = 0; i < N; i++)
+        l0.r[i + 1] = d[i];
+    l0.length = N;
+    l1 = l2 = l3 = l4 = l5 = l6 = l7 = l8 = l9 = l10 = l0;
+    printf("排序前:\n");
+    print(l0);
+
+    printf("初级冒泡排序:\n");
+    BubbleSort0(&l0);
+    print(l0);
+
+    printf("冒泡排序:\n");
+    BubbleSort(&l1);
+    print(l1);
+
+    printf("改进冒泡排序:\n");
+    BubbleSort2(&l2);
+    print(l2);
+
+    printf("选择排序:\n");
+    SelectSort(&l3);
+    print(l3);
+
+    printf("直接插入排序:\n");
+    InsertSort(&l4);
+    print(l4);
+
+    printf("希尔排序:\n");
+    ShellSort(&l5);
+    print(l5);
+
+    printf("堆排序:\n");
+    HeapSort(&l6);
+    print(l6);
+
+    printf("归并排序（递归）:\n");
+    MergeSort(&l7);
+    print(l7);
+
+    printf("归并排序（非递归）:\n");
+    MergeSort2(&l8);
+    print(l8);
+
+    printf("快速排序:\n");
+    QuickSort(&l9);
+    print(l9);
+
+    printf("改进快速排序:\n");
+    QuickSort1(&l10);
+    print(l10);
+
+    /*大数据排序*/
+    /*
+    srand(time(0));
+    int Max=10000;
+    int d[10000];
+    int i;
+    SqList l0;
+    for(i=0;i<Max;i++)
+        d[i]=rand()%Max+1;
+    for(i=0;i<Max;i++)
+        l0.r[i+1]=d[i];
+    l0.length=Max;
+    MergeSort(l0);
+    print(l0);
+    */
+    return 0;
+}
