@@ -30,3 +30,11 @@ int main() {
         cout << i + 2;
     }
 ```
+
+### bool变量
+直接赋值一个数字给 bool 变量也可,它会自动根据 int 值是不是零来决定 给 bool 变量赋值 true 还是 false
+```c++
+bool flag = true;
+bool flag2 = -2; // flag2为true
+bool flag3 = 0;  // flag3为false
+```
