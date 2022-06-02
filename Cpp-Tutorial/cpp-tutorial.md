@@ -38,3 +38,10 @@ bool flag = true;
 bool flag2 = -2; // flag2为true
 bool flag3 = 0;  // flag3为false
 ```
+
+### const常量
+c语言用#define定义常量，C++用const定义常量，可以定义常量的类型
+```c++
+#define MAXSIZE 10
+const int a = 99999999;
+```
