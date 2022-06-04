@@ -56,7 +56,11 @@ string s3 = s + s2; // 字符串串拼接直接⽤用+号就可以 string s4;
 cin >> s4; // 读⼊入字符串串
 cout << s; // 输出字符串串
 
-string s; // 定义⼀一个空字符串串s
-getline(cin, s); // 读取⼀一⾏行行的字符串串，包括空格 
-cout << s.length(); // 输出字符串串s的⻓长度
+string s; // 定义一个空字符串s
+getline(cin, s); // 读取⼀行的字符串串，包括空格 
+cout << s.length(); // 输出字符串s的长度
+
+// substr 截取某个字符串的子串
+string s2 = s.substr(4); // 从下标4开始截取一直到结束
+string s3 = s.substr(5, 3); // 从下标5开始, 3个字符
 ```
