@@ -64,3 +64,14 @@ cout << s.length(); // 输出字符串s的长度
 string s2 = s.substr(4); // 从下标4开始截取一直到结束
 string s3 = s.substr(5, 3); // 从下标5开始, 3个字符
 ```
+
+### struct
+定义好结构体后，要使用的时候，C++可以省略关键字struct
+```c++
+struct stu {
+    int grade;
+    float score;
+}
+struct stu arr1[10];  // c语言写法
+stu arr2[10];  // C++写法
+```
