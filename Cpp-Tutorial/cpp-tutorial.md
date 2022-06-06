@@ -75,3 +75,23 @@ struct stu {
 struct stu arr1[10];  // c语言写法
 stu arr2[10];  // C++写法
 ```
+
+### 引用&
+C++的引用是在变量名前加一个&符号，表示对传入的原变量进行操作
+```c++
+    void func(int &a){  // 传入的是n的引用，相当于直接对n进行操作
+        a = 99;
+    }
+    int main() {
+        int n = 0;
+        func(n); // n由0变成了99
+    }
+
+    void func(int a) {  // 传入的是0这个值，不会改变main函数中n的值
+        a = 99;
+    }
+    int main() {
+        int n = 0;
+        func(n);  // 并不会改变n的值，n还是0
+    }
+```
