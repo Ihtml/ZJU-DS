@@ -95,3 +95,14 @@ C++的引用是在变量名前加一个&符号，表示对传入的原变量进�
         func(n);  // 并不会改变n的值，n还是0
     }
 ```
+
+### 动态数组vector矢量
+```c++
+#include <iostream>
+using namespace std;
+int main(){
+    vector<int> v1; // 定义的时候不用分配大小
+    cout << v1.size();  // 输出vector v1的大小, 此处应该为0
+    return 0;
+}
+```
