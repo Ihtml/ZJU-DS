@@ -117,4 +117,12 @@ vector<int> v3(100, 9); // 把长度为100的数组值都初始化为9
 v[1] = 2;
 cout << v[0];  // 直接通过下标访问
 
+vector<int> a; // 定义的时候不指定vector的⼤小 
+cout << a.size() << endl; // 这个时候size是0 
+for (int i = 0; i < 10; i++) {
+    a.push_back(i); // 在vector a的末尾添加⼀个元素i 
+}
+cout << a.size() << endl; // 此时会发现a的size变成了了10
+vector<int> b(15); // 定义的时候指定vector的⼤小，默认b⾥面元素都是0
+cout << b.size() << endl;
 ```
