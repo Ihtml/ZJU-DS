@@ -125,4 +125,9 @@ for (int i = 0; i < 10; i++) {
 cout << a.size() << endl; // 此时会发现a的size变成了了10
 vector<int> b(15); // 定义的时候指定vector的⼤小，默认b⾥面元素都是0
 cout << b.size() << endl;
+
+vector<int> c(20, 2); // 定义的时候指定vector的⼤小并把所有的元素赋一个指定的值 
+for (int i = 0; i < c.size(); i++) {
+cout << c[i] << " "; }
+cout << endl;
 ```
