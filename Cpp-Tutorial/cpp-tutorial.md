@@ -130,4 +130,10 @@ vector<int> c(20, 2); // 定义的时候指定vector的⼤小并把所有的元�
 for (int i = 0; i < c.size(); i++) {
 cout << c[i] << " "; }
 cout << endl;
+
+// 使⽤用迭代器器的⽅方式访问vector
+for (auto it = c.begin(); it != c.end(); it++) {  // c.begin()指向容器第一个元素, c.end()指向容器最后一个元素的后一个位置
+    cout << *it << " ";  // 访问元素的值要对it指针取值，所以加*号
+}
+
 ```
