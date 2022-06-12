@@ -137,3 +137,19 @@ for (auto it = c.begin(); it != c.end(); it++) {  // c.begin()指向容器第一
 }
 
 ```
+
+### 集合set
+set是一个集合，里面元素是各不相同的，set会按元素进行从小到大排序
+```c++
+#include <iostream>
+#include <set>
+using namespace std;
+int main(){
+    set<int> s;
+    s.insert(1); // 向集合里插入元素
+    for(int i = 0; i<5; i++){
+        s.insert(i);
+    }
+    cout << *(s.begin()) << endl; // 输出集合s的第一个元素
+}
+```
