@@ -151,5 +151,8 @@ int main(){
         s.insert(i);
     }
     cout << *(s.begin()) << endl; // 输出集合s的第一个元素
+    for(auto it = s.begin(); it != s.end(); it++){
+        cout << *it << " ";
+    }
 }
 ```
