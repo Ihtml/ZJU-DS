@@ -154,5 +154,9 @@ int main(){
     for(auto it = s.begin(); it != s.end(); it++){
         cout << *it << " ";
     }
+    // s.end()表示s的最后一个元素的下一个元素所在位置
+    cout << endl << (s.find(2) != s.end()) << endl; // 查找集合s中的值，如果结果等于s.end()表示未找到,返回0
+    cout << (s.find(10) != s.end()) << endl;        // s.find(10) != s.end() 表示能找到10这个元素,返回1
+
 }
 ```
