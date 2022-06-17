@@ -172,8 +172,12 @@ map是键值对，map会自动将所有的键值对按键值从小到大排序
 using namespace std;
 int main(){
     map<string, int> mp;  // 定义⼀个空的map m，键是string类型的，值是int类型
-    mp['hello'] = 2;  // 将key为"hello", value为2的键值对(key-value)存⼊入map中
-    cout << m['hello'] << endl;  // 访问map中key为"hello"的value, 如果key不存在则返回0
+    mp["hello"] = 2;  // 将key为"hello", value为2的键值对(key-value)存⼊入map中
+    cout << mp["hello"] << endl;  // 访问map中key为"hello"的value
+    cout << mp["world"] << endl;  // key不存在则返回0
+    mp["world"] = 3;              // 将"world"键对应的值修改为3
+    cout << mp["world"] << endl;
+    mp[","] = 1;  // 设⽴立⼀一组键值对，键为"," 值为1
 }
 
 ```
