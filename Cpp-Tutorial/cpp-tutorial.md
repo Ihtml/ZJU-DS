@@ -178,6 +178,10 @@ int main(){
     mp["world"] = 3;              // 将"world"键对应的值修改为3
     cout << mp["world"] << endl;
     mp[","] = 1;  // 设⽴立⼀一组键值对，键为"," 值为1
+    // 用迭代器遍历，输出map中所有元素，建用it->first获取，值用it->second获取
+    for(auto it = m.begin(); it != m.end(); it++){
+        cout << it->first << " " << it->second << endl;
+    }
 }
 
 ```
