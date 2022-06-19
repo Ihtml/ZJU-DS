@@ -182,6 +182,10 @@ int main(){
     for(auto it = m.begin(); it != m.end(); it++){
         cout << it->first << " " << it->second << endl;
     }
+    // 访问map的第⼀一个元素，输出它的键和值
+    cout << m.begin()->first << " " << m.begin()->second << endl; 
+    // 访问map的最后⼀一个元素，输出它的键和值
+    cout << m.rbegin()->first << " " << m.rbegin()->second << endl;
 }
 
 ```
