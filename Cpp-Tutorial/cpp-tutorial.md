@@ -179,13 +179,16 @@ int main(){
     cout << mp["world"] << endl;
     mp[","] = 1;  // 设⽴立⼀一组键值对，键为"," 值为1
     // 用迭代器遍历，输出map中所有元素，建用it->first获取，值用it->second获取
-    for(auto it = m.begin(); it != m.end(); it++){
+    for(auto it = mp.begin(); it != mp.end(); it++){
         cout << it->first << " " << it->second << endl;
     }
     // 访问map的第⼀一个元素，输出它的键和值
-    cout << m.begin()->first << " " << m.begin()->second << endl; 
+    cout << mp.begin()->first << " " << mp.begin()->second << endl; 
     // 访问map的最后⼀一个元素，输出它的键和值
-    cout << m.rbegin()->first << " " << m.rbegin()->second << endl;
+    cout << mp.rbegin()->first << " " << mp.rbegin()->second << endl;
+    // mpap元素的个数
+    cout << mp.size() << endl;
+    return 0;
 }
 
 ```
