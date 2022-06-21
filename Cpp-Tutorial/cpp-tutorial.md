@@ -192,3 +192,17 @@ int main(){
 }
 
 ```
+
+### stack
+```c++
+#include <iostream>
+#include <stack>
+using namespace std;
+int main(){
+    stack<int> s;  // 定义一个空栈
+    for(int i = 0; i <6; i++){
+        s.push(i);  // 将元素i压入栈s中
+    }
+    cout << s.size() << endl; // 输出s的元素个数
+}
+```
