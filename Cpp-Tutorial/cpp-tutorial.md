@@ -204,5 +204,7 @@ int main(){
         s.push(i);  // 将元素i压入栈s中
     }
     cout << s.size() << endl; // 输出s的元素个数
+    cout << s.top() << endl;  // 访问栈顶元素
+    s.pop(); // 移除栈顶元素
 }
 ```
