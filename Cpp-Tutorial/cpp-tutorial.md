@@ -206,5 +206,21 @@ int main(){
     cout << s.size() << endl; // 输出s的元素个数
     cout << s.top() << endl;  // 访问栈顶元素
     s.pop(); // 移除栈顶元素
+    return 0;
+}
+```
+
+### queue
+```c++
+#include <iostream>
+#include <queue>
+using namespace std;
+int main(){
+    queue<int> q;  // 定义一个空队列q
+    for(int i = 0; i <6; i++){
+        q.push(i);  // 将元素i压入队列q中
+    }
+    cout << q.size() << endl; // 输出s的元素个数
+    return 0;
 }
 ```
