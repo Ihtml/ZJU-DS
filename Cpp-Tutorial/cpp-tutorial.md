@@ -221,6 +221,8 @@ int main(){
         q.push(i);  // 将元素i压入队列q中
     }
     cout << q.size() << endl; // 输出s的元素个数
+    cout << q.front() << " " << q.back() << endl; // 访问队列列的队⾸首元素和队尾元素
+    q.pop(); // 移除队列的队首元素
     return 0;
 }
 ```
