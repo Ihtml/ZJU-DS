@@ -226,3 +226,6 @@ int main(){
     return 0;
 }
 ```
+
+### unordered_map和unorder_set的使用
+unordered_map 在头文件 #include <unordered_map> 中，unordered_set 在头文件 #include <unordered_set> 中，它们的用法和map、set一样，区别是不会按key排序。
