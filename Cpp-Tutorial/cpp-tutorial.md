@@ -228,4 +228,27 @@ int main(){
 ```
 
 ### unordered_map和unorder_set的使用
-unordered_map 在头文件 #include <unordered_map> 中，unordered_set 在头文件 #include <unordered_set> 中，它们的用法和map、set一样，区别是不会按key排序。
+unordered_map 在头文件 #include <unordered_map> 中，unordered_set 在头文件 #include <unordered_set> 中，它们的用法和map、set一样，区别是不会按key排序。能缩短代码运行时间 ，提高代码效率。
+
+
+### sort函数
+sort函数在头文件#include <algorithm>里面，主要是对一个数组（int arr[]或 vector数组都行）进行排序。
+对于vector容器，v.begin() v.end()表示头尾，而int arr[]用arr表示数组的首地址，arr+n表示尾部。
+```c++
+    bool cmp(int a, int b){ 
+        return a>b;   // 从大到小排序
+    } 
+    int main(){
+        vector<int> v(10);
+        for(int i =0; i<10; i++){
+            cin >> v[i];
+        }
+        sort(v.begin(), v.end()); // 没有传入参数cmp，所以按照默认从小到大排序
+        int arr[10];
+        for(int i = 0; i <10; i++){
+            cin >> arr[i];
+        }
+        sort(arr, arr+10, cmp);  // cmp设置了从大到小，因此arr从大到小排序
+        return 0;
+    }
+```
