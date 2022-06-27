@@ -234,6 +234,8 @@ unordered_map 在头文件 #include <unordered_map> 中，unordered_set 在头�
 ### sort函数
 sort函数在头文件#include <algorithm>里面，主要是对一个数组（int arr[]或 vector数组都行）进行排序。
 对于vector容器，v.begin() v.end()表示头尾，而int arr[]用arr表示数组的首地址，arr+n表示尾部。
+sort默认是从小到大排序的，也可以指定第三个参数cmp函数，自己定义排序规则。sort函数的cmp只能是小于、大于
+比如return a < b; 或 return b < a; 而不能是<= 或者 >=, 以免造成程序越界发生段错误。
 ```c++
     bool cmp(int a, int b){ 
         return a>b;   // 从大到小排序
