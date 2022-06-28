@@ -237,6 +237,24 @@ sort函数在头文件#include <algorithm>里面，主要是对一个数组（in
 sort默认是从小到大排序的，也可以指定第三个参数cmp函数，自己定义排序规则。sort函数的cmp只能是小于、大于
 比如return a < b; 或 return b < a; 而不能是<= 或者 >=, 以免造成程序越界发生段错误。
 ```c++
+#include <iostream>
+using namespace std;
+struct stu { // 定义⼀一个结构体stu，number表示学号，score表示分数
+    int number;
+    int score; 
+}
+bool cmp(stu a, stu b){
+    if(a.score != b.score)
+        return a.score > b.score;
+    else
+        return a.number < b.number;
+}
+bool cmp(stu a, stu b){
+    return a.score != b.score ? a.score > b.score : a.number < b.number;
+}
+
+```
+```c++
     bool cmp(int a, int b){ 
         return a>b;   // 从大到小排序
     } 
