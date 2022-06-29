@@ -272,3 +272,21 @@ bool cmp(stu a, stu b){
         return 0;
     }
 ```
+
+### cctype头文件
+#include <cctype> 本质上来源于C语言标准函数库中的头文件 #include <ctype.h> ，并不属于C++新特性的范畴。
+```c++
+#include <iostream>
+#include <cctype>
+using namespace std;
+// 判断一个字符是否是字母的普通方式
+char c;
+cin >> c;
+if(c >= 'A' && c <= 'Z' || c>'a' && c<'z'){
+    cout << 'c is alpha';
+}
+// 使用cctype里提供的isalpha函数
+if(isalpha(c)){
+    cout << 'c is alpha';
+}
+```
