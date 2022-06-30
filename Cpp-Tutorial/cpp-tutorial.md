@@ -274,7 +274,14 @@ bool cmp(stu a, stu b){
 ```
 
 ### cctype头文件
-#include <cctype> 本质上来源于C语言标准函数库中的头文件 #include <ctype.h> ，并不属于C++新特性的范畴。
+#include <cctype> 本质上来源于C语言标准函数库中的头文件 #include <ctype.h> ，并不属于C++新特性的范畴。常用的函数有以下几个。
+isalpha 字⺟母(包括⼤写、⼩写) 
+islower (小写字母)
+isupper (⼤写字母)
+isalnum (字⺟大写小写+数字) 
+isblank (space和 \t )
+isspace ( space 、 \t 、 \r 、 \n )
+
 ```c++
 #include <iostream>
 #include <cctype>
