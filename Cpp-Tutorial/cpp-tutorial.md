@@ -281,7 +281,8 @@ isupper (⼤写字母)
 isalnum (字⺟大写小写+数字) 
 isblank (space和 \t )
 isspace ( space 、 \t 、 \r 、 \n )
-
+tolower 将字符转换为小写
+toupper 将字符转换为大写
 ```c++
 #include <iostream>
 #include <cctype>
@@ -296,4 +297,7 @@ if(c >= 'A' && c <= 'Z' || c>'a' && c<'z'){
 if(isalpha(c)){
     cout << 'c is alpha';
 }
+char s = 'A';
+char t = tolower(s);  // 等同于 t = t + 32;
+char u = toupper(t);
 ```
