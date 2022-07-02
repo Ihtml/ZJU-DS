@@ -301,3 +301,17 @@ char s = 'A';
 char t = tolower(s);  // 等同于 t = t + 32;
 char u = toupper(t);
 ```
+
+### c++11
+C++11是2011年官方为C++语⾔带来的新语法新标准，C++11为C++语言带来了很多好⽤用的新特性，⽐如 auto 、 to_string() 函数、 stoi 、 stof 、unordered_map 、 unordered_set 之类
+```c++
+// auto 可以让编译器根据初始值类型直接推断出变量类型
+auto x = 100;
+auto y = 1.5;
+for(set<int>::iterator it = s.begin(); it != s.end(); it++)
+    cout << *it << " ";
+
+for(auto it = s.begin(); it != s.end(); it++){
+    cout << *it << " ";
+}
+```
