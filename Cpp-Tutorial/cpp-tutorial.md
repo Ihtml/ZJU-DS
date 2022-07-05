@@ -331,4 +331,11 @@ for(int &i : arr){
     i = i * 2;
     cout << i << endl; // 输出数组中每一个元素的值，每个元素占据一行
 }
+
+// v是一个int类型的vector容器
+for(auto i : v)
+    cout << i << " ";
+// 等价于
+for(int i = 0; i < v.size(); i++)
+    cout << v[i] << " ";
 ```
