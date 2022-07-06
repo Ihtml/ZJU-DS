@@ -339,3 +339,14 @@ for(auto i : v)
 for(int i = 0; i < v.size(); i++)
     cout << v[i] << " ";
 ```
+
+### to_string
+to_string的头文件是`#include <string>` ,可以把int、float、double类型的变量转换为string类型。
+```c++
+#include <iostream>
+#include <string>
+using namespace std;
+int main(){
+    string s1 = to_string(123);  // 把123这个数字转成字符串
+}
+```
