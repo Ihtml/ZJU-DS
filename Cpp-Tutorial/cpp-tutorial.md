@@ -348,5 +348,9 @@ to_string的头文件是`#include <string>` ,可以把int、float、double类型
 using namespace std;
 int main(){
     string s1 = to_string(123);  // 把123这个数字转成字符串
+    cout << s1 << endl;
+    string s2 = to_string(4.5); // 将4.5这个数字转成字符串
+    cout << s2 << endl;
+    return 0;
 }
 ```
