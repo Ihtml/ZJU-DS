@@ -351,6 +351,7 @@ int main(){
     cout << s1 << endl;
     string s2 = to_string(4.5); // 将4.5这个数字转成字符串
     cout << s2 << endl;
+    cout << s1+s2 << endl;  // 将s1和s2两个字符串拼接起来并输出
     return 0;
 }
 ```
