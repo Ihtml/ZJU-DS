@@ -354,5 +354,8 @@ int main(){
     cout << s1+s2 << endl;  // 将s1和s2两个字符串拼接起来并输出
     printf("%s\n", (s1+s2).c_str()); // 如果想用printf输出string，得加一个.c_str()
     return 0;
-}
 ```
+
+### c++11中的stoi stod
+c++11中的`stoi`和`stod`可以将字符串`string`转化为对应的`int`型和`double`型变量。
+在字符串处理的很多问题中很有帮助。
