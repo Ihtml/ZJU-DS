@@ -359,3 +359,13 @@ int main(){
 ### c++11中的stoi stod
 c++11中的`stoi`和`stod`可以将字符串`string`转化为对应的`int`型和`double`型变量。
 在字符串处理的很多问题中很有帮助。
+```c++
+#include <iostream>
+#include <string>
+using namespace std;
+int main(){
+    string str = "123";
+    int a = stoi(str);
+    cout << a;
+}
+```
