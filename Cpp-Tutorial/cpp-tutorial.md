@@ -367,5 +367,9 @@ int main(){
     string str = "123";
     int a = stoi(str);
     cout << a;
+    str = "123.45";
+    double b = stod(str);
+    cout << b;
+    return 0;
 }
 ```
