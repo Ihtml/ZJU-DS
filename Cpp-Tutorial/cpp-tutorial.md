@@ -359,6 +359,8 @@ int main(){
 ### c++11中的stoi stod
 c++11中的`stoi`和`stod`可以将字符串`string`转化为对应的`int`型和`double`型变量。
 在字符串处理的很多问题中很有帮助。
+stoi如果遇到的是非法输入（比如stoi("123.4")不是一个int型变量）,会自动截取最前面的数字，直到遇到不是数字为止，浮点型会截取前面的整数部分。
+如果最前面不是数字，会运行发生错误。
 ```c++
 #include <iostream>
 #include <string>
