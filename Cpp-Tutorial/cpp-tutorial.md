@@ -380,3 +380,8 @@ int main(){
     return 0;
 }
 ```
+`stof` string to float
+`stold` string to long double
+`stol` string to long
+`stoll` string to long long
+`stoull` string to unsigned long long
