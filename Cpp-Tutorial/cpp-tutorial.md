@@ -385,3 +385,14 @@ int main(){
 `stol` string to long
 `stoll` string to long long
 `stoull` string to unsigned long long
+
+### C++位运算bitset
+bitset用来处理二进制位，头文件是`#include <bitset>`
+```c++
+#include <iostream>
+#include <bitset>
+using namespace std;
+int main(){
+    bitset<5> b("11"); // 5表示5个二进位
+}
+```
