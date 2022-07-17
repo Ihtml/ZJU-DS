@@ -394,5 +394,11 @@ bitset用来处理二进制位，头文件是`#include <bitset>`
 using namespace std;
 int main(){
     bitset<5> b("11"); // 5表示5个二进位
+    // 初始化方式
+    // bitset<5> b; 都为0
+    // bitset<5> b(u); u为unsigned int,如果u = 1，则输出b的结果为00001
+    // bitset<8> b(s); s为字符串，如”1101“，则输出b的结果为00001101，在前⾯补0
+    // bitset<5> b(s, pos, n); 从字符串的s[pos]开始，n位长度
+    
 }
 ```
