@@ -388,6 +388,8 @@ int main(){
 
 ### C++位运算bitset
 bitset用来处理二进制位，头文件是`#include <bitset>`
+bitset相当于一个数组，但是它是从二进制的低位到高位分别为b[0]、b[1]......的
+所以按照b[i]方式逐位输出和直接输出b结果相反的
 ```c++
 #include <iostream>
 #include <bitset>
@@ -399,6 +401,10 @@ int main(){
     // bitset<5> b(u); u为unsigned int,如果u = 1，则输出b的结果为00001
     // bitset<8> b(s); s为字符串，如”1101“，则输出b的结果为00001101，在前⾯补0
     // bitset<5> b(s, pos, n); 从字符串的s[pos]开始，n位长度
-    
-}
+
+    cout << b << endl;  // 如果bitset<5> b("11"); 则此处输出00011(即正常二进制顺序)
+    for(int i = 0; i < 5; i++){
+        cout << b[i]; // 如果bitset<5> b("11");则此处输出11000,正常二进制顺序的倒序
+    }
+
 ```
