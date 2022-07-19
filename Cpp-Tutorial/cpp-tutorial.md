@@ -407,4 +407,9 @@ int main(){
         cout << b[i]; // 如果bitset<5> b("11");则此处输出11000,正常二进制顺序的倒序
     }
 
+    cout << endl << b.any();  // b中是否存在1的二进制位
+    cout << endl << b.none();  // b中不存在1吗
+    cout << endl << b.count();  // b中1的二进制位的个数
+    cout << endl << b.size();  // b中二进制位的个数
+    cout << endl << b.test(2);  // 测试下标为2处是否二进制位为1
 ```
