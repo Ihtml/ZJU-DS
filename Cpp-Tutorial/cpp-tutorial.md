@@ -412,4 +412,10 @@ int main(){
     cout << endl << b.count();  // b中1的二进制位的个数
     cout << endl << b.size();  // b中二进制位的个数
     cout << endl << b.test(2);  // 测试下标为2处是否二进制位为1
+
+    b.set(4); // 把b的下标为4处置为1
+    b.reset();  // 所有位归零
+    b.reset(3); // b的下标3处归零
+    b.flip();  // b的所有二进制位逐位取反
+
 ```
