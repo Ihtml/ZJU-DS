@@ -417,5 +417,7 @@ int main(){
     b.reset();  // 所有位归零
     b.reset(3); // b的下标3处归零
     b.flip();  // b的所有二进制位逐位取反
+    unsigned long a = b.to_ulong(); // b转换为unsigned long类型
+    return 0;
 
 ```
