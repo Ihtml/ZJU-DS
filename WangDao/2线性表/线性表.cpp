@@ -19,6 +19,14 @@ struct SqList {
 // struct SqList list1; // C语言写法
 SqList list1;  // C++不用写struct
 
+// 动态分配
+const int InitSize = 100;
+struct SeqList {
+    int *data;  // 指示动态分配数组的指针
+    int MaxSize, length;  // 数组最大容量和当前个数
+};
+
+
 int main() {
     return 0;
 }
