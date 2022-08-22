@@ -26,6 +26,13 @@ struct SeqList {
     int MaxSize, length;  // 数组最大容量和当前个数
 };
 
+// C语言的初始动态分配语句
+// struct SeqList SeqList1;
+// SeqList1.data = (int*)malloc(sizeof(int) * InitSize);
+
+// C++初始动态分配语句
+// SeqList SeqList1;
+// SeqList1.data = new int[InitSize];
 
 int main() {
     return 0;
