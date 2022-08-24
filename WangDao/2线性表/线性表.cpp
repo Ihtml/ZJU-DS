@@ -47,6 +47,16 @@ bool ListInsert(SqList &L, int i, int e){
     return true;
 }
 
+bool ListDelete(SqList& L, int i, int e){
+    if (i < 1 || i > L.length)  // 判断i的范围是否有效
+        return false;
+    e=L.data[i-1]; // 将被删除的元素赋给e
+    for(int j=i; j<L.length; j++){
+        L.data[j-1]=L.data[j];
+    }
+    L.length--;
+    return true;
+}
 int main() {
     return 0;
 }
