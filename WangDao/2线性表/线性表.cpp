@@ -22,7 +22,7 @@ SqList list1;  // C++不用写struct
 // 动态分配
 const int InitSize = 100;
 struct SeqList {
-    int *data;  // 指示动态分配数组的指针
+    int* data;            // 指示动态分配数组的指针
     int MaxSize, length;  // 数组最大容量和当前个数
 };
 
@@ -34,28 +34,39 @@ struct SeqList {
 // SeqList SeqList1;
 // SeqList1.data = new int[InitSize];
 
-// 顺序表插入 
-bool ListInsert(SqList &L, int i, int e){
-    if(i<1 || i>L.length+1)  // 判断i的范围是否有效
+// 顺序表插入
+bool ListInsert(SqList& L, int i, int e) {
+    if (i < 1 || i > L.length + 1)  // 判断i的范围是否有效
         return false;
-    if (L.length >= MaxSize) // 当前存储空间已满，不能插入
+    if (L.length >= MaxSize)  // 当前存储空间已满，不能插入
         return false;
-    for (int j = L.length; j>=i; j--)  // 将第i个元素及之后的元素后移
-        L.data[j]=L.data[j-1];
-    L.data[i-1]=e;  // 在位置i处放入e
-    L.length++;  // 线性表长度加一
+    for (int j = L.length; j >= i; j--)  // 将第i个元素及之后的元素后移
+        L.data[j] = L.data[j - 1];
+    L.data[i - 1] = e;  // 在位置i处放入e
+    L.length++;         // 线性表长度加一
     return true;
 }
 
-bool ListDelete(SqList& L, int i, int e){
+bool ListDelete(SqList& L, int i, int& e) {
     if (i < 1 || i > L.length)  // 判断i的范围是否有效
         return false;
-    e=L.data[i-1]; // 将被删除的元素赋给e
-    for(int j=i; j<L.length; j++){
-        L.data[j-1]=L.data[j];
+    e = L.data[i - 1];  // 将被删除的元素赋给e
+    for (int j = i; j < L.length; j++) {
+        L.data[j - 1] = L.data[j];  // 将第i个位置后的元素前移
     }
-    L.length--;
+    L.length--;  // 线性表长度减1
     return true;
+}
+
+// 按值查找（顺序查找）
+int locateElem(SqList L, int e) {
+    int i;
+    for (i = 0; i < L.length; i++) {
+        if (L.data[i] == e) {
+            return i + 1;
+        }
+    }
+    return 0;
 }
 int main() {
     return 0;
