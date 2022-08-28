@@ -35,6 +35,25 @@ LinkList List_HeadInsert(LinkList& L) {  // 逆向建立单链表
     return L;
 }
 
+// 尾插法
+LinkList List_TailInsert(LinkList& L) {  // 正向建立单链表
+    int x;
+    L = new LNode;  // 创建头结点
+    // L = (LinkList)malloc(sizeof(LNode));
+    LNode* s, *r=L;  // r为表尾指针
+    cin >> x;           // 输入结点的值
+    while (x != 999) {  // 输入999表示结束
+        s = new LNode;
+        // s=(LNode*)malloc(sizeof(LNode)); // 创建新结点
+        s->data = x;
+        r->next = s;
+        r=s;     // r指向新的表尾结点
+        cin >> x;
+    }
+    r->next=NULL;  // 尾结点指针置空
+    return L;
+}
+
 int main() {
     LNode *LN;
     List_HeadInsert(LN);
