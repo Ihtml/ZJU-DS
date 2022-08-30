@@ -68,6 +68,14 @@ LNode* GetElem(LinkList L, int i) {
     return p;  // 返回第i个结点的指针，若i大于表长，则返回NULL
 }
 
+// 按值查找表结点
+LNode *LocateElem(LinkList L, int e){
+    LNode *p = L->next;
+    while (p!=NULL&&p->data!=e)
+        p=p->next;
+    return p;
+}
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
