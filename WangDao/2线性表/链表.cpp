@@ -81,6 +81,13 @@ LNode *LocateElem(LinkList L, int e){
 // s->next=p->next;
 // p->next=s;
 
+// 前插操作
+// s->next=p->next;
+// p->next=s;
+// temp=p->data;
+// p->data=s->data;
+// s->data=temp;
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
