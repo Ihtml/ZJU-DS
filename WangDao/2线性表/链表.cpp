@@ -81,12 +81,18 @@ LNode *LocateElem(LinkList L, int e){
 // s->next=p->next;
 // p->next=s;
 
-// 前插操作
+// 前插操作，将*s结点插入到*p之前
 // s->next=p->next;
 // p->next=s;
 // temp=p->data;
 // p->data=s->data;
 // s->data=temp;
+
+// 删除结点
+// p=GetElem(L, i-1);  // 查找删除位置的前驱结点
+// q=p->next;  // 令q指向被删除结点
+// p->next=q->next;  // 将*q结点从链中断开
+// free(q);
 
 int main() {
     LNode* LN;
