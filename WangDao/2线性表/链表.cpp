@@ -94,6 +94,14 @@ LNode *LocateElem(LinkList L, int e){
 // p->next=q->next;  // 将*q结点从链中断开
 // free(q);
 
+// 删除结点 *p，可用删除*p的后继结点操作来实现 
+// 即将其后继结点的值赋予其自身 然后删除后继结点
+// q=p->next;  // 令q指向*p的后继结点
+// p->data=p->next->data;  // 和后继结点交换数据域
+// p->next=q->next;  // 将*q结点从链中断开
+// free(q);  //  释放后继结点的存储空间
+// 时间复杂度O(1)
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
