@@ -16,6 +16,11 @@ typedef struct LNode {   // 定义单链表结点类型
     int data;            // 指针域
 } LNode, *LinkList;
 
+typedef struct DNode {  // 定义双链表结点类型
+    int data;  // 数据域
+    struct DNode *prior, *next;  // 前驱和后继指针
+}DNode, *DLinkList;
+
 // 头插法
 LinkList List_HeadInsert(LinkList& L) {  // 逆向建立单链表
     LNode* s;
@@ -101,6 +106,7 @@ LNode *LocateElem(LinkList L, int e){
 // p->next=q->next;  // 将*q结点从链中断开
 // free(q);  //  释放后继结点的存储空间
 // 时间复杂度O(1)
+
 
 int main() {
     LNode* LN;
