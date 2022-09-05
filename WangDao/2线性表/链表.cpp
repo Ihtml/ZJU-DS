@@ -108,6 +108,13 @@ LNode *LocateElem(LinkList L, int e){
 // 时间复杂度O(1)
 
 
+// 双链表
+// 将结点*s插入到结点*p之后
+// s->next=p->next;
+// p->next->prior=s;
+// s->prior=p;
+// p->next=s;
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
