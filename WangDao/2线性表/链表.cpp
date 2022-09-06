@@ -115,6 +115,11 @@ LNode *LocateElem(LinkList L, int e){
 // s->prior=p;
 // p->next=s;
 
+// 删除操作
+// p->next = q->next;
+// q->next->prior=p;
+// free(q);
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
