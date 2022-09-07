@@ -21,6 +21,12 @@ typedef struct DNode {  // 定义双链表结点类型
     struct DNode *prior, *next;  // 前驱和后继指针
 }DNode, *DLinkList;
 
+// 静态链表  以next==-1作为其结束的标志
+typedef struct {
+    int data;
+    int next;  // 下一个元素的数组下标
+} SLinkList[MaxSize];
+
 // 头插法
 LinkList List_HeadInsert(LinkList& L) {  // 逆向建立单链表
     LNode* s;
@@ -119,6 +125,8 @@ LNode *LocateElem(LinkList L, int e){
 // p->next = q->next;
 // q->next->prior=p;
 // free(q);
+
+
 
 int main() {
     LNode* LN;
