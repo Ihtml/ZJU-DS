@@ -29,3 +29,10 @@ bool StackEmpty(SqStack S){
     else   // 不空
         return false;
 }
+// 进栈
+bool Push(SqStack &S, int x){
+    if (S.top == MaxSize-1)  // 栈满 报错
+        return false;
+    S.data[++S.top] = x;   // 指针先加1
+    return true;
+}
