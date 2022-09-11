@@ -36,3 +36,10 @@ bool Push(SqStack &S, int x){
     S.data[++S.top] = x;   // 指针先加1
     return true;
 }
+// 出栈
+bool Pop(SqStack &S, int &x){
+    if (S.top == -1)
+        return false;
+    x=S.data[S.top--];  // 先出栈 指针再减一
+    return true;
+}
