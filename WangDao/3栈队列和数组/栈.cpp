@@ -43,3 +43,10 @@ bool Pop(SqStack &S, int &x){
     x=S.data[S.top--];  // 先出栈 指针再减一
     return true;
 }
+
+// 读栈顶元素
+bool GetTop(SqStack S, int &x){
+    if (S.top==-1)
+        return false;
+    x=S.data[S.top];
+}
