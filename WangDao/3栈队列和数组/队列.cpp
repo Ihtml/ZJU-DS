@@ -36,3 +36,11 @@ bool EnQueue(SqQueue& Q, int x) {
     Q.rear = (Q.rear + 1) % MaxSize;  // 队尾指针加1取模
     return true;
 }
+// 循环队列出队
+bool DeQueue(SqQueue& Q, int& x) {
+    if (Q.rear == Q.front)
+        return false;  // 队空报错
+    x = Q.data[Q.front];
+    Q.front = (Q.front + 1) % MaxSize;  // 队头指针加1
+    return true;
+}
