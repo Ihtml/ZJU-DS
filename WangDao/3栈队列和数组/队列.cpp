@@ -44,3 +44,12 @@ bool DeQueue(SqQueue& Q, int& x) {
     Q.front = (Q.front + 1) % MaxSize;  // 队头指针加1
     return true;
 }
+
+// 队列的链式存储结构
+typedef struct LinkNode {  // 链式队列结点
+    int data;
+    struct LinkNode* next;
+} LinkNode;
+typedef struct {             // 链式队列
+    LinkNode *front, *rear;  // 队列的队头和队尾指针
+} LinkQueue;
