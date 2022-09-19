@@ -53,3 +53,9 @@ typedef struct LinkNode {  // 链式队列结点
 typedef struct {             // 链式队列
     LinkNode *front, *rear;  // 队列的队头和队尾指针
 } LinkQueue;
+
+// 链式队列初始化
+void InitQueue(LinkQueue &Q){
+    Q.front=Q.rear=(LinkNode*)malloc(sizeof(LinkNode)); // 建立头结点
+    Q.front->next=NULL; 
+}
