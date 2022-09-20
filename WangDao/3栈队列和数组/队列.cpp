@@ -59,3 +59,9 @@ void InitQueue(LinkQueue &Q){
     Q.front=Q.rear=(LinkNode*)malloc(sizeof(LinkNode)); // 建立头结点
     Q.front->next=NULL; 
 }
+
+// 判队空
+bool IsEmpty(LinkQueue Q){
+    if(Q.front==Q.rear) return true;
+    else return false;
+}
