@@ -55,13 +55,24 @@ typedef struct {             // 链式队列
 } LinkQueue;
 
 // 链式队列初始化
-void InitQueue(LinkQueue &Q){
-    Q.front=Q.rear=(LinkNode*)malloc(sizeof(LinkNode)); // 建立头结点
-    Q.front->next=NULL; 
+void InitQueue(LinkQueue& Q) {
+    Q.front = Q.rear = (LinkNode*)malloc(sizeof(LinkNode));  // 建立头结点
+    Q.front->next = NULL;
 }
 
 // 判队空
-bool IsEmpty(LinkQueue Q){
-    if(Q.front==Q.rear) return true;
-    else return false;
+bool IsEmpty(LinkQueue Q) {
+    if (Q.front == Q.rear)
+        return true;
+    else
+        return false;
+}
+
+// 入队
+void EnQueue(LinkQueue& Q, int x) {
+    LinkNode* s = (LinkNode*)malloc(sizeof(LinkNode));
+    s->data = x;
+    s->next = NULL;  // 创建新结点，插入到链尾
+    Q.rear->next = s;
+    Q.rear = s;
 }
