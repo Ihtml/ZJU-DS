@@ -76,3 +76,16 @@ void EnQueue(LinkQueue& Q, int x) {
     Q.rear->next = s;
     Q.rear = s;
 }
+
+// 出队
+bool DeQueue(LinkQueue& Q, int& x) {
+    if (Q.front = Q.rear)
+        return false;  // 空队
+    LinkNode* p = Q.front->next;
+    x = p->data;
+    Q.front->next = p->next;
+    if (Q.rear == p)
+        Q.rear = Q.front;  // 原队列中只有一个结点，删除后变空
+    free(p);
+    return true;
+}
