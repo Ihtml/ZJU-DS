@@ -21,3 +21,20 @@ typedef struct {
     char* ch;    // 按串长分配存储区 ch指向串的基地址
     int length;  // 串的长度
 } HString;
+
+// KMP
+int Index(SString S, SString T) {
+    int i = 1, j = 1;
+    if (S.ch[i] == T.ch[j]) {
+        ++i;
+        ++j;
+    } else {
+        i = i - j + 2;
+        j = 1;
+    }
+    if (j > T.length) {
+        return i - T.length;
+    } else {
+        return 0;
+    }
+}
