@@ -22,7 +22,7 @@ typedef struct {
     int length;  // 串的长度
 } HString;
 
-// KMP
+// 简单模式匹配
 int Index(SString S, SString T) {
     int i = 1, j = 1;
     if (S.ch[i] == T.ch[j]) {
@@ -36,5 +36,20 @@ int Index(SString S, SString T) {
         return i - T.length;
     } else {
         return 0;
+    }
+}
+
+// KMP get_next
+void get_next(SString T, int next[]) {
+    int i = 1, j = 0;
+    next[1] = 0;
+    while (i < T.length) {
+        if (j == 0 || T.ch[i] == T.ch[j]) {
+            ++i;
+            ++j;
+            next[i] = j;  // 若pi=pj， 则next[j+1]=next[j]+1
+        } else {
+            j = next[j];  // 否则令j=next[j], 循环继续
+        }
     }
 }
