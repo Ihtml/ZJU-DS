@@ -11,6 +11,15 @@
 using namespace std;
 
 typedef struct BiTNode {
-    int data;  // 数据域
-    struct BiTNode *lchild, *rchild; // 左、右孩子指针
-}BiTNode, *BiTree;
+    int data;                         // 数据域
+    struct BiTNode *lchild, *rchild;  // 左、右孩子指针
+} BiTNode, *BiTree;
+
+// 先序遍历
+void PreOrder(BiTree T) {
+    if (T != NULL) {
+        // visit(T);
+        PreOrder(T->lchild);
+        PreOrder(T->rchild);
+    }
+}
