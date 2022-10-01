@@ -23,3 +23,12 @@ void PreOrder(BiTree T) {
         PreOrder(T->rchild);
     }
 }
+
+// 中序遍历
+void InOrder(BiTree T) {
+    if (T != NULL) {
+        InOrder(T->lchild);
+        // visit(T);
+        InOrder(T->rchild);
+    }
+}
