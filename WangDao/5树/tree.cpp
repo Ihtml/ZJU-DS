@@ -32,3 +32,11 @@ void InOrder(BiTree T) {
         InOrder(T->rchild);
     }
 }
+
+void PostOrder(BiTree T) {
+    if (T != NULL) {
+        PostOrder(T->lchild);
+        PostOrder(T->rchild);
+        // visit(T);
+    }
+}
