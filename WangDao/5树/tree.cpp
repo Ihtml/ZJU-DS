@@ -33,6 +33,22 @@ void InOrder(BiTree T) {
     }
 }
 
+// 非递归的中序遍历
+// void InOrder2(BiTree T) {
+//     InitStack(S);
+//     BiTree p = T;
+//     while (p || !IsEmpty(S)) {
+//         if (p) {
+//             Push(S, p);
+//             p = p->lchild;
+//         } else {
+//             Pop(S, p);
+//             visit(p);
+//             p = p->rchild;
+//         }
+//     }
+// }
+
 void PostOrder(BiTree T) {
     if (T != NULL) {
         PostOrder(T->lchild);
