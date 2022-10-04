@@ -24,6 +24,22 @@ void PreOrder(BiTree T) {
     }
 }
 
+// 非递归的中序遍历
+// void PreOrder2(BiTree T) {
+//     InitStack(S);
+//     BiTree p = T;
+//     while (p || !IsEmpty(S)) {
+//         if (p) {
+//             visit(p);
+//             Push(S, p);
+//             p = p->lchild;
+//         } else {
+//             Pop(S, p);
+//             p = p->rchild;
+//         }
+//     }
+// }
+
 // 中序遍历
 void InOrder(BiTree T) {
     if (T != NULL) {
