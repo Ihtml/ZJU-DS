@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <iostream>
 #include <map>
+#include <queue>
 #include <set>
 #include <string>
 #include <typeinfo>
@@ -70,5 +71,23 @@ void PostOrder(BiTree T) {
         PostOrder(T->lchild);
         PostOrder(T->rchild);
         // visit(T);
+    }
+}
+
+// 层序遍历
+void LevelOrder(BiTree T) {
+    queue<BiTree> Q;
+    BiTree p;
+    Q.push(T);
+    while (Q.size() != 0) {
+        p = Q.front();
+        cout << p->data;
+        Q.pop();
+        if (p->lchild != NULL) {
+            Q.push(p->lchild);
+        }
+        if (p->rchild != NULL) {
+            Q.push(p->rchild);
+        }
     }
 }
