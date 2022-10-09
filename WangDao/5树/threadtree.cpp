@@ -42,3 +42,10 @@ void CreateInThread(ThreadTree T) {
         pre->rtag = 1;
     }
 }
+
+
+//  求中序线索二叉树中 中序序列下的第一个结点
+ThreadNode *Firstnode(ThreadNode *p){
+    while (p->ltag==0) p=p->lchild;
+    return p;
+}
