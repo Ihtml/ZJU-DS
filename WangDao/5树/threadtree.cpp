@@ -14,7 +14,7 @@ using namespace std;
 typedef struct ThreadNode {
     int data;                            // 数据域
     struct ThreadNode *lchild, *rchild;  // 左、右孩子指针
-    int ltag, rtag;
+    int ltag, rtag;  // 0代表孩子结点 1代表前驱和后继结点
 } ThreadNode, *ThreadTree;
 
 // 通过中序遍历对二叉树线索化
@@ -43,9 +43,17 @@ void CreateInThread(ThreadTree T) {
     }
 }
 
-
 //  求中序线索二叉树中 中序序列下的第一个结点
-ThreadNode *Firstnode(ThreadNode *p){
-    while (p->ltag==0) p=p->lchild;
+ThreadNode* Firstnode(ThreadNode* p) {
+    while (p->ltag == 0)
+        p = p->lchild;
     return p;
+}
+
+// 求中序线索二叉树中结点P在中序序列下的后继
+ThreadNode* Nextnode(ThreadNode* p) {
+    if (p->rtag == 0)
+        return Firstnode(p->rchild);
+    else
+        return p->rchild;  // rtag==1直接返回后继结点
 }
