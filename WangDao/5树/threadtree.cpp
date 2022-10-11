@@ -57,3 +57,10 @@ ThreadNode* Nextnode(ThreadNode* p) {
     else
         return p->rchild;  // rtag==1直接返回后继结点
 }
+
+// 不含头结点的中序线索二叉树的中序遍历
+void Inorder(ThreadNode* T) {
+    for (ThreadNode* p = Firstnode(T); p != NULL; p = Nextnode(p)) {
+        cout << p->data;
+    }
+}
