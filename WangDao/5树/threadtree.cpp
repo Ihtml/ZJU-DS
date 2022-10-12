@@ -10,12 +10,22 @@
 #include <unordered_map>
 #include <vector>
 using namespace std;
-
+const int MAX_TREE_SIZE = 100;
 typedef struct ThreadNode {
     int data;                            // 数据域
     struct ThreadNode *lchild, *rchild;  // 左、右孩子指针
     int ltag, rtag;  // 0代表孩子结点 1代表前驱和后继结点
 } ThreadNode, *ThreadTree;
+
+// 树的双亲表示法
+typedef struct {
+    int data;
+    int parent;
+} PTNode;
+typedef struct {
+    PTNode nodes[MAX_TREE_SIZE];
+    int n;
+} PTree;
 
 // 通过中序遍历对二叉树线索化
 void InThread(ThreadTree& p, ThreadTree& pre) {
