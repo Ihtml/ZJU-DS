@@ -27,6 +27,11 @@ typedef struct {
     int n;
 } PTree;
 
+typedef struct CSNode {
+    int data;
+    struct CSNode *firstchild, *nextsibling;  // 第一个孩子和右兄弟指针
+} CSNode, *CSTree;
+
 // 通过中序遍历对二叉树线索化
 void InThread(ThreadTree& p, ThreadTree& pre) {
     if (p != NULL) {
