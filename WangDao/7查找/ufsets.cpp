@@ -17,3 +17,8 @@ void Initial(int S[]) {
         S[i] = -1;
     }
 }
+int Find(int S[], int x){
+    while (S[x]>=0)
+        x=S[x];
+    return x;
+}
