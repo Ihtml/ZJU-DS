@@ -22,3 +22,8 @@ int Find(int S[], int x){
         x=S[x];
     return x;
 }
+void Union(int S[], int Root1, int Root2){
+    if (Root1 == Root2)
+        return;
+    S[Root2]=Root1;
+}
