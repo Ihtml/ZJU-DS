@@ -17,13 +17,20 @@ void Initial(int S[]) {
         S[i] = -1;
     }
 }
-int Find(int S[], int x){
-    while (S[x]>=0)
-        x=S[x];
+int Find(int S[], int x) {
+    while (S[x] >= 0)
+        x = S[x];
     return x;
 }
-void Union(int S[], int Root1, int Root2){
+void Union(int S[], int Root1, int Root2) {
     if (Root1 == Root2)
         return;
-    S[Root2]=Root1;
+    if (S[Root1] >= S[Root2]) {  // -2 >= -4 root2结点更多
+        S[Root2] += S[Root1];
+        S[Root1] = Root2;
+    } else {
+        S[Root1] += S[Root2];
+        S[Root2] = Root1;
+    }
+    S[Root2] = Root1;
 }
