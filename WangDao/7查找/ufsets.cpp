@@ -18,8 +18,14 @@ void Initial(int S[]) {
     }
 }
 int Find(int S[], int x) {
+    int root = x;
     while (S[x] >= 0)
         x = S[x];
+    while (root != x) {  // 路径压缩
+        int temp = S[root];
+        S[root] = x;
+        root = temp;
+    }
     return x;
 }
 void Union(int S[], int Root1, int Root2) {
@@ -32,5 +38,4 @@ void Union(int S[], int Root1, int Root2) {
         S[Root1] += S[Root2];
         S[Root2] = Root1;
     }
-    S[Root2] = Root1;
 }
