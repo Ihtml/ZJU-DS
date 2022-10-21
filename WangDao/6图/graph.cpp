@@ -20,7 +20,7 @@ typedef struct {
 } MGraph;
 
 typedef struct ArcNode {  // 边表结点
-    int adjvex;  // 该弧所指向的顶点位置
+    int adjvex;           // 该弧所指向的顶点位置
     struct ArcNode* next;
 } ArcNode;
 
@@ -32,3 +32,16 @@ typedef struct {
     AdjList vertices;    // 邻接表
     int vexnum, arcnum;  // 图的顶点数和弧数
 } ALGraph;               // ALGraph是以邻接表存储的图类型
+
+queue<int> Q;
+bool visited[MAXVertexNum];
+void BFS(MGraph G, int v) {
+    cout << v;
+    visited[v] = true;
+    Q.push(v);
+    while (Q.size() != 0) {
+        v = Q.front();
+        Q.pop();
+        // todo
+    }
+}
