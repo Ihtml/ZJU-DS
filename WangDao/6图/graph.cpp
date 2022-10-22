@@ -35,6 +35,16 @@ typedef struct {
 
 queue<int> Q;
 bool visited[MAXVertexNum];
+void BFSTraverse(MGraph G) {
+    for (int i = 0; i < G.vexnum; i++) {
+        visited[i] = false;
+    }
+    for (int i = 0; i < G.vexnum; i++) {
+        if (!visited[i]) {
+            BFS(G, i);
+        }
+    }
+}
 void BFS(MGraph G, int v) {
     cout << v;
     visited[v] = true;
