@@ -52,6 +52,12 @@ void BFS(MGraph G, int v) {
     while (Q.size() != 0) {
         v = Q.front();
         Q.pop();
-        // todo
+        // for (w = FirstNeighbor(G, v); w >= 0; w = NextNeibor(G, v, w)) {
+        //     if (!visited[w]) {
+        //         cout << w;
+        //         visited[w] = true;
+        //         Q.push(w);
+        //     }
+        // }
     }
 }
