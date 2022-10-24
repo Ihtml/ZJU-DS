@@ -2,6 +2,7 @@
 #include <cctype>
 #include <cstdio>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <queue>
 #include <set>
@@ -9,10 +10,12 @@
 #include <typeinfo>
 #include <unordered_map>
 #include <vector>
+
 using namespace std;
 const int MAXVertexNum = 100;  //  顶点数目最大值
-typedef char VertexType;       //  顶点的数据类型
-typedef int EdgeType;          //  带权图中边上权值的数据类型
+const int infinity = INT_MAX;
+typedef char VertexType;  //  顶点的数据类型
+typedef int EdgeType;     //  带权图中边上权值的数据类型
 typedef struct {
     VertexType Vex[MAXVertexNum];               // 顶点表
     EdgeType Edge[MAXVertexNum][MAXVertexNum];  // 邻接矩阵 边表
@@ -35,6 +38,7 @@ typedef struct {
 
 queue<int> Q;
 bool visited[MAXVertexNum];
+int d[MAXVertexNum];
 void BFSTraverse(MGraph G) {
     for (int i = 0; i < G.vexnum; i++) {
         visited[i] = false;
@@ -56,6 +60,27 @@ void BFS(MGraph G, int v) {
         //     if (!visited[w]) {
         //         cout << w;
         //         visited[w] = true;
+        //         Q.push(w);
+        //     }
+        // }
+    }
+}
+void BFS_Min_Distance(MGraph G, int u) {
+    for (int i = 0; i < G.vexnum; i++) {
+        d[i] = infinity;
+    }
+    visited[u] = true;
+    d[u] = 0;
+    Q.push(u);
+
+    while (Q.size() != 0) {
+        u = Q.front();
+        Q.pop();
+        // for (w = FirstNeighbor(G, v); w >= 0; w = NextNeibor(G, v, w)) {
+        //     if (!visited[w]) {
+        //         cout << w;
+        //         visited[w] = true;
+        //         d[w]=d[u]+1;
         //         Q.push(w);
         //     }
         // }
