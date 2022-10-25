@@ -86,3 +86,14 @@ void BFS_Min_Distance(MGraph G, int u) {
         // }
     }
 }
+
+void DFSTraverse(MGraph G) {
+    for (int v = 0; v < G.vexnum; v++) {
+        visited[v] = false;
+    }
+    for (int v = 0; v < G.vexnum; v++) {
+        if (!visited[v]) {
+            DFS(G, V);
+        }
+    }
+}
