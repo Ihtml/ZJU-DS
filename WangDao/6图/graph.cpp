@@ -97,3 +97,13 @@ void DFSTraverse(MGraph G) {
         }
     }
 }
+
+void DFS(MGraph G, int v){
+    cout << v;
+    visited[v]=true;
+    // for (w = FirstNeighbor(G, v); w >= 0; w = NextNeibor(G, v, w)) {
+    //     if (!visited[w]) {
+    //         DFS(G,W);
+    //     }
+    // }
+}
