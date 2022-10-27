@@ -98,12 +98,25 @@ void DFSTraverse(MGraph G) {
     }
 }
 
-void DFS(MGraph G, int v){
+void DFS(MGraph G, int v) {
     cout << v;
-    visited[v]=true;
+    visited[v] = true;
     // for (w = FirstNeighbor(G, v); w >= 0; w = NextNeibor(G, v, w)) {
     //     if (!visited[w]) {
     //         DFS(G,W);
     //     }
     // }
+}
+
+bool isTree(MGraph G) {
+    for (int i = 1; i < G.vexnum; i++) {
+        visited[i] = false;
+    }
+    int Vnum = 0, Enum = 0;  // 记录顶点数和边数
+    DFS(G, 1, Vnum, Enum, visited);
+    if (Vnum == G.vexnum && Enum == 2 * (G.vexnum - 1)) {
+        return true;  // 若一次遍历就能访问到n个顶点和n-1条边，可判定此图是一棵树
+    } else {
+        return false;
+    }
 }
