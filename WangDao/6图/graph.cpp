@@ -113,10 +113,24 @@ bool isTree(MGraph G) {
         visited[i] = false;
     }
     int Vnum = 0, Enum = 0;  // 记录顶点数和边数
-    DFS(G, 1, Vnum, Enum, visited);
+    DFSTree(G, 1, Vnum, Enum, visited);
     if (Vnum == G.vexnum && Enum == 2 * (G.vexnum - 1)) {
         return true;  // 若一次遍历就能访问到n个顶点和n-1条边，可判定此图是一棵树
     } else {
         return false;
     }
+}
+
+void DFSTree(MGraph& G, int v, int& Vnum, int& Enum, bool visited[]) {
+    // 深度优先遍历图 统计访问过的顶点数和边数 通过Vnum和Enum返回
+    visited[v] = true;
+    Vnum++;
+    // int w = FirstNeighbor(G, v)
+    // while (w != -1) {
+    //     Enum++;
+    //     if (!visited[w]) {
+    //         DFSTree(G, w, Vnum, Enum, visited);
+    //     }
+    //     w = NextNeighbor(G, v, w);
+    // }
 }
