@@ -93,7 +93,7 @@ void DFSTraverse(MGraph G) {
     }
     for (int v = 0; v < G.vexnum; v++) {
         if (!visited[v]) {
-            DFS(G, V);
+            DFS(G, v);
         }
     }
 }
@@ -134,3 +134,15 @@ void DFSTree(MGraph& G, int v, int& Vnum, int& Enum, bool visited[]) {
     //     w = NextNeighbor(G, v, w);
     // }
 }
+
+int NextNeighor(MGraph& G, int x, int y) {
+    if (x != -1 && y != -1) {
+        for (int col = y + 1; col < G.vexnum; col++) {
+            if (G.Edge[x][col] > 0 && G.Edge[x][col] < infinity) {
+                return col;
+            }
+        }
+    }
+    return -1;
+}
+
