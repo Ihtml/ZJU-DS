@@ -146,3 +146,15 @@ int NextNeighor(MGraph& G, int x, int y) {
     return -1;
 }
 
+int ALGraphNextNeighor(ALGraph& G, int x, int y) {
+    if (x != -1) {                         // 顶点x存在
+        ArcNode* p = G.vertices[x].first;  // 对应边链表第一个边结点
+        while (p != NULL && p->adjvex != y) {  // 寻找邻接顶点y
+            p = p->next;
+        }
+        if (p != NULL && p->next != NULL) {
+            return p->next->adjvex;  // 返回下一个邻接顶点
+        }
+    }
+    return -1;
+}
