@@ -38,3 +38,15 @@ int Binary_Search(SSTable L, int key) {
     }
     return -1;
 }
+
+// 二叉排序树非递归查找
+// BSTNode* BST_Search(BiTree T, int key) {
+//     while (T != NULL && key != T->data) {
+//         if (key <= T->data) {
+//             T = T->lchild;
+//         } else {
+//             T = T->rchild;
+//         }
+//     }
+//     return T;
+// }
