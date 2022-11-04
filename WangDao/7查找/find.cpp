@@ -50,3 +50,19 @@ int Binary_Search(SSTable L, int key) {
 //     }
 //     return T;
 // }
+
+// 二叉树插入操作
+// int BST_Insert(BiTree& T, int k) {
+//     if (T == NULL) {
+//         T = (BiTree)malloc(sizeof(BSTNode));
+//         T->data = k;
+//         T->lchild = T->rchild = NULL;
+//         return 1;
+//     } else if (k == T->data) {
+//         return 0;
+//     } else if (k < T->data) {
+//         return BST_Insert(T->lchild, k);
+//     } else {
+//         return BST_Insert(T->rchild, k);
+//     }
+// }
