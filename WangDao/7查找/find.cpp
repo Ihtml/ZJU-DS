@@ -66,3 +66,19 @@ int Binary_Search(SSTable L, int key) {
 //         return BST_Insert(T->rchild, k);
 //     }
 // }
+
+// int predt = INT_MIN;  // 保存当前结点中序前驱的值 初值为-🈚️穷
+// int JudgeBST(BiTree bt) {
+//     int b1, b2;
+//     if (bt == NULL) {  // 空树
+//         return 1;
+//     } else {
+//         b1 = JudgeBST(bt->lchild);
+//         if (b1 = 0 || predt >= bt->data) {
+//             return 0; // 若左子树返回0或前驱大于等于当前结点 则不是二叉排序树
+//         }
+//         predt = bt->data; // 保存当前结点关键字
+//         b2 = JudgeBST(bt->rchild);
+//         return b2; // 返回右子树的结果
+//     }
+// }
