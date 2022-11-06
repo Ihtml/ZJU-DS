@@ -67,8 +67,8 @@ int Binary_Search(SSTable L, int key) {
 //     }
 // }
 
-// int predt = INT_MIN;  // 保存当前结点中序前驱的值 初值为-🈚️穷
-// int JudgeBST(BiTree bt) {
+// int predt = INT_MIN;  // 保存当前结点中序前驱的值
+// 初值为-🈚️穷 int JudgeBST(BiTree bt) {
 //     int b1, b2;
 //     if (bt == NULL) {  // 空树
 //         return 1;
@@ -81,4 +81,22 @@ int Binary_Search(SSTable L, int key) {
 //         b2 = JudgeBST(bt->rchild);
 //         return b2; // 返回右子树的结果
 //     }
+// }
+
+// 查找结点所用的次数就是该结点在二叉排序树中的层数
+// int level(BiTree bt, BSTNode* p) {
+//     int n = 0;
+//     BiTree t = bt;
+//     if (bt != NULL) {
+//         n++;
+//         while (t->data != p->data) {
+//             if (p->data < t->data) {
+//                 t = t->lchild;
+//             } else {
+//                 t = t->rchild;
+//             }
+//             n++;
+//         }
+//     }
+//     return n;
 // }
