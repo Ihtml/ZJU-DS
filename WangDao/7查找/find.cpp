@@ -100,3 +100,11 @@ int Binary_Search(SSTable L, int key) {
 //     }
 //     return n;
 // }
+
+// 找最小结点，即最左下结点
+// int MinKey(BSTNode* bt) {
+//     while (bt->lchild != NULL) {
+//         bt = bt->lchild;
+//     }
+//     return bt->data;
+// }
