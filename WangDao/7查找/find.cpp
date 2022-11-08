@@ -108,3 +108,9 @@ int Binary_Search(SSTable L, int key) {
 //     }
 //     return bt->data;
 // }
+// int MaxKey(BSTNode* bt) {
+//     while (bt->rchild != NULL) {
+//         bt = bt->rchild;
+//     }
+//     return bt->data;
+// }
