@@ -114,3 +114,18 @@ int Binary_Search(SSTable L, int key) {
 //     }
 //     return bt->data;
 // }
+
+// 从大到小输出二叉排序树中所有值不小于k的关键字
+void OutPut(BSTNode* bt, int k) {
+    if (bt == NULL)
+        return;
+    if (bt->rchild != NULL) {
+        OutPut(bt->rchild, k);
+    }
+    if (bt->data >= k) {
+        cout << bt->data;
+    }
+    if (bt->lchild != NULL) {
+        OutPut(bt->lchild, k);
+    }
+}
