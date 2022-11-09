@@ -87,9 +87,21 @@ bool Del_Min(SqList& L, int& value) {
     return true;
 }
 
+// 删除顺序表中所有值为x的数据元素
+void del_all_x_1(SqList& L, int x) {
+    int k = 0, i;
+    for (int i = 0; i < L.length; i++) {
+        if (L.data[i] != x) {
+            L.data[k] = L.data[i];
+            k++;
+        }
+    }
+    L.length = k;
+}
+
 // 反转顺序表
 void Reverse(SqList& L) {
-    int temp; 
+    int temp;
     for (int i = 0; i < L.length / 2; i++) {
         temp = L.data[i];  // 交换L.data[i]与L.data[L.length-i-1]
         L.data[i] = L.data[L.length - i - 1];
