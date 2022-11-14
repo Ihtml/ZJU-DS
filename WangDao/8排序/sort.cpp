@@ -58,3 +58,16 @@ void BubbleSort(int A[], int n) {
         }
     }
 }
+
+
+void QuickSort(int A[], int low, int high) {
+    if (low < high) {
+        int pivotpos = Partition(A, low, high);
+        QuickSort(A, low, pivotpos - 1);
+        QuickSort(A, pivotpos + 1, high);
+    }
+}
+int Partition(int A[], int low, int high){
+    // todo
+    return low;
+}
