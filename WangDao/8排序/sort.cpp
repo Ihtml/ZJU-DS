@@ -59,7 +59,6 @@ void BubbleSort(int A[], int n) {
     }
 }
 
-
 void QuickSort(int A[], int low, int high) {
     if (low < high) {
         int pivotpos = Partition(A, low, high);
@@ -67,7 +66,16 @@ void QuickSort(int A[], int low, int high) {
         QuickSort(A, pivotpos + 1, high);
     }
 }
-int Partition(int A[], int low, int high){
-    // todo
+int Partition(int A[], int low, int high) {
+    int pivot = A[low];
+    while (low < high) {
+        while (low < high && A[high] >= pivot)
+            high--;
+        A[low] = A[high];
+        while (low < high && A[low] <= pivot)
+            low++;
+        A[high] = A[low];
+    }
+    A[low] = pivot;
     return low;
 }
