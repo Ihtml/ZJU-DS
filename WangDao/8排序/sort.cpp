@@ -79,3 +79,20 @@ int Partition(int A[], int low, int high) {
     A[low] = pivot;
     return low;
 }
+
+//  每个元素都是不同整数型元素的顺序线性表，把奇数移到偶数前边
+void move(int A[], int len) {
+    // 基于快速排序的划分思想，对奇偶进行一次划分
+    int i = 0, j = len - 1;  // i表示左边元素的下标 j表示右边元素的下标
+    while (i < j) {
+        while (i < j && A[i] % 2 != 0)  // 从前往后找到一个偶数元素
+            i++;
+        while (i < j && A[j] % 2 != 0)  // 从后往前找到一个奇数元素
+            j--;
+        if (i < j) {
+            swap(A[i], A[j]);
+        }
+        i++;
+        j--;
+    }
+}
