@@ -80,6 +80,20 @@ int Partition(int A[], int low, int high) {
     return low;
 }
 
+int Partition2(int A[], int low, int high) {
+    int rand_index = low + rand() % (high - low + 1);  // 随机生成枢轴的下标
+    swap(A[rand_index], A[low]);  //  将枢轴值交换到第一个元素
+    int pivot = A[low];
+    int i = low;  // 使A[low...i]中所有元素小于pivot, 初始为空表
+    for (int j = low + 1; j < high; j++) {
+        if (A[j] < pivot) {
+            swap(A[i++], A[j]);
+        }
+    }
+    swap(A[i], A[low]);
+    return i;
+}
+
 //  每个元素都是不同整数型元素的顺序线性表，把奇数移到偶数前边
 void move(int A[], int len) {
     // 基于快速排序的划分思想，对奇偶进行一次划分
