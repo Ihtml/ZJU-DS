@@ -87,7 +87,7 @@ int Partition2(int A[], int low, int high) {
     int i = low;  // 使A[low...i]中所有元素小于pivot, 初始为空表
     for (int j = low + 1; j < high; j++) {
         if (A[j] < pivot) {
-            swap(A[i++], A[j]);
+            swap(A[++i], A[j]);
         }
     }
     swap(A[i], A[low]);
@@ -108,5 +108,18 @@ void move(int A[], int len) {
         }
         i++;
         j--;
+    }
+}
+
+// 选择排序
+void SelectSort(int A[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int min = i;
+        for (int j = i + 1; j < n; j++) {
+            if (A[j] < A[min])
+                min = j;
+        }
+        if (min != i)
+            swap(A[i], A[min]);
     }
 }
