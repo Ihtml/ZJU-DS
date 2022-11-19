@@ -123,3 +123,10 @@ void SelectSort(int A[], int n) {
             swap(A[i], A[min]);
     }
 }
+
+// 建立大根堆
+void BuildMaxHeap(int A[], int len) {
+    for (int i = len / 2; i > 0; i--) {  // 从i=[n/2]~1 反复调整堆
+        HeadAdjust(A, i, len);
+    }
+}
