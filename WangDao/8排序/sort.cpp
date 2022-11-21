@@ -146,3 +146,11 @@ void HeadAdjust(int A[], int k, int len) {
     }
     A[k] = A[0];  // 被筛选结点的值放入最终位置
 }
+
+void HeapSort(int A[], int len) {
+    BuildMaxHeap(A, len);            // 初始建堆
+    for (int i = len; i > 1; i--) {  // n-1躺交换和建堆过程
+        swap(A[i], A[1]);            // 和堆底元素交换
+        HeadAdjust(A, i, i - 1);  // 调整 把剩余的i-1个元素整理成堆
+    }
+}
