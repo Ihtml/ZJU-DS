@@ -174,3 +174,18 @@ bool IsMinHeap(int A[], int len) {
     }
     return true;
 }
+
+void MergeSort(int A[], int low, int high){
+    if (low < high)
+    {
+        int mid = (low+high)/2;
+        MergeSort(A, low, mid);
+        MergeSort(A, mid+1, high);
+        Merge(A, low, mid, high);
+    }
+}
+const int N = 1000;
+int *B = (int *)malloc((N+1)*sizeof(int));  // 辅助数组
+void Merge(int A[], int low, int mid, int high){
+    // 将A的两段A[low..mid]和A[mid...high]各自有序，将它们合并成一个有序表
+}
