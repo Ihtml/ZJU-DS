@@ -175,17 +175,33 @@ bool IsMinHeap(int A[], int len) {
     return true;
 }
 
-void MergeSort(int A[], int low, int high){
-    if (low < high)
-    {
-        int mid = (low+high)/2;
+void MergeSort(int A[], int low, int high) {
+    if (low < high) {
+        int mid = (low + high) / 2;
         MergeSort(A, low, mid);
-        MergeSort(A, mid+1, high);
+        MergeSort(A, mid + 1, high);
         Merge(A, low, mid, high);
     }
 }
 const int N = 1000;
-int *B = (int *)malloc((N+1)*sizeof(int));  // 辅助数组
-void Merge(int A[], int low, int mid, int high){
+int* B = (int*)malloc((N + 1) * sizeof(int));  // 辅助数组
+void Merge(int A[], int low, int mid, int high) {
     // 将A的两段A[low..mid]和A[mid...high]各自有序，将它们合并成一个有序表
+    for (int k = low; k <= high; k++) {
+        B[k] = A[k];  // 将A中所有元素复制到B中
+    }
+    int i, j, k;
+    for (i = low, j = mid + 1, k = i; i <= mid && j <= high; k++) {
+        if (B[i] <= B[j]) {  // 比较B的左右两段中的元素
+            A[k] = B[i++];   // 将较小值复制到A中
+        } else {
+            A[k] = B[j++];
+        }
+    }
+    while (i <= mid) {
+        A[k++] = B[i++];  // 若第一个表未检测完 复制
+    }
+    while (j <= mid) {
+        A[k++] = B[j++];  // 若第二个表未检测完 复制
+    }
 }
