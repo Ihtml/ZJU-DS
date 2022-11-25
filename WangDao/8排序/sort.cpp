@@ -205,3 +205,15 @@ void Merge(int A[], int low, int mid, int high) {
         A[k++] = B[j++];  // 若第二个表未检测完 复制
     }
 }
+void CountSort(int A[], int B[], int n) {
+    // 计数排序算法 将A中的记录排序放入B中
+    int cnt;  // 计数变量
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (A[j] < A[i]) {
+                cnt++;  // 对每个元素 统计关键字比它小的元素个数
+            }
+            B[cnt] = A[i];  // 放入对应位置
+        }
+    }
+}
