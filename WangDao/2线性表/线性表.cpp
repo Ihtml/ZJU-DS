@@ -68,6 +68,25 @@ int locateElem(SqList L, int e) {
     }
     return 0;
 }
+
+// 搜索整个顺序表 查找最小值并用value返回并删除 空出的位置用最后一个元素填补
+bool Del_Min(SqList& L, int& value) {
+    if (L.length == 0) {
+        return false;
+    }
+    value = L.data[0];
+    int pos = 0;
+    for (int i = 1; i < L.length; i++) {
+        if (L.data[i] < value) {
+            value = L.data[i];
+            pos = i;
+        }
+    }
+    L.data[pos]=L.data[L.length-1];
+    L.length--;
+    return true;
+}
+
 int main() {
     return 0;
 }
