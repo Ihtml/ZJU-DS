@@ -82,11 +82,20 @@ bool Del_Min(SqList& L, int& value) {
             pos = i;
         }
     }
-    L.data[pos]=L.data[L.length-1];
+    L.data[pos] = L.data[L.length - 1];
     L.length--;
     return true;
 }
 
+// 反转顺序表
+void Reverse(SqList& L) {
+    int temp; 
+    for (int i = 0; i < L.length / 2; i++) {
+        temp = L.data[i];  // 交换L.data[i]与L.data[L.length-i-1]
+        L.data[i] = L.data[L.length - i - 1];
+        L.data[L.length - i - 1] = temp;
+    }
+}
 int main() {
     return 0;
 }
