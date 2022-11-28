@@ -89,14 +89,26 @@ bool Del_Min(SqList& L, int& value) {
 
 // 删除顺序表中所有值为x的数据元素
 void del_all_x_1(SqList& L, int x) {
-    int k = 0, i;
+    int k = 0, i;  // k记录值不等于x的元素个数
     for (int i = 0; i < L.length; i++) {
         if (L.data[i] != x) {
             L.data[k] = L.data[i];
-            k++;
+            k++;  // 不等于x的元素个数加一
         }
     }
-    L.length = k;
+    L.length = k;  // 顺序表的长度等于k
+}
+// 删除顺序表中所有值为x的数据元素
+void del_all_x_2(SqList& L, int x) {
+    int k = 0, i;  // k记录值等于x的元素个数
+    while (i < L.length) {
+        if (L.data[i] == x)
+            k++;
+        else
+            L.data[i - k] = L.data[i];  // 当前元素前移k个位置
+        i++;
+    }
+    L.length = L.length - k;  // 顺序表L的长度递减
 }
 
 // 反转顺序表
