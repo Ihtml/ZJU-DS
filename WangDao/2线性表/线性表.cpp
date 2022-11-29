@@ -111,6 +111,30 @@ void del_all_x_2(SqList& L, int x) {
     L.length = L.length - k;  // 顺序表L的长度递减
 }
 
+// 删除有顺表L中在给定值s与t之间的所有元素
+bool del_s2t(SqList& L, int s, int t) {
+    int i, j;
+    if (s >= t || L.length == 0) {
+        return false;
+    }
+    for (i = 0; i < L.length && L.data[i] < s; i++) {
+        // 寻找值大于等于s的第一个元素
+    }
+    if (i >= L.length) {
+        return false;
+    }
+    for (j = i; j < L.length && L.data[j] <= t; j++) {
+        // 寻找值大于t的第一个元素
+    }
+    while (j < L.length) {
+        L.data[i] = L.data[j];  // 前移 填补被删除元素位置
+        i++;
+        j++;
+    }
+    L.length = i;
+    return true;
+}
+
 // 反转顺序表
 void Reverse(SqList& L) {
     int temp;
