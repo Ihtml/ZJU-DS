@@ -111,7 +111,7 @@ void del_all_x_2(SqList& L, int x) {
     L.length = L.length - k;  // 顺序表L的长度递减
 }
 
-// 删除有顺表L中在给定值s与t之间的所有元素
+// 删除有序顺表L中在给定值s与t之间的所有元素
 bool del_s2t(SqList& L, int s, int t) {
     int i, j;
     if (s >= t || L.length == 0) {
@@ -132,6 +132,23 @@ bool del_s2t(SqList& L, int s, int t) {
         j++;
     }
     L.length = i;
+    return true;
+}
+
+// 删除无序顺序表L中在给定值s与t之间的所有元素  
+bool del_s2t_2(SqList& L, int s, int t) {
+    int i, k;
+    if (s >= t || L.length == 0) {
+        return false;
+    }
+    for (i = 0; i < L.length; i++) {
+        if (L.data[i] >= s && L.data[i] <= t) {
+            k++;
+        } else {
+            L.data[i - k] = L.data[i];  // 当前元素前移k个位置
+        }
+    }
+    L.length = L.length - k;
     return true;
 }
 
