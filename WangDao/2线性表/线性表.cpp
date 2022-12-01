@@ -135,7 +135,7 @@ bool del_s2t(SqList& L, int s, int t) {
     return true;
 }
 
-// 删除无序顺序表L中在给定值s与t之间的所有元素  
+// 删除无序顺序表L中在给定值s与t之间的所有元素
 bool del_s2t_2(SqList& L, int s, int t) {
     int i, k;
     if (s >= t || L.length == 0) {
@@ -161,6 +161,23 @@ void Reverse(SqList& L) {
         L.data[L.length - i - 1] = temp;
     }
 }
+
+// 有序表去重
+bool Delete_Same(SqList& L) {
+    if (L.length == 0) {
+        return false;
+    }
+    int i, j;  // i存储第一个不相同元素 j为工作指针
+    for (i = 0, j = 1; j < L.length; j++) {
+        if (L.data[i] != L.data[j]) {  // 查找下一个与上一个元素值不同的元素
+            i++;
+            L.data[i] = L.data[j];  // 找到后，将元素前移
+        }
+    }
+    L.length = i + 1;
+    return true;
+}
+
 int main() {
     return 0;
 }
