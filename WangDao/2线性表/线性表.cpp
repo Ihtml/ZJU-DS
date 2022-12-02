@@ -178,6 +178,29 @@ bool Delete_Same(SqList& L) {
     return true;
 }
 
+// 将有序顺序表A与B合并为一个新的有序顺序表C
+bool Merge(SqList A, SqList B, SqList& C) {
+    if (A.length + B.length > C.maxSize) {
+        return false;
+    }
+    int i = 0, j = 0, k = 0;
+    while (i < A.length && j < B.length) {
+        if (A.data[i] <= B.data[j]) {
+            C.data[k++] = A.data[i++];
+        } else {
+            C.data[k++] = B.data[j++];
+        }
+    }
+    while (i < A.length) {
+        C.data[k++] = A.data[i++];
+    }
+    while (j < B.length) {
+        C.data[k++] = B.data[j++];
+    }
+    C.length = k;
+    return true;
+}
+
 int main() {
     return 0;
 }
