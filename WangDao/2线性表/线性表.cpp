@@ -201,6 +201,27 @@ bool Merge(SqList A, SqList B, SqList& C) {
     return true;
 }
 
+// 顺序表位置互换
+// 先将数组A[m+n]中的全部元素(a1,a2,...am,b1,b2,...bn)原地逆置为(bm bm-1, b1,
+// am, am-1,...a1)
+// 再对前n个元素和后m个元素分别使用逆置算法，即可得到(b1,b2,..bn,a1,a2,...am)
+void Reverse(int A[], int left, int righ, int arraySize) {
+    if (left > right || right >= arraySize) {
+        return;
+    }
+    int mid = (left + right) / 2;
+    for (int i = 0; i < mid - left; i++) {
+        int t = A[left + i];
+        A[left + i] = A[right - i];
+        A[right - i] = t;
+    }
+}
+void Exchange(int A[], int m, int n, int arraySize) {
+    Reverse(A, 0, m + n - 1, arraySize);
+    Reverse(A, n - 1, arraySize);
+    Reverse(A, n, m + n - 1, arraySize);
+}
+
 int main() {
     return 0;
 }
