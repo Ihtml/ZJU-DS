@@ -217,11 +217,26 @@ void Reverse(int A[], int left, int righ, int arraySize) {
     }
 }
 void Exchange(int A[], int m, int n, int arraySize) {
+    // 数组A[m+n]中
+    // 从0到m-1存放顺序表(a1,a2,..am)从m到m+n-1存放顺序表(b1,b2,...bn)
+    // 算法将这两个表的位置互换
     Reverse(A, 0, m + n - 1, arraySize);
     Reverse(A, n - 1, arraySize);
     Reverse(A, n, m + n - 1, arraySize);
 }
 
+void SearchExchangeInsert(int A[], int x) {
+    int low = 0, high = n - 1, mid;
+    while (low <= high) {
+        mid = (low + high) / 2;
+        if (A[mid] == x)
+            break;
+        else if (A[mid] < x)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+}
 int main() {
     return 0;
 }
