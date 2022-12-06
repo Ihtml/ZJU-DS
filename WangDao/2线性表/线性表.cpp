@@ -216,6 +216,20 @@ void Reverse(int A[], int left, int righ, int arraySize) {
         A[right - i] = t;
     }
 }
+void Reverse2(int R[], int left, int right) {
+    int i, temp;
+    for (i = 0; i < (right - left + 1) / 2; i++) {
+        temp = R[left + i];
+        R[left + i] = R[right - i];
+        R[right - i] = temp;
+    }
+}
+void Converse(int R[], int n, int p) {
+    Reverse2(R, 0, p - 1);
+    Reverse2(R, p, n - 1);
+    Reverse2(R, 0, n - 1);
+}
+
 void Exchange(int A[], int m, int n, int arraySize) {
     // 数组A[m+n]中
     // 从0到m-1存放顺序表(a1,a2,..am)从m到m+n-1存放顺序表(b1,b2,...bn)
@@ -236,7 +250,7 @@ void SearchExchangeInsert(int A[], int x) {
         else
             high = mid - 1;
     }
-    if (A[mid] == x && mid != n - 1) { 
+    if (A[mid] == x && mid != n - 1) {
         int t = A[mid];
         A[mid] = A[mid + 1];
         A[mid + 1] = t;
