@@ -235,11 +235,11 @@ void Exchange(int A[], int m, int n, int arraySize) {
     // 从0到m-1存放顺序表(a1,a2,..am)从m到m+n-1存放顺序表(b1,b2,...bn)
     // 算法将这两个表的位置互换
     Reverse(A, 0, m + n - 1, arraySize);
-    Reverse(A,0, n - 1, arraySize);
+    Reverse(A, 0, n - 1, arraySize);
     Reverse(A, n, m + n - 1, arraySize);
 }
 
-void SearchExchangeInsert(int A[],int n, int x) {
+void SearchExchangeInsert(int A[], int n, int x) {
     int low = 0, high = n - 1, mid;
     while (low <= high) {  // 折半查找
         mid = (low + high) / 2;
@@ -265,27 +265,29 @@ void SearchExchangeInsert(int A[],int n, int x) {
 }
 
 // 2011 找包含两个升序序列所有元素的升序序列的中位数
-int M_Search(int A[], int B[], int n){
-    int s1=0, d1=n-1, m1, s2=0, d2=n-1, m2;
+int M_Search(int A[], int B[], int n) {
+    int s1 = 0, d1 = n - 1, m1, s2 = 0, d2 = n - 1, m2;
     // 分别表示序列A和B的首位数，末位数和中位数
-    while (s1!=d1 || s2!=d2)
-    {
-        m1=(s1+d1)/2;
-        m2=(s2+d2)/2;
-        if(A[m1]==B[m2]){
+    while (s1 != d1 || s2 != d2) {
+        m1 = (s1 + d1) / 2;
+        m2 = (s2 + d2) / 2;
+        if (A[m1] == B[m2]) {
             return A[m1];
         }
-        if (A[m1]<B[m2])
-        {
-            // todo 舍弃A中较小的一半和B中较大的一半 两次舍弃的长度相同
-        }
-        else
-        {
+        if (A[m1] < B[m2]) {
+            //  舍弃A中较小的一半和B中较大的一半 两次舍弃的长度相同
+            if ((s1 + d1) % 2 == 0) {  // 元素个数为奇数
+                s1 = m1;  // 舍弃A中间点以前的部分且保留中间点
+                d2 = m2;  // 舍弃中间点以后的部分且保留中间点
+            } else {      // 元素个数为偶数
+                s1 = m1 + 1;  // 舍弃A中间点及中间点以前部分
+                d2 = m2;      // 舍弃B中间点以后部分且保留中间点
+            }
+
+        } else {
             // todo
         }
-        
     }
-    
 }
 
 int main() {
