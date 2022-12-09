@@ -285,9 +285,16 @@ int M_Search(int A[], int B[], int n) {
             }
 
         } else {
-            // todo
+            if ((s2 + d2) % 2 == 0) {
+                d1 = m1;
+                s2 = m2;
+            } else {
+                d1 = m1;
+                s2 = m2 + 1;
+            }
         }
     }
+    return A[s1] < B[s2] ? A[s1] : B[s2];
 }
 
 int main() {
