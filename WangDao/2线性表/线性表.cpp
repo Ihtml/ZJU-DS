@@ -297,6 +297,36 @@ int M_Search(int A[], int B[], int n) {
     return A[s1] < B[s2] ? A[s1] : B[s2];
 }
 
+// 找一个n个元素的一维数组中 出现次数大于n/2次的元素
+int Majority(int A[], int n) {
+    int i, c, count = 1;
+    c = A[0];
+    for (i = i; i < n; i++) {
+        if (A[i] == c) {
+            count++;
+        } else {
+            if (count > 0) {
+                count--;
+            } else {
+                c = A[i];
+                count = 1;
+            }
+        }
+    }
+    if (count > 0) {
+        for (i = count = 0; i < n; i++) {
+            if (A[i] == c) {
+                count++;
+            }
+        }
+    }
+    if (count > n / 2) {
+        return c;
+    } else {
+        return -1;
+    }
+}
+
 int main() {
     return 0;
 }
