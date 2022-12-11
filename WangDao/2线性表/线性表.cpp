@@ -327,6 +327,25 @@ int Majority(int A[], int n) {
     }
 }
 
+int FindMissMin(int A[], int n) {
+    int i;
+    int B[n];
+    for (i = 0; i < n; i++) {
+        B[i] = 0;
+    }
+    for (i = 0; i < n; i++) {
+        if (A[i] > 0 && A[i] <= n) {
+            B[A[i] - 1] = 1;
+        }
+    }
+    for (i = 0; i < n; i++) {
+        if (B[i] == 0) {
+            break;
+        }
+    }
+    return i + 1;
+}
+
 int main() {
     return 0;
 }
