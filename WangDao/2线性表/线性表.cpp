@@ -346,6 +346,28 @@ int FindMissMin(int A[], int n) {
     return i + 1;
 }
 
+// 找三元组中最小的距离
+bool xis_min(int a, int b, int c) {
+    if (a <= b && a <= c)
+        return true;
+    return false;
+}
+int FindMInofTrip(int A[], int n, int B[], int m, int C[], int p) {
+    int i = 0, j = 0, k = 0, D_min = INT_MAX, D;
+    while (i < n && j < m && k < p && D_min > 0) {
+        D = abs(A[i] - B[j]) + abs(B[j] - C[k]) + abs(C[k] - A[i]);
+        if (D < D_min)
+            D_min = D;
+        if (xis_min(A[i], B[j], C[k]))
+            i++;
+        else if (xis_min(B[j], C[k], A[i]))
+            j++;
+        else
+            k++;
+    }
+    return D_min;
+}
+
 int main() {
     return 0;
 }
