@@ -16,10 +16,10 @@ typedef struct LNode {   // 定义单链表结点类型
     int data;            // 指针域
 } LNode, *LinkList;
 
-typedef struct DNode {  // 定义双链表结点类型
-    int data;  // 数据域
+typedef struct DNode {           // 定义双链表结点类型
+    int data;                    // 数据域
     struct DNode *prior, *next;  // 前驱和后继指针
-}DNode, *DLinkList;
+} DNode, *DLinkList;
 
 // 静态链表  以next==-1作为其结束的标志
 typedef struct {
@@ -66,7 +66,7 @@ LinkList List_TailInsert(LinkList& L) {  // 正向建立单链表
 }
 
 LNode* GetElem(LinkList L, int i) {
-    int j = 1;  // 计数 初始为1
+    int j = 1;           // 计数 初始为1
     LNode* p = L->next;  // 第1个结点指针赋给p
     if (i == 0)
         return L;  // 若i等于0 则返回头结点
@@ -80,10 +80,10 @@ LNode* GetElem(LinkList L, int i) {
 }
 
 // 按值查找表结点
-LNode *LocateElem(LinkList L, int e){
-    LNode *p = L->next;
-    while (p!=NULL&&p->data!=e)
-        p=p->next;
+LNode* LocateElem(LinkList L, int e) {
+    LNode* p = L->next;
+    while (p != NULL && p->data != e)
+        p = p->next;
     return p;
 }
 
@@ -105,14 +105,13 @@ LNode *LocateElem(LinkList L, int e){
 // p->next=q->next;  // 将*q结点从链中断开
 // free(q);
 
-// 删除结点 *p，可用删除*p的后继结点操作来实现 
+// 删除结点 *p，可用删除*p的后继结点操作来实现
 // 即将其后继结点的值赋予其自身 然后删除后继结点
 // q=p->next;  // 令q指向*p的后继结点
 // p->data=p->next->data;  // 和后继结点交换数据域
 // p->next=q->next;  // 将*q结点从链中断开
 // free(q);  //  释放后继结点的存储空间
 // 时间复杂度O(1)
-
 
 // 双链表
 // 将结点*s插入到结点*p之后
@@ -126,7 +125,21 @@ LNode *LocateElem(LinkList L, int e){
 // q->next->prior=p;
 // free(q);
 
-
+// 递归实现在单链表L中删除值为x的结点
+void Del_X_3(LinkList& L, int x) {
+    LNode* p;
+    if (L == NULL) {
+        return;
+    }
+    if (L->data == x) {
+        p = L;
+        L = L->next;
+        free(p);
+        Del_X_3(L, x);
+    } else {
+        Del_X_3(L->next, x);
+    }
+}
 
 int main() {
     LNode* LN;
