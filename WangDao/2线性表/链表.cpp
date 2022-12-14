@@ -141,6 +141,22 @@ void Del_X_3(LinkList& L, int x) {
     }
 }
 
+// 非递归删除带头结点的单链表中所有值为x的结点
+void Del_X_1(LinkList& L, int x) {
+    LNode *p = L->next, *pre = L, *q;
+    while (p != NULL) {
+        if (p->data == x) {
+            q = p;
+            p = p->next;
+            pre->next = p;
+            free(q);
+        } else {
+            pre = p;
+            p = p->next;
+        }
+    }
+}
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
