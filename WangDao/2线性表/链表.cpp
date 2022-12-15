@@ -157,6 +157,23 @@ void Del_X_1(LinkList& L, int x) {
     }
 }
 
+// 尾插法建立单链表 用P扫描L的所有结点 当其值不为x时 将其链接到L之后 否则将其释放
+void Del_X_2(LinkList& L, int x) {
+    LNode *p = L->next, *r = L, *q;  // r指向尾结点 初值为头结点
+    while (p != NULL) {
+        if (p->data != x) {
+            r->next = p;  // L->next = p; 尾插法
+            r = p;
+            p = p->next;
+        } else {  // p结点为x时将其释放
+            q = p;
+            p = p->next;
+            free(q);
+        }
+        r->next = NULL;
+    }
+}
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
