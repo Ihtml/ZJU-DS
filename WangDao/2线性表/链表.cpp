@@ -157,7 +157,8 @@ void Del_X_1(LinkList& L, int x) {
     }
 }
 
-// 尾插法建立单链表 用P扫描L的所有结点 当其值不为x时 将其链接到L之后 否则将其释放
+// 尾插法建立单链表 用P扫描L的所有结点 当其值不为x时 将其链接到L之后
+// 否则将其释放
 void Del_X_2(LinkList& L, int x) {
     LNode *p = L->next, *r = L, *q;  // r指向尾结点 初值为头结点
     while (p != NULL) {
@@ -171,6 +172,21 @@ void Del_X_2(LinkList& L, int x) {
             free(q);
         }
         r->next = NULL;
+    }
+}
+
+// 递归从尾到头输出单链表L中每个结点的值
+void R_Print(LinkList L) {
+    if (L->next != NULL) {
+        R_Print(L->next);
+    }
+    if (L != NULL) {
+        cout << L->data;
+    }
+}
+void R_Ignore_Head(LinkList L) {
+    if (L->next != NULL) {
+        R_Print(L->next);
     }
 }
 
