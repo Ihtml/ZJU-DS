@@ -190,6 +190,22 @@ void R_Ignore_Head(LinkList L) {
     }
 }
 
+// 删除带头结点的单链表的最小值结点
+LinkList Delete_Min(LinkList& L) {
+    LNode *pre = L, *p = pre->next;  // p为工作指针 pre指向其前驱
+    LNode *minpre = pre, *minp = p;  // 保存最小值结点及其前驱
+    while (p != NULL) {
+        if (p->data < minp->data) {
+            minp = p;
+            minpre = pre;
+        }
+        pre = p;
+        p = p->next;
+    }
+    minpre->next = minp->next;
+    free(minp);
+    return L;
+}
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
