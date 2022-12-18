@@ -206,6 +206,20 @@ LinkList Delete_Min(LinkList& L) {
     free(minp);
     return L;
 }
+
+LinkList reverse_2(LinkList L) {
+    // 依次遍历线性表L， 并将结点指针反转
+    LNode *pre, *p = L->next, *r = p->next;
+    p->next = NULL;
+    while (r != NULL) {
+        pre = p;
+        p = r;
+        r = r->next;
+        p->next = pre;
+    }
+    L->next = p;
+    return L;
+}
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
