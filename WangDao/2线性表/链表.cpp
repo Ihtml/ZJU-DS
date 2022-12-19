@@ -220,6 +220,20 @@ LinkList reverse_2(LinkList L) {
     L->next = p;
     return L;
 }
+// 头插法逆置单链表
+LinkList reverse_1(LinkList L) {
+    // 依次遍历线性表L， 并将结点指针反转
+    LNode *p, *r;
+    p=L->next;
+    L->next=NULL;
+    while (p != NULL) {
+        r=p->next;
+        p->next=L->next;
+        L->next=p;
+        p=r;
+    }
+    return L;
+}
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
