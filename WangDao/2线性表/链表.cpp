@@ -224,15 +224,31 @@ LinkList reverse_2(LinkList L) {
 LinkList reverse_1(LinkList L) {
     // 依次遍历线性表L， 并将结点指针反转
     LNode *p, *r;
-    p=L->next;
-    L->next=NULL;
+    p = L->next;
+    L->next = NULL;
     while (p != NULL) {
-        r=p->next;
-        p->next=L->next;
-        L->next=p;
-        p=r;
+        r = p->next;
+        p->next = L->next;
+        L->next = p;
+        p = r;
     }
     return L;
+}
+
+void LinkListSort(LinkList& L) {
+    LNode *p = L->next, *pre;
+    LNode* r = p->next;  // r保持*p后继结点指针 以保证不断链
+    p->next = NULL;
+    p = r;
+    while (p != NULL) {
+        r = p->next;
+        pre = L;
+        while (pre->next != NULL && pre->next->data < p->data)
+            pre = pre->next;  // 有序表中查找插入*p的前驱结点*pre
+        p->next = pre->next;  // 将*p插入到*pre之后
+        pre->next = p;
+        p = r;  // 扫描原单链表中剩下的结点
+    }
 }
 int main() {
     LNode* LN;
