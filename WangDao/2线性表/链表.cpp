@@ -250,6 +250,19 @@ void LinkListSort(LinkList& L) {
         p = r;  // 扫描原单链表中剩下的结点
     }
 }
+void RangeDelete(LinkList& L, int min, int max) {
+    LNode *pre = L, *p = L->next;
+    while (p != NULL) {
+        if (p->data > min && p->data < max) {
+            pre->next = p->next;
+            free(p);
+            p = pre->next;
+        } else {
+            pre = p;
+            p = p->next;
+        }
+    }
+}
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
