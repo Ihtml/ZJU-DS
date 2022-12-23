@@ -291,6 +291,29 @@ LinkList Search_1st_Common(LinkList L1, int len1, LinkList L2, int len2) {
     return NULL;
 }
 
+LinkList DisCreat_1(LinkList& A) {
+    int i = 0;
+    LinkList B = (LinkList)malloc(sizeof(LNode));
+    B->next = NULL;
+    LNode *ra = A, *rb = B, *p;
+    p = A->next;
+    A->next = NULL;
+    while (p != NULL) {
+        i++;
+        if (i % 2 == 0) {
+            rb->next = p;
+            rb = p;
+        } else {
+            ra->next = p;
+            ra = p;
+        }
+        p = p->next;
+    }
+    ra->next = NULL;
+    rb->next = NULL;
+    return B;
+}
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
