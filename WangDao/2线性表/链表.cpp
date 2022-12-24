@@ -314,6 +314,23 @@ LinkList DisCreat_1(LinkList& A) {
     return B;
 }
 
+// 删除递增有序的单链表中数值相同的元素
+void Del_Same(LinkList& L) {
+    LNode *p = L->next, *q;
+    if (p == NULL) {
+        return;
+    }
+    while (p->next != NULL) {
+        q = p->next;
+        if (p->data == q->data) {
+            p->next = q->next;
+            free(q);
+        } else {
+            p = p->next;
+        }
+    }
+}
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
