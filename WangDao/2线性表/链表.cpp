@@ -291,6 +291,7 @@ LinkList Search_1st_Common(LinkList L1, int len1, LinkList L2, int len2) {
     return NULL;
 }
 
+// 将A表中结点按序号的奇偶性分解到表A或表B中
 LinkList DisCreat_1(LinkList& A) {
     int i = 0;
     LinkList B = (LinkList)malloc(sizeof(LNode));
@@ -298,7 +299,7 @@ LinkList DisCreat_1(LinkList& A) {
     LNode *ra = A, *rb = B, *p;
     p = A->next;
     A->next = NULL;
-    while (p != NULL) {
+    while (p != NULL) {  // 尾插法，
         i++;
         if (i % 2 == 0) {
             rb->next = p;
@@ -311,6 +312,25 @@ LinkList DisCreat_1(LinkList& A) {
     }
     ra->next = NULL;
     rb->next = NULL;
+    return B;
+}
+LinkList DisCreat_2(LinkList& A) {
+    LinkList B = (LinkList)malloc(sizeof(LNode));
+    B->next = NULL;
+    LNode *ra = A, *p, *q;
+    p = A->next;
+    while (p != NULL) { // 头插法
+        ra->next = p;
+        ra = p;
+        p = p->next;
+        if (p != NULL) {
+            q = p->next;
+            p->next = B->next;
+            B->next = p;
+            p = q;
+        }
+    }
+    ra->next = NULL;
     return B;
 }
 
