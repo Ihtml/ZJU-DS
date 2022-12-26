@@ -379,6 +379,28 @@ void MergeListReverse(LinkList& La, LinkList& Lb) {
     }
     free(Lb);
 }
+
+// 产生单链表A和B的公共元素的单链表
+void Get_Common(LinkList A, LinkList B) {
+    LNode *p = A->next, *q = B->next, *r, *s;
+    LinkList C = (LinkList)malloc(sizeof(LNode));
+    r = C;
+    while (p != NULL && q != NULL) {
+        if (q->data < p->data) {
+            p = p->next;
+        } else if (p->data > q->data) {
+            q = q->next;
+        } else {  // 找到公共元素结点
+            s = (LNode*)malloc(sizeof(LNode));
+            s->data = p->data;
+            r->next = s;
+            r = s;
+            p = p->next;
+            q = q->next;
+        }
+    }
+    r->next = NULL;
+}
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
