@@ -319,7 +319,7 @@ LinkList DisCreat_2(LinkList& A) {
     B->next = NULL;
     LNode *ra = A, *p, *q;
     p = A->next;
-    while (p != NULL) { // 头插法
+    while (p != NULL) {  // 头插法
         ra->next = p;
         ra = p;
         p = p->next;
@@ -351,6 +351,34 @@ void Del_Same(LinkList& L) {
     }
 }
 
+// 合并两个递增有序链表（带头结点），并使合并后的链表递减排列
+void MergeListReverse(LinkList& La, LinkList& Lb) {
+    LNode *r, *pa = La->next, *pb = Lb->next;
+    La->next = NULL;  // La做结果链表的头指针
+    while (pa && pb) {
+        if (pa->data <= pb->data) {
+            r = pa->next;
+            pa->next = La->next;  // 头插法
+            La->next = pa;
+            pa = r;
+        } else {
+            r = pb->next;
+            pb->next = La->next;
+            La->next = pb;
+            pb = r;
+        }
+    }
+    if (pa) {
+        pb = pa;
+    }
+    while (pb) {
+        r = pb->next;
+        pb->next = La->next;
+        La->next = pb;
+        pb = r;
+    }
+    free(Lb);
+}
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
