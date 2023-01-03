@@ -401,6 +401,45 @@ void Get_Common(LinkList A, LinkList B) {
     }
     r->next = NULL;
 }
+
+// 对两个链表进行归并扫描，只有同时出现在两个集合中的元素才能链接到结果表且仅保留一个
+LinkList Union(LinkList& la, LinkList& lb) {
+    LinkList pa = la->next;
+    LinkList pb = lb->next;
+    LinkList pc = la, u;
+    while (pa && pb) {
+        if (pa->data == pb->data) {
+            pc->next = pa;
+            pc = pa;
+            pa = pa->next;
+            u = pb;
+            pb = pb->next;
+            free(u);
+        } else if (pa->data < pb->data) {
+            u = pa;
+            pa = pa->next;
+            free(u);
+        } else {
+            u = pb;
+            pb = pb->next;
+            free(u);
+        }
+    }
+    while (pa) {
+        u = pa;
+        pa = pa->next;
+        free(u);
+    }
+    while (pb) {
+        u = pb;
+        pb = pb->next;
+        free(u);
+    }
+    pc->next = NULL;
+    free(lb);
+    return la;
+}
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
