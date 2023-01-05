@@ -440,6 +440,28 @@ LinkList Union(LinkList& la, LinkList& lb) {
     return la;
 }
 
+// 判断B是否是A的子序列
+int Pattern(LinkList A, LinkList B) {
+    LNode* p = A;
+    LNode* pre = B;
+    LNode* q = B;
+    while (p && q) {
+        if (p->data == q->data) {
+            p = p->next;
+            q = q->next;
+        } else {
+            pre = pre->next;
+            p = pre;
+            q = B;
+        }
+    }
+    if (p == NULL) {  // B已经比较结束
+        return 1;     // 说明B是A的子序列
+    } else {
+        return 0;  // B不是A的子序列
+    }
+}
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
