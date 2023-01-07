@@ -462,6 +462,20 @@ int Pattern(LinkList A, LinkList B) {
     }
 }
 
+// 从两头扫描循环双链表，判断链表是否对称
+int Symmetry(DLinkList L) {
+    DNode *p = L->next, *q = L->prior;
+    while (p->next != q && p != q) {
+        if (p->data == q->data) {
+            p = p->next;
+            q = q->prior;
+        } else {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
