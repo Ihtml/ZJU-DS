@@ -476,6 +476,22 @@ int Symmetry(DLinkList L) {
     return 1;
 }
 
+// 将循环链表h2链接到循环链表h1之后，使之仍保持循环链表的形式
+LinkList Link(LinkList& h1, LinkList& h2) {
+    LNode *p, *q;
+    p = h1;
+    while (p->next != h1) {
+        p = p->next;
+    }
+    q = h2;
+    while (q->next != h2) {
+        q = q->next;
+    }
+    p->next = h2;
+    q->next = h1;
+    return h1;
+}
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
