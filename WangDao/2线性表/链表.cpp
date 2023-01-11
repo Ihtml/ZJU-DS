@@ -492,6 +492,28 @@ LinkList Link(LinkList& h1, LinkList& h2) {
     return h1;
 }
 
+// 每次删除循环链表中最小元素 直到链表为空为止
+void Del_All(LinkList& L) {
+    LNode *p, *pre, *minp, *minpre;
+    while (L->next != L) {
+        p = L->next;
+        pre = L;
+        minp = p;
+        minpre = pre;
+        while (p != L) {
+            if (p->data < minp->data) {
+                minp = p;
+                minpre = pre;
+            }
+            pre = p;
+            p = p->next;
+        }
+        printf("%d", minp->data);
+        minpre->next = minp->next;
+        free(minp);
+    }
+    free(L);
+}
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
