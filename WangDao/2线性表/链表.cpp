@@ -516,7 +516,8 @@ void Del_All(LinkList& L) {
 }
 
 // 寻找环的起点
-// 设头结点到环入口点的距离为a 环的入口点沿着环的方向到相遇点的距离为x,环长为r,相遇时绕过了n圈
+// 设头结点到环入口点的距离为a
+// 环的入口点沿着环的方向到相遇点的距离为x,环长为r,相遇时绕过了n圈
 // 2(a+x)=a+n*r+x a=n*r-x;
 LNode* FindLoopStart(LNode* head) {
     LNode *fast = head, *slow = head;
@@ -535,6 +536,26 @@ LNode* FindLoopStart(LNode* head) {
         p2 = p2->next;
     }
     return p1;
+}
+
+// 找到链表倒数第k个结点的位置  双指针
+int Search_k(LinkList list, int k) {
+    LNode *p = list->next, *q = list->next;
+    int ctn = 0;
+    while (p != NULL) {
+        if (ctn < k) {
+            ctn++;
+        } else {
+            q = q->next;
+        }
+        p = p->next;
+    }
+    if (ctn < k) {
+        return 0;
+    } else {
+        cout << q->data;
+        return 1;
+    }
 }
 
 int main() {
