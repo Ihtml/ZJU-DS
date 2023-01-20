@@ -585,6 +585,27 @@ LNode* find_addr(LinkList str1, LinkList str2) {
     return p->next;
 }
 
+void func(LinkList h, int n) {
+    LinkList p = h, r;
+    int *q, m, q[n + 1];
+    // q=(int *)malloc(sizeof(int)*(n+1));
+    for (int i = 0; i < n; i++) {
+        q[i] = 0;
+    }
+    while (p->next != NULL) {
+        m = p->next->data > 0 ? p->next->data : -p->next->data;
+        if (q[m] == 0) {
+            q[m] = 1;
+            p = p->next;
+        } else {
+            r = p->next;
+            p->next = r->next;
+            free(r);
+        }
+    }
+    free(q);
+}
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
