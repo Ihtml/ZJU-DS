@@ -606,6 +606,35 @@ void func(LinkList h, int n) {
     free(q);
 }
 
+void change_list(LNode* h) {
+    LNode *p, *q, *r, *s;
+    p = q = h;
+    while (q->next != NULL) {  // 寻找中间结点
+        p = p->next;
+        q = q->next;
+        if (q->next != NULL)
+            q = q->next;
+    }
+    q = p->next;
+    p->next = NULL;
+    while (q != NULL) {  // 头插法将后半段逆置
+        r = q->next;
+        q->next = p->next;
+        p->next = q;
+        q = r;
+    }
+    s = h->next;  // s指向前半段的第一个数据结点，即插入点
+    q = p->next;  // q指向后半段的第一个结点
+    p->next = NULL;
+    while (q != NULL) {
+        r = q->next;
+        q->next = s->next;
+        s->next = q;
+        s = q->next;
+        q = r;
+    }
+}
+
 int main() {
     LNode* LN;
     List_HeadInsert(LN);
