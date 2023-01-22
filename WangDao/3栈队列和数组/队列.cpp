@@ -3,7 +3,9 @@
 #include <cstdio>
 #include <iostream>
 #include <map>
+#include <queue>
 #include <set>
+#include <stack>
 #include <string>
 #include <typeinfo>
 #include <unordered_map>
@@ -88,4 +90,18 @@ bool DeQueue(LinkQueue& Q, int& x) {
         Q.rear = Q.front;  // 原队列中只有一个结点，删除后变空
     free(p);
     return true;
+}
+
+// 将队列中的元素逆置
+void Inverser(stack<int>& S, queue<int>& Q) {
+    int temp;
+    while (Q.size() != 0) {
+        temp = Q.front();
+        Q.pop();
+    }
+    while (S.size() != 0) {
+        temp = S.top();
+        Q.push(temp);
+        S.pop();
+    }
 }
