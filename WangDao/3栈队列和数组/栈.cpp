@@ -55,3 +55,46 @@ bool GetTop(SqStack S, int& x) {
         return false;
     x = S.data[S.top];
 }
+
+#include <stack>
+bool BracketsCheck(string str) {
+    stack<char> S;
+    int i = 0;
+    while (i < str.length()) {
+        switch (str[i]) {
+            // 左括号入栈
+            case '(':
+                S.push('(');
+                break;
+            case '[':
+                S.push('[');
+                break;
+            case '{':
+                S.push('{');
+                break;
+            // 遇到右括号 检测栈顶
+            case ')':
+                if (S.top() != '(')
+                    return false;
+                break;
+            case ']':
+                if (S.top() != '[')
+                    return false;
+                break;
+            case '}':
+                if (S.top() != '{')
+                    return false;
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+    if (S.size() != 0) {
+        cout << "括号不匹配" << endl;
+        return false;
+    } else {
+        cout << "括号匹配" << endl;
+        return true;
+    }
+}
