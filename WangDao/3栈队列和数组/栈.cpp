@@ -21,7 +21,7 @@ typedef struct {
 typedef struct Linknode {
     int data;               // 数据域
     struct Linknode* next;  // 指针域
-} * LiStack;                // 栈类型定义
+}* LiStack;                 // 栈类型定义
 
 // 初始化
 void InitStack(SqStack& S) {
@@ -96,5 +96,32 @@ bool BracketsCheck(string str) {
     } else {
         cout << "括号匹配" << endl;
         return true;
+    }
+}
+
+typedef struct LNode {   // 定义单链表结点类型
+    struct LNode* next;  // 数据域
+    int data;            // 指针域
+} LNode, *LinkList;
+// 判断链表是否中心对称
+int dc(LinkList L, int n) {
+    int i, s[n / 2];
+    LinkList p = L->next;
+    for (i = 0; i < n / 2; i++) {
+        s[i] = p->data;
+        p = p->next;
+    }
+    i--;               // 恢复最后的i值
+    if (n % 2 == 1) {  // 若n是奇数 后移过中心结点
+        p = p->next;
+    }
+    while (p != NULL && s[i] == p->data) {  // 检测是否中心对称
+        i--;    // i充当栈顶指针
+        p = p->next;
+    }
+    if (i == -1) {  // 栈为空栈
+        return 1;  // 链表中心对称
+    } else {
+        return 0;  // 链表不中心对称
     }
 }
