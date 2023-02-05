@@ -116,12 +116,22 @@ int dc(LinkList L, int n) {
         p = p->next;
     }
     while (p != NULL && s[i] == p->data) {  // 检测是否中心对称
-        i--;    // i充当栈顶指针
+        i--;                                // i充当栈顶指针
         p = p->next;
     }
     if (i == -1) {  // 栈为空栈
-        return 1;  // 链表中心对称
+        return 1;   // 链表中心对称
     } else {
         return 0;  // 链表不中心对称
     }
 }
+
+// 共享空间的两个栈，栈底设在向量两端，初始时，s1栈顶指针为-1
+// s2栈顶指针为maxsize 两个栈顶指针相邻时为栈满
+// 两个栈顶相向、迎面增长，栈顶指针指向栈顶元素
+const int maxsize = 100;
+typedef struct {
+    int stack[maxsize];  // 栈空间
+    int top[2];          // top为两个栈顶指针
+} stk;
+stk s;  // s是如上定义的结构类型变量 为全局变量
