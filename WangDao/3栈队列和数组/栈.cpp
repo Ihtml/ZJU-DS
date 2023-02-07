@@ -139,7 +139,7 @@ stk s;  // s是如上定义的结构类型变量 为全局变量
 int stk_push(int i, int x) {
     if (i < 0 || i > 1) {
         cout << "栈号输入不对";
-        return 0;
+        exit(0);
     }
     if (s.top[1] - s.top[0] == 1) {
         cout << "栈已满";
@@ -153,5 +153,32 @@ int stk_push(int i, int x) {
         case 1:
             s.stack[--s.top[1]] = x;
             return 1;
+    }
+}
+
+int stk_pop(int i) {
+    // 退栈算法 i表示栈号 i=0表示s1栈 i=1时为s2栈
+    // 退栈成功返回退栈元素 否则返回-1
+    if (i < 0 || i > 1) {
+        cout << "栈号输入不对";
+        exit(0);
+    }
+    switch (i) {
+        case 0:
+            if (s.top[0] == -1) {
+                cout << "栈空";
+                return -1;
+            } else {
+                return s.stack[s.top[0]--];
+            }
+            break;
+        case 1:
+            if (s.top[1] == maxsize) {
+                cout << "栈空";
+                return -1;
+            } else {
+                return s.stack[s.top[1]++];
+            }
+            break;
     }
 }
