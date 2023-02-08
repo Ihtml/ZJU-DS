@@ -47,6 +47,21 @@ bool DeQueue(SqQueue& Q, int& x) {
     return true;
 }
 
+// 标记法循环队列 增设一个tag整型变量 进队时置tag为1 出队时置为0
+// 只有入队操作导致队满、只有出队操作可能导致队空
+// 队列Q初始时，置tag=0 front=rear=0
+typedef struct {
+    int data[MaxSize];  // 存放队列元素
+    // 初始状态（队空条件） Q.front==Q.rear==0
+    int front, rear;  // 队头指针和队尾指针
+    int tag=0;
+} CircleQueue;
+void fun(CircleQueue Q) {
+    if (Q.front == Q.rear && Q.tag == 0) {
+        // 队空
+    }  
+}
+
 // 队列的链式存储结构
 typedef struct LinkNode {  // 链式队列结点
     int data;
