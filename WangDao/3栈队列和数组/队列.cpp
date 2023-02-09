@@ -56,11 +56,23 @@ typedef struct {
     int front, rear;  // 队头指针和队尾指针
     int tag=0;
 } CircleQueue;
-void fun(CircleQueue Q) {
+void fun(CircleQueue Q, int x) {
     if (Q.front == Q.rear && Q.tag == 0) {
-        // 队空
-    }  
+        cout << "队空";
+    }
+    if (Q.front == Q.rear && Q.tag == 1) {
+        cout << "队满";
+    }
+    // 进队
+    Q.data[Q.rear]=x; 
+    Q.rear=(Q.rear+1)%MaxSize;
+    Q.tag=1;
+    // 出队
+    x=Q.data[Q.front];
+    Q.front=(Q.front - 1) % MaxSize;
+    Q.tag=0;
 }
+
 
 // 队列的链式存储结构
 typedef struct LinkNode {  // 链式队列结点
