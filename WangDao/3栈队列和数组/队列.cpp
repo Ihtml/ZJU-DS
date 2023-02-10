@@ -54,7 +54,7 @@ typedef struct {
     int data[MaxSize];  // 存放队列元素
     // 初始状态（队空条件） Q.front==Q.rear==0
     int front, rear;  // 队头指针和队尾指针
-    int tag=0;
+    int tag = 0;
 } CircleQueue;
 void fun(CircleQueue Q, int x) {
     if (Q.front == Q.rear && Q.tag == 0) {
@@ -64,13 +64,23 @@ void fun(CircleQueue Q, int x) {
         cout << "队满";
     }
     // 进队
-    Q.data[Q.rear]=x; 
+    Q.data[Q.rear] = x;
+    Q.rear = (Q.rear + 1) % MaxSize;
+    Q.tag = 1;
+    // 出队
+    x = Q.data[Q.front];
+    Q.front = (Q.front - 1) % MaxSize;
+    Q.tag = 0;
+}
+
+int EnCircleQueue(CircleQueue& Q, int x) {
+    if (Q.front == Q.rear && Q.tag == 1) {
+        return 0;
+    }
+    Q.data[Q.rear]=x;
     Q.rear=(Q.rear+1)%MaxSize;
     Q.tag=1;
-    // 出队
-    x=Q.data[Q.front];
-    Q.front=(Q.front - 1) % MaxSize;
-    Q.tag=0;
+    return 1;
 }
 
 
