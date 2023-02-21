@@ -77,12 +77,21 @@ int EnCircleQueue(CircleQueue& Q, int x) {
     if (Q.front == Q.rear && Q.tag == 1) {
         return 0;
     }
-    Q.data[Q.rear]=x;
-    Q.rear=(Q.rear+1)%MaxSize;
-    Q.tag=1;
+    Q.data[Q.rear] = x;
+    Q.rear = (Q.rear + 1) % MaxSize;
+    Q.tag = 1;
     return 1;
 }
 
+int DeCircleQueue(CircleQueue& Q, int& x) {
+    if (Q.front == Q.rear && Q.tag == 0) {
+        return 0;  // 队空
+    }
+    x = Q.data[Q.front];
+    Q.front = (Q.front + 1) % MaxSize;
+    Q.tag = 0;
+    return 1;
+}
 
 // 队列的链式存储结构
 typedef struct LinkNode {  // 链式队列结点
