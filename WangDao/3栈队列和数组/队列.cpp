@@ -144,6 +144,7 @@ void Inverser(stack<int>& S, queue<int>& Q) {
     while (Q.size() != 0) {
         temp = Q.front();
         Q.pop();
+        S.push(temp);
     }
     while (S.size() != 0) {
         temp = S.top();
